@@ -8,25 +8,28 @@ class User(AbstractUser):
 
 class Param(models.Model):
     date_init = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
 
     class Meta:
         abstract = True
         ordering = ['-date_init']
 
 class BOFI(Param):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="BOFI")
     BOFI = models.PositiveIntegerField()
 
 class Memory(Param):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="Memory")
     VM = models.PositiveIntegerField(validators=[memory_validator])
     VMWP = models.PositiveIntegerField(validators=[memory_validator])
     LM = models.PositiveIntegerField(validators=[memory_validator])
 
 
 class AA(Param):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="AA")
     AA = models.PositiveIntegerField()
 
 class QER(Param):
+    user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="QER")
     QER = models.PositiveIntegerField()
     WPM = models.PositiveIntegerField()
     QU = models.PositiveIntegerField(validators=[procent_validator])

@@ -7,7 +7,7 @@ class EducationObject(models.Model):
     title = models.CharField(max_length=100)
     overview = models.CharField(max_length=500, blank=True)
     date_create = models.DateTimeField(auto_now_add=True)
-    date_update = models.DateTimeField(blank=True)
+    date_update = models.DateTimeField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=PROTECT)
 
     class Meta:
@@ -19,10 +19,10 @@ class Course(EducationObject):
 
 class Module(EducationObject):
     number = models.PositiveIntegerField()
-    course = models.ForeignKey(Course, on_delete=CASCADE)
+    course = models.ForeignKey(Course, on_delete=CASCADE, related_name="modules")
 
     def __str__(self):
-        return f'{self.number}. {self.title} {self.course}'
+        return f'{self.number}. {self.title} {self.overview}'
 
     class Meta:
         ordering = ['number', 'course']
@@ -73,7 +73,7 @@ class ModuleTasks(models.Model):
 
 class Question(models.Model):
     number = models.PositiveIntegerField()
-    item = models.ForeignKey(Item, on_delete=CASCADE)
+    item = models.ForeignKey(Item, on_delete=CASCADE, related_name="questions")
     question = models.CharField(max_length=300)
     answer = models.CharField(max_length=100)
     posible_answer_1 = models.CharField(max_length=100, blank=True)

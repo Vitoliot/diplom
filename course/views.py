@@ -34,7 +34,7 @@ class CourseWithModules(generics.RetrieveUpdateDestroyAPIView):
 
 class CourseAddView(generics.CreateAPIView):
     queryset = Course.objects.all()
-    serializer_class = Course
+    serializer_class = CourseSerializer
     permission_classes = []
     authentication_classes = []
 
