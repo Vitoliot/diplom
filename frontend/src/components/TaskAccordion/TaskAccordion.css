@@ -1,0 +1,59 @@
+.accordion {
+  background-color: #EBE2CA;
+  padding: auto;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.accordion h3 {
+    font-family: 'Athelas';
+    font-size: 18pt;
+    float: left;
+    position: relative;
+    margin-left: 2em;
+    background-position-y: center;
+    text-decoration-line: underline;
+  }
+  
+  .accordion img {
+    margin-top: 1em;
+    float: left;
+    margin-left: 1em;
+    display: inline-block;
+    position: relative;
+  }
+
+  
+  .panel {
+    font-family: 'Athelas';
+    font-size: 14pt;
+    padding: 0 18px;
+    background-color: #EBE2CA;
+    max-height: 0;
+    overflow: hidden;
+    display: block;
+    transition: max-height 0.2s ease-out;
+  }
+  .panel div {
+    cursor: pointer;
+  }
+
+  .panel div:hover {
+    color: #826003;
+  }
+  .panel img {
+    float: left;
+    margin-left: 1em;
+    display: block;
+    position: relative;
+  }
+  
+  .panel h4 {
+    font-weight: bold;
+    position: relative;
+    margin-left: 6em;
+    background-position-y: center;
+  }

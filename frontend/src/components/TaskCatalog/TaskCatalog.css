@@ -1,0 +1,48 @@
+h5 {
+    /* margin-left: 10em; */
+    margin-bottom: 0.5em;
+    font-family: "UbuntuBold";
+    color: #EBE2CA;
+}
+
+.taskSwitch {
+    margin-bottom: 1em;
+    width: 100%;
+    margin: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+}
+TaskSwitch {
+    float: right;
+}
+.container {
+    width: 100%;
+	max-width: 1200px;
+    height: 700px;
+	margin: auto;
+    margin-top: 0em;
+    padding-top: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 50px;
+    background-color: #EBE2CA;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.tasks {
+    width: 50%;
+    margin: 2px;
+}
+
+.taskCard {
+    width: 50%;
+    /* height: 50%; */
+}

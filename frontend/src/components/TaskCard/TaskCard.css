@@ -1,0 +1,55 @@
+.container {
+    background-color: #908373;
+    width: 90%;
+    height: 50%;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 2em;
+    border-radius: 20px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.container button {
+    cursor: pointer;
+    position: relative;
+    margin-left: 10%;
+    width: 80%;
+    height: 2em;
+    margin-top: 7em;
+    margin-bottom: 2em;
+    background: #EBE2CA;
+    border: 2px solid #EBE2CA;
+    color: #908373;
+    border-radius: 5px;
+    font-family: 'Athelas';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+p {
+    font-family: 'Athelas';
+    color: #EBE2CA;
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+p > span {
+    font-family: 'Athelas Bold';
+    color: white;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+h1 {
+    font-family: 'Athelas Bold';
+    color: white;
+    font-size: 24pt;
+    font-weight: bold;
+    margin: auto;
+}
