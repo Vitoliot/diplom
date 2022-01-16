@@ -29,14 +29,19 @@ class Module(EducationObject):
         unique_together = ['number', 'course']
 
 class TaskType(models.Model):
-    type = models.PositiveIntegerField(choices=(
+    type_choices = [
         (1, 'текстовое задание'),
         (2, 'задание с картинкой'),
-        (3, 'другое')))
+        (3, 'другое')]
+
+    type = models.PositiveIntegerField(choices=type_choices)
+
+    def __str__(self) -> str:
+        return f'{self.type_choices[self.type-2][1]}'
 
 
 class TaskTheme(models.Model):
-    theme = models.PositiveIntegerField(choices=(
+    theme_choices=[
         (1, 'Избавление от проговаривания'),
         (2, 'Схватывание и нахождение информации'),
         (3, 'Работа с текстом'),
@@ -45,7 +50,11 @@ class TaskTheme(models.Model):
         (6, 'Логическая память'),
         (7, 'Внимание'),
         (8, 'Регрессии'),
-    ))
+    ]
+    theme = models.PositiveIntegerField(choices=theme_choices)
+
+    def __str__(self) -> str:
+        return f'{self.theme_choices[self.theme-2][1]}'
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
@@ -56,10 +65,10 @@ class Item(models.Model):
     icon = models.ImageField(blank=True, upload_to="static/tasks_icons/")
 
 class Task(EducationObject):
-    type = models.ForeignKey(TaskType, on_delete=PROTECT)
-    theme = models.ForeignKey(TaskTheme, on_delete=PROTECT)
+    type = models.ForeignKey(TaskType, on_delete=PROTECT, related_name='task')
+    theme = models.ForeignKey(TaskTheme, on_delete=PROTECT, related_name='task')
     modules = models.ManyToManyField(Module, through='ModuleTasks', through_fields=('task', 'module'))
-    items = models.ManyToManyField(Item)
+    items = models.ManyToManyField(Item, blank=True)
 
 
 class ModuleTasks(models.Model):

@@ -1,9 +1,8 @@
-from re import T
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
 from django.db.models.query import QuerySet
 from user_profile.validators import procent_validator
-from course.models import Course, Module, ModuleTasks, Question, Item
+from course.models import Course, ModuleTasks, Question, Item
 from user_profile.models import User
 from django.db.models.signals import pre_save, post_save
 from django.dispatch.dispatcher import receiver
@@ -20,7 +19,7 @@ class UserTasks(models.Model):
     task = models.ForeignKey(ModuleTasks, on_delete=PROTECT)
     date_init = models.DateTimeField(auto_now_add=True)
     time = models.PositiveIntegerField()
-    correctness = models.DecimalField(validators=[procent_validator], max_digits=4, default=0)
+    correctness = models.DecimalField(validators=[procent_validator], max_digits=4, default=0, decimal_places=2)
     course = models.ForeignKey(Course, on_delete=CASCADE, blank=True)
 
 # @receiver(post_save, sender = UserTasks)
@@ -42,7 +41,7 @@ class Answer(models.Model):
     answer = models.CharField(max_length=100)
     is_correct = models.BooleanField(default=False)
     date_init = models.DateTimeField(auto_now_add=True)
-    item = models.ForeignKey(Item, on_delete=PROTECT, blank=True, none=True)
+    item = models.ForeignKey(Item, on_delete=PROTECT, blank=True)
 
 @receiver(pre_save, sender = Answer)
 def check_correctness_usertasks(sender, instance, **kwargs):

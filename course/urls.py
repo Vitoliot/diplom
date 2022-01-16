@@ -15,6 +15,8 @@ urlpatterns = [
     path("task/<int:pk>", TaskwithItemsOneView.as_view()),
     path("task/update/<int:pk>", TaskUpdateDestroyView.as_view()),
     path("task/new", TaskCreateView.as_view()),
+    path("task/all/type", TaskTypeView.as_view()),
+    path("task/all/theme", TaskThemeView.as_view()),
     path("task/all", TaskListView.as_view()),
     path("task_wi/<int:pk>", TaskOneView.as_view()),
     path("item/new", ItemCreateView.as_view()),

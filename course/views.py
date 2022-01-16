@@ -4,6 +4,18 @@ from .serializers import *
 from rest_framework import generics
 from rest_framework import permissions, authentication
 
+class TaskTypeView(generics.ListAPIView):
+    queryset = TaskType.objects.all()
+    serializer_class = TaskTypeSerializer
+    permission_classes = []
+    authentication_classes = []
+
+class TaskThemeView(generics.ListAPIView):
+    queryset = TaskTheme.objects.all()
+    serializer_class = TaskThemeSerializer
+    permission_classes = []
+    authentication_classes = []
+
 class CourseOneView(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer

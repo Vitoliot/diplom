@@ -18,24 +18,30 @@ class CourseWithModules(CourseSerializer):
     # modules = serializers.StringRelatedField(many=True)
     modules = ModuleSerializer(many = True)
 
-class TaskTypeSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = TaskType
-        fields = "__all__"
-
-class TaskThemeSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = TaskTheme
-        fields = "__all__"
-
 class TaskSerializer(serializers.ModelSerializer):
-    type = TaskTypeSerializer()
-    theme = TaskThemeSerializer()
+    type = serializers.StringRelatedField()
+    theme = serializers.StringRelatedField()
+    
     class Meta:
         model = Task
         fields = "__all__"
+
+
+class TaskThemeSerializer(serializers.ModelSerializer):
+    task = TaskSerializer(many=True)
+
+    class Meta:
+        model = TaskTheme
+        fields = ('theme', 'task')
+
+
+class TaskTypeSerializer(serializers.ModelSerializer):
+    task = TaskSerializer(many=True)
+
+    class Meta:
+        model = TaskType
+        fields = ('type', 'task')
+
 
 class QuestionSerializer(serializers.ModelSerializer):
     
