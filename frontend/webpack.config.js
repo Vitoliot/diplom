@@ -12,9 +12,16 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        loader : "babel-loader", 
+        // use: [ "style-loader", "css-loader"],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { modules: true, importLoaders: 1 } },
+          { loader: 'postcss-loader' },
+        ]
       },
     ],
   },

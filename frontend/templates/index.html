@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fastread</title>
+  </head>
+  {% load static %}
+  <body style="background-color: #908373;">
+    <div id="main">
+      <div id="app"></div>
+    </div>
+    <script src="{% static "frontend/main.js" %}"></script>
+  </body>
+</html>
+
+<style>
+  @font-face {
+    font-family: 'Athelas';
+    src: url('../static/fonts/Athelas/Athelas-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'AthelasBold';
+    src: url('../static/fonts/Athelas/Athelas-Bold.ttf');
+  }
+  @font-face {
+    font-family: 'Ubuntu';
+    src: url('../static/fonts/Ubuntu/Ubuntu-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'UbuntuBold';
+    src: url('../static/fonts/Ubuntu/Ubuntu-Bold.ttf');
+  }
+
+  ::-webkit-scrollbar {
+  height: 5px;
+  background-color: #908373;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ebe2ca;
+  border-radius: 4px;
+}
+@media only screen and (min-width: 768.1px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+</style>
