@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from .validators import procent_validator, memory_validator
 
 class User(AbstractUser):
-    icon = models.ImageField(blank=True, upload_to="static/profile_icons")
+    icon = models.ImageField(blank=True, upload_to="frontend\static\profile_icons")
     task_in_day = models.PositiveIntegerField(choices=((5, 'LOW'), (7, 'NORMAL'), (9, 'HIGH')), default=5)
 
 class Param(models.Model):

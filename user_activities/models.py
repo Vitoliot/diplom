@@ -15,12 +15,13 @@ class UserCourses(models.Model):
 
 
 class UserTasks(models.Model):
-    user = models.ForeignKey(User, on_delete=CASCADE)
+    # user = models.ForeignKey(User, on_delete=CASCADE)
     task = models.ForeignKey(ModuleTasks, on_delete=PROTECT)
     date_init = models.DateTimeField(auto_now_add=True)
     time = models.PositiveIntegerField()
     correctness = models.DecimalField(validators=[procent_validator], max_digits=4, default=0, decimal_places=2)
-    course = models.ForeignKey(Course, on_delete=CASCADE, blank=True)
+    is_complete = models.BooleanField(default=False)
+    usercourse = models.ForeignKey(UserCourses, on_delete=CASCADE, blank=True)
 
 # @receiver(post_save, sender = UserTasks)
 # def check_correctness_usertasks(sender, instance, **kwargs):
