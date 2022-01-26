@@ -1,30 +1,40 @@
-.footer {
-    background-color: #EBE2CA;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    padding-top: 2em;
-    padding-bottom: 2em;
-    padding-left: 4em;
-    padding-right: 4em;
+.header {
+  height: 50px;
+  background-color: #ebe2ca;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.pageName {
+  color: #908373;
+  font-family: "AthelasBold";
+  font-size: 20pt;
 }
 
 .links {
-    display: flex;
-    gap: 60px;
+  display: flex;
+  gap: 1em;
 }
 
-.link {
-    height: 40px;
-    line-height: 19px;
-    text-transform: uppercase;
+.profileLink {
+}
+
+.authLink {
+    margin: auto;
+    height: 2em;
     display: flex;
+    text-transform: uppercase;
+    text-decoration-color:#ebe2ca;
+    text-decoration: underline; 
     align-items: center;
     background: #908373;
     border: 2px solid #908373;
-    color: #EBE2CA;
     border-radius: 5px;
     font-family: 'Athelas';
     font-weight: bold;
@@ -36,14 +46,15 @@
     transition: .2s;
 }
 
-.link:hover {
-    border-bottom: 1px solid var(--light);
-    transition: .2s;
+.authLink h3 {
+    color: #ebe2ca;
+    text-decoration-line:underline;
+    text-decoration-color: #908373;
 }
 
 
 @media screen and (max-width: 1280px) {
-    .footer {
+    .header {
         padding: 0 50px;
     }
 
@@ -53,7 +64,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .footer {
+    .header {
         height: 124px;
         padding: 12px 50px;
         flex-wrap: wrap;
@@ -68,7 +79,7 @@
 }
 
 @media screen and (max-width: 450px) {
-    .footer {
+    .header {
         padding: 12px 0px;
     }
 

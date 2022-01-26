@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Footer.css";
 import CSSModules from "react-css-modules";
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';  
 
 const Footer = () => {
     return <footer className="footer" styleName="footer">

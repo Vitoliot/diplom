@@ -1,16 +1,87 @@
 import React from "react";
-// import {NavLink} from 'react-router-dom';
-// import styles from '../../../static/css/Header.css';
+import { NavLink } from "react-router-dom";
+import styles from "./Header.css";
+import CSSModules from "react-css-modules";
+import { connect } from "react-redux";
+import mapDispatchToProps from "../../store/mapDispatchToProps";
+import mapStateToProps from "../../store/mapStateToProps";
+import HeaderLink from "./HeaderLink";
 
 
-// TODO
-// Структура для авторизованного: ЛОГО, Название страницы, Курсы, Упражнения, Профиль (с картинкой)
-// Структура для не авторизованного: ЛОГО, Название страницы, Курсы, Упражнения, Авторизоваться
-// Входные данные: название странницы
-// Проверять авторизованность по куки или по state
+const Header = (props) => {
+  return (
+    <header className="header" styleName="header">
+      <div className="logo" styleName="logo">
+        <img src="../../../static/images/logo.svg" />
+      </div>
+      <div>
+        <h1 className="pageName" styleName="pageName">
+          {props.title}
+        </h1>
+      </div>
+      {props.isLogged ? (
+        <div className="links" styleName="links">
+          <NavLink to={"/course"}>
+            <HeaderLink
+              title="мой курс"
+              imgPath="../../../static/images/course.svg"
+            />
+          </NavLink>
+          <NavLink to={"/courseCatalog"}>
+            {"asd"}
+            <HeaderLink
+              title="курсы"
+              imgPath="../../../static/images/courseCatalog.svg"
+            />
+          </NavLink>
+          <NavLink to={"/taskCatalog"}>
+            {"asd"}
+            <HeaderLink
+              title="упражнения"
+              imgPath="../../../static/images/task_list.svg"
+            />
+          </NavLink>
+          <NavLink to={"/profile"} styleName="profileLink">
+            {"asd"}
+            <HeaderLink
+              title="профиль"
+              imgPath={
+                props.imgPath
+                  ? props.imgPath
+                  : "frontend\\static\\images\\user.svg"
+              }
+            />
+          </NavLink>
+        </div>
+      ) : (
+        <div className="links" styleName="links">
+          <NavLink to={"/courseCatalog"}>
+            <HeaderLink
+              title="курсы"
+              imgPath="../../../static/images/courseCatalog.svg"
+            />
+          </NavLink>
+          <NavLink to={"/taskCatalog"}>
+            <HeaderLink
+              title="упражнения"
+              imgPath="../../../static/images/task_list.svg"
+            />
+          </NavLink>
+          <button styleName="authLink">
+          <NavLink to={"/auth"}>
+            <h3>
+            {"вход"}
+            </h3>
+          </NavLink>
+          </button>
+        </div>
+      )}
+    </header>
+  );
+};
 
-const Header = (props) => (
-<h1> {props.title} </h1>
-);
-
-export default Header;
+export default connect(
+  mapStateToProps("Header"),
+  mapDispatchToProps("Header")
+)(CSSModules(Header, styles, { allowMultiple: true }));
+// CSSModules(Header, styles, { allowMultiple: true });

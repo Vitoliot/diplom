@@ -1,0 +1,22 @@
+.linkContainer {
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+}
+
+.linkImage {
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.linkTitle {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3px;
+  font-family: "UbuntuBold";
+  font-size: 10pt;
+  color: #000;
+  text-decoration: none;
+}
