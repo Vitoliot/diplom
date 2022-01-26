@@ -59,7 +59,13 @@ const actions = {
         delete_answer_request_started: 'delete_answer_request_started',
         delete_answer_request_successed: 'delete_answer_request_successed',
         delete_answer_request_failed: 'delete_answer_request_failed',
-        cookie_agreement: 'cookie_agreement'
+        cookie_agreement: 'cookie_agreement',
+        create_usercourses_request_started: 'create_usercourses_request_started',
+        create_usercourses_request_successed: 'create_usercourses_request_successed',
+        create_usercourses_request_failed: 'create_usercourses_request_failed',
+        update_usercourses_request_started: 'update_usercourses_request_started',
+        update_usercourses_request_successed: 'update_usercourses_request_successed',
+        update_usercourses_request_failed: 'update_usercourses_request_failed',
 }
 
 export default actions;

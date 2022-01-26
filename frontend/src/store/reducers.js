@@ -6,11 +6,9 @@ const Reducers = {
         switch(action.type) {
             case actions.apply_course_choicePage_sort : return action.course_sort;
             case actions.break_course_choicePage_sort : return {
-                date : false,
-                alphabet : false}
-            default: {
-                return state;
-            }
+                date : 0,
+                alphabet : 0}
+            default: return state;
         }
     },
     task_choicePage : (state = initialState, action) => {
@@ -64,23 +62,35 @@ const Reducers = {
     },
     course_choicePage : (state = initialState, action) => {
         switch(action.type) {
-            case actions.select_tasks_request_started:
+            case actions.select_courses_request_started:
+            case actions.select_user_courses_request_started:
                 return {
                     is_fecthed : false,
                     is_loading : true,
-                    courses: state.courses 
+                    courses: state.courses,
+                    user_courses : state.user_courses
                 }
-            case actions.select_tasks_request_successed:
+            case actions.select_courses_request_successed:
                 return {
                     is_fecthed : true,
                     is_loading : false,
-                    courses: action.courses 
+                    courses: action.courses,
+                    user_courses: state.user_courses
                 }
-            case actions.select_tasks_request_failed:
+            case actions.select_user_courses_request_successed:
+                return {
+                    is_fecthed : true,
+                    is_loading : false,
+                    courses: state.courses,
+                    user_courses: state.user_courses + {course : action.course}
+                }
+            case actions.select_courses_request_failed:
+            case actions.select_user_courses_request_failed:
                 return {
                     is_fecthed : false,
                     is_loading : false,
-                    courses: state.courses
+                    courses: state.courses,
+                    usercourses : state.user_courses
                 }
             default: return state
         }

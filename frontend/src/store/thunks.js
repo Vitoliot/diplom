@@ -5,27 +5,80 @@ export function fetchTasks() {
         return async function (dispatch, getState, extraArgument) {
             dispatch(actionCreators.select_tasks_request_started())
             let theme = getState().task_choicePage.is_theme
+            let url = 'education/task/all/type'
             if (theme) {
-                return await axios.get('education/task/all/theme')
-                .then(
-                response => dispatch(actionCreators.select_tasks_request_successed(response.data)),
-                error => {
-                    dispatch(actionCreators.select_tasks_request_failed());
-                    dispatch(actionCreators.addError(error))
-                }
-                )
+                url = 'education/task/all/theme'
             }
-            else {
-                return await axios.get('education/task/all/type')
-                .then(
-                response => dispatch(actionCreators.select_tasks_request_successed(response.data)),
-                error => {
-                    dispatch(actionCreators.select_tasks_request_failed());
-                    dispatch(actionCreators.addError(error))
-                }
-                )
+            return await axios.get(url)
+            .then(
+            response => dispatch(actionCreators.select_tasks_request_successed(response.data)),
+            error => {
+                dispatch(actionCreators.select_tasks_request_failed());
+                dispatch(actionCreators.addError(error))
             }
+            )
             }
     }
+
+
+export function fetchCourses() {
+    return async function (dispatch, getState, extraArgument) {
+        dispatch(actionCreators.select_courses_request_started())
+        let params = getState().course_sort
+        let url = 'education/course/all?ordering='
+        Object.keys(params).forEach(element => {
+            if (element === 'date'){
+                if (params[element] === 1) url += 'date_create,'
+                if (params[element] === 2) url += '-date_create,'
+            }
+            if (element === 'alphabet'){
+                if (params[element] === 1) url += 'title,'
+                if (params[element] === 2) url += '-title,'
+            }
+        });
+        return await axios.get(url)
+        .then(
+        response => dispatch(actionCreators.select_courses_request_successed(response.data)),
+        error => {
+            dispatch(actionCreators.select_courses_request_failed());
+            dispatch(actionCreators.addError(error))
+        }
+        )
+    }
+}
+
+export function addCourseToUser(course){
+    return async function (dispatch, getState, extraArgument) {
+        dispatch()
+        user = getState().user.id
+        let url = 'activities/usercourses/new'
+        return await axios.post(url, {user:user,course:course})
+        .then(
+            response => {
+                dispatch(actionCreators.addSuccess('Вы успешно записаны на курс'))
+                dispatch(actionCreators.select_user_courses_request_successed(course))
+            },
+            error => {
+                dispatch(actionCreators.addError(error))
+            }
+            )
+        }
+    }
+
+export function fetchUserCourses(){
+    return async function (dispatch, getState, extraArgument) {
+        dispatch(actionCreators.select_user_courses_request_started())
+        user = getState().user.id
+        let url = `activities/${user}/courses`
+        return await axios.get(url)
+        .then(
+        response => dispatch(actionCreators.select_user_courses_request_successed(response.data)),
+        error => {
+            dispatch(actionCreators.select_user_courses_request_failed());
+            dispatch(actionCreators.addError(error))
+        }
+        )
+    }
+}
 
 

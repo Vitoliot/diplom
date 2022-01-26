@@ -11,11 +11,28 @@ function mapStateToProps(component) {
                 };
             }
         }
-        case "Component_2": {
+        case "Header": {
+            return function(state) {
+                console.log(state)
+                return {
+                    isLogged: false,
+                    userImgPath : state.user.userImgPath
+                };
+            }
+        }
+        case "AuthorizeRoute": {
             return function(state) {
                 return {
-                    value_2: state.value_2
-                };
+                    // isLogged : state.user.id ? true : false
+                }
+            }
+        }
+        case "CourseCatalog" : {
+            return (state) => {
+                return {
+                    course_choicePage : state.course_choicePage,
+                    course_sort : state.course_sort
+                }
             }
         }
         default: return "undefined";

@@ -63,6 +63,22 @@ const actionCreators = {
             courses
         }
     },
+    select_user_courses_request_started : () => {
+        return {
+            type: Actions.select_user_courses_request_started,
+        }
+    },
+    select_user_courses_request_failed : () => {
+        return {
+            type: Actions.select_user_courses_request_failed,
+        }
+    },
+    select_user_courses_request_successed : (courses) => {
+        return {
+            type: Actions.select_user_courses_request_successed,
+            courses
+        }
+    },
     select_tasks_request_started : () => {
         return {
             type: Actions.select_tasks_request_started,
@@ -77,6 +93,37 @@ const actionCreators = {
         return {
             type: Actions.select_tasks_request_successed,
             tasks,
+        }
+    },
+    create_usercourses_request_started : () => {
+        return {
+            type: Actions.create_usercourses_request_started,
+        }
+    },
+    create_usercourses_request_successed : (course) => {
+        return {
+            type: Actions.create_usercourses_request_successed,
+            course
+        }
+    },
+    create_usercourses_request_failed : () => {
+        return {
+            type: Actions.create_usercourses_request_failed,
+        }
+    },
+    update_usercourses_request_started : () => {
+        return {
+            type: Actions.update_usercourses_request_started,
+        }
+    },
+    update_usercourses_request_successed : () => {
+        return {
+            type: Actions.update_usercourses_request_successed,
+        }
+    },
+    update_usercourses_request_failed : () => {
+        return {
+            type: Actions.update_usercourses_request_failed,
         }
     },
 }

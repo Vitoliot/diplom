@@ -1,4 +1,13 @@
+import React from "react";
+import CSSModules from "react-css-modules";
+import styles from './CourseCard.css'
 
+
+const CourseCard = (props) => {
+
+}
+
+export default CSSModules(CourseCard, styles, {allowMultiple:true})
 // TODO
 // Содержит название, описание (до 100 символов), количество заданий, дату создания и автора 
 // + кнопку на подробнее (там будет курс с модулями и заданиями) + кнопку на прохождение 

@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from '../Header/Header.js';
 import TascCard from "../TaskCard/TaskCard";
 import TaskAcordion from "../TaskAccordion/TaskAccordion";
 import TaskSwitch from "../TaskSwitch/TaskSwitch";
@@ -34,7 +34,7 @@ const TaskCatalog = (props) => {
     props.on_init();
   return (
     <section>
-      <Header title="Каталог упражнений" />
+        <Header title="Каталог упражнений"></Header>
       <div className="taskSwitch" styleName="taskSwitch">
         <h5>Упражнения</h5>
         <TaskSwitch

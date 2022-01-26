@@ -1,12 +1,13 @@
 const initialState = {
     user: {
-		id: null,
+		id: 1,
 		login: null,
 		nickname: null,
 		auth: {
 			isChecking: false,
 		},
 		isLoading: false,
+        userImgPath : 'static/images/person.png'
 	},
     user_for_profile : {
         id : 1,
@@ -35,6 +36,7 @@ const initialState = {
             data : []
         },
     },
+    user_courses : [],
     course_choicePage : {
         is_fetched : false,
         is_loading : false,
@@ -56,6 +58,7 @@ const initialState = {
                 created_by : "admin",
             },
         ],
+        usercourses : []
     },
     course_sort : {
         date : false,

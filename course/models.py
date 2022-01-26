@@ -62,7 +62,7 @@ class Item(models.Model):
     date_create = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(blank=True)
     content = models.TextField(blank=True)
-    icon = models.ImageField(blank=True, upload_to="static/tasks_icons/")
+    icon = models.ImageField(blank=True, upload_to="frontend\static\\tasks_icons")
 
 class Task(EducationObject):
     type = models.ForeignKey(TaskType, on_delete=PROTECT, related_name='task')

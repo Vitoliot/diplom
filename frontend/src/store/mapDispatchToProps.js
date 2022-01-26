@@ -1,5 +1,5 @@
 import actionCreators from './actionCreators';
-import {fetchTasks} from './thunks';
+import {addCourseToUser, fetchCourses, fetchTasks, fetchUserCourses} from './thunks';
 
 function mapDispatchToProps(component) { 
     switch(component) {
@@ -16,6 +16,32 @@ function mapDispatchToProps(component) {
                 }
             };
         };
+        case "Header" : return function(dispatch) {
+            return {dispatch}
+        };
+        case "AuthorizeRoute" : return function(dispatch) {
+            return {dispatch}
+        };
+        case "CourseCatalog" : return (dispatch) => {
+            return {
+                apply_course_choicePage_sort: (course_sort) => {
+                    dispatch(actionCreators.apply_course_choicePage_sort(course_sort))
+                },
+                break_course_choicePage_sort: () => {
+                    dispatch(actionCreators.break_course_choicePage_sort())
+                },
+                on_init: () => {
+                    dispatch(fetchCourses())
+                    dispatch(fetchUserCourses())
+                },
+                on_update: () => {
+                    dispatch(fetchCourses())
+                },
+                on_course_add: (course) => {
+                    dispatch(addCourseToUser(course))
+                }
+            }
+        }
         default: return "undefined";
     }
 }

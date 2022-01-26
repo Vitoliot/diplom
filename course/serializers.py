@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import *
 
 class CourseSerializer(serializers.ModelSerializer):
+    count_of_modules = serializers.IntegerField()
+    count_of_tasks = serializers.IntegerField()
     
     class Meta:
         model = Course
