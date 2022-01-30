@@ -1,0 +1,115 @@
+.title {
+  font-family: "AthelasBold";
+  font-size: 24pt;
+  color: white;
+  align-items: center;
+  margin-bottom: 0em;
+}
+
+.desc {
+  font-family: "AthelasBold";
+  font-size: 12pt;
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: #908373;
+}
+
+.desc:hover {
+  text-decoration-color: #EBE2CA;
+}
+
+.container {
+  background-color: #908373;
+  /* background-color: white; */
+  border-radius: 20px;
+  padding: 1em;
+  width: 20em;
+}
+
+.container > h3 {
+  color: #EBE2CA;
+  font-size: 10pt;
+  font-family: "UbuntuBold";
+  /* margin-top: 0em; */
+}
+
+.author > h3 {
+  color: #EBE2CA;
+  font-size: 10pt;
+  font-family: "UbuntuBold";
+  margin-top: 0em;
+}
+
+.usercourseButton button {
+  cursor: pointer;
+  margin-left: 10%;
+  width: 80%;
+  height: 2em;
+  border: none;
+  background: #EBE2CA;
+  color: #908373;
+  border-radius: 5px;
+  font-family: 'Athelas';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.courseButton button {
+  cursor: pointer;
+  margin-left: 10%;
+  width: 80%;
+  height: 2em;
+  border: none;
+  background: #EBE2CA;
+  color: #908373;
+  border-radius: 5px;
+  font-family: 'Athelas';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.courseButton button:hover {
+  border: 3px solid white;
+}
+
+
+
+.progressBar {
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: white;
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  /* padding: 0 5px; */
+  display: flex;
+  height: 1em;
+  /* width: 24em; */
+}
+
+.progress-value {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #9AC563;
+  height: 1em;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: width;
+  }
+}

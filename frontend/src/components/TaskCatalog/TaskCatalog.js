@@ -69,4 +69,4 @@ const TaskCatalog = (props) => {
 export default connect(
   mapStateToProps("TaskCatalog"),
   mapDispatchToProps("TaskCatalog")
-)(CSSModules(TaskCatalog, styles, { allowMultiple: true }));
+)(CSSModules(TaskCatalog, styles, { allowMultiple: false }));

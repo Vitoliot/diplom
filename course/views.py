@@ -37,7 +37,6 @@ class CourseListView(generics.ListAPIView):
     authentication_classes = []
     filter_backends = [OrderingFilter]
     ordering_fields = ['date_create', 'title']
-    ordering = ['date_create']
 
 
 class CourseUpdateView(generics.RetrieveUpdateDestroyAPIView):

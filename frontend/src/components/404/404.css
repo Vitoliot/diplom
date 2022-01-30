@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentWrapper {
+    width: 312px !important;
+    height: 312px;
+}
+
+.contentWrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.contentWrapper button {
+    cursor: pointer;
+    position: relative;
+    margin-left: 10%;
+    width: 80%;
+    height: 2em;
+    margin-top: 7em;
+    margin-bottom: 2em;
+    background: #EBE2CA;
+    border: 2px solid #EBE2CA;
+    color: #908373;
+    border-radius: 5px;
+    font-family: 'Athelas';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+} 

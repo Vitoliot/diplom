@@ -27,18 +27,21 @@ export function fetchCourses() {
         let params = getState().course_sort
         let url = 'education/course/all?ordering='
         Object.keys(params).forEach(element => {
-            if (element === 'date'){
-                if (params[element] === 1) url += 'date_create,'
-                if (params[element] === 2) url += '-date_create,'
+            if (element === 'date' && params[element]){
+                if (!params['rule']) url += 'date_create,'
+                else url += '-date_create,'
             }
-            if (element === 'alphabet'){
-                if (params[element] === 1) url += 'title,'
-                if (params[element] === 2) url += '-title,'
+            if (element === 'alphabet' && params[element]){
+                if (!params['rule']) url += 'title,'
+                else url += '-title,'
             }
         });
         return await axios.get(url)
         .then(
-        response => dispatch(actionCreators.select_courses_request_successed(response.data)),
+        response => {
+            dispatch(actionCreators.apply_course_choicePage_sort_isChange_off())
+            dispatch(actionCreators.select_courses_request_successed(response.data))
+        },
         error => {
             dispatch(actionCreators.select_courses_request_failed());
             dispatch(actionCreators.addError(error))

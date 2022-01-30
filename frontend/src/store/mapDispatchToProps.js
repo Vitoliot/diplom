@@ -30,13 +30,23 @@ function mapDispatchToProps(component) {
                 break_course_choicePage_sort: () => {
                     dispatch(actionCreators.break_course_choicePage_sort())
                 },
-                on_init: () => {
+                on_init_authorize: () => {
                     dispatch(fetchCourses())
                     dispatch(fetchUserCourses())
+                },
+                on_init: () => {
+                    dispatch(fetchCourses())
                 },
                 on_update: () => {
                     dispatch(fetchCourses())
                 },
+                on_course_add: (course) => {
+                    dispatch(addCourseToUser(course))
+                }
+            }
+        }
+        case "CourseCard" : return (dispatch) => {
+            return {
                 on_course_add: (course) => {
                     dispatch(addCourseToUser(course))
                 }

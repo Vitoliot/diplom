@@ -31,6 +31,11 @@ const actionCreators = {
             course_sort
         }
     },
+    apply_course_choicePage_sort_isChange_off : () => {
+        return {
+            type: Actions.apply_course_choicePage_sort_isChange_off,
+        }
+    },
     break_course_choicePage_sort : () => {
         return {
             type: Actions.break_course_choicePage_sort,

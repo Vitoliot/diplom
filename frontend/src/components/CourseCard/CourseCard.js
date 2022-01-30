@@ -1,58 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import CSSModules from "react-css-modules";
-import styles from './CourseCard.css'
-
+import styles from "./CourseCard.css";
+import { NavLink } from "react-router-dom";
+import mapDispatchToProps from "../../store/mapDispatchToProps";
+import { connect } from "react-redux";
 
 const CourseCard = (props) => {
+  const [current_course, setCurrent_course] = useState(0);
+  console.log(props);
+  return (
+    <div className="container" styleName="container">
+      <h1 className="title" styleName="title">
+        {props.course.title}
+      </h1>
+      <div className="author" styleName="author">
+        <h3>{props.course.created_by}</h3>
+      </div>
+      {props.course.usercourse && (<div>
+        <div className="progressBar" styleName="progressBar">
+          <div
+            className="progress-value"
+            styleName="progress-value"
+            style={{
+              width:
+                props.course.count_of_complete_tasks /
+                  props.course.count_of_tasks +
+                "%",
+            }}
+          ></div>
+        </div>
+        <h3>{"Заданий выполнено:  " + props.course.count_of_complete_tasks}</h3>
+      </div>)}
+      <NavLink
+        to="/course"
+        onClick={() => {
+          setCurrent_course({ id: props.course.id });
+        }}
+      >
+        <h3 className="desc" styleName="desc">
+          {props.course.overview.length > 100
+            ? props.course.overview.substr(100) + "..."
+            : props.course.overview}
+        </h3>
+      </NavLink>
+      <h3>{"Модули:  " + props.course.count_of_modules}</h3>
+      <h3>{"Задания:  " + props.course.count_of_tasks}</h3>
+      {props.course.usercourse && (
+        <div className="usercourseButton" styleName="usercourseButton">
+          <NavLink
+            to="/course"
+            onClick={() => {
+              setCurrent_course({ id: props.course.id });
+            }}
+          >
+            <button>{"Продолжить"}</button>
+          </NavLink>
+        </div>
+      )}
+      {!props.course.usercourse && (
+        <div className="courseButton" styleName="courseButton">
+          <NavLink
+            to="/course"
+            onClick={() => {
+              setCurrent_course({ id: props.course.id });
+            }}
+          >
+            <button
+              onClick={() => {
+                props.on_course_add(props.course.id);
+              }}
+            >
+              {" Записаться "}
+            </button>
+          </NavLink>
+        </div>
+      )}
+    </div>
+  );
+};
 
-}
-
-export default CSSModules(CourseCard, styles, {allowMultiple:true})
-// TODO
-// Содержит название, описание (до 100 символов), количество заданий, дату создания и автора 
-// + кнопку на подробнее (там будет курс с модулями и заданиями) + кнопку на прохождение 
-// если курс уже проходится, то кнопку на прохождение выделить другим цветом и текстом
-// если курс уже закончен, то кнопку на прохождение выделить другим цветом и текстом
-// Получение инфы как входные данные
-
-// import React from "react";
-// import Link from 'react-router-dom';
-// import Box from '@material-ui/core/Box';
-// import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
-// import Typography from '@material-ui/core/Typography';
-
-// const CourseCard = (course) => (
-//   <React.Fragment>
-//     <CardContent>
-//       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//         {course.title}
-//       </Typography>
-//       <Typography variant="h5" component="div">
-//         {course.title}
-//       </Typography>
-//       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-//         adjective
-//       </Typography>
-//       <Typography variant="body2">
-//         well meaning and kindly.
-//         <br />
-//         {'"a benevolent smile"'}
-//       </Typography>
-//     </CardContent>
-//     <CardActions>
-//       <Button size="small">Подробнее</Button>
-//       {/* <Button size="small">Д</Button> */}
-//     </CardActions>
-//   </React.Fragment>
-// );
-
-// export default function OutlinedCard() {
-//   return (
-//     <Box sx={{ minWidth: 275 }}>
-//       <Card variant="outlined">{CourseCard}</Card>
-//     </Box>
-//   );
-// }
+export default connect(mapDispatchToProps("CourseCard"))(
+  CSSModules(CourseCard, styles, { allowMultiple: true })
+);

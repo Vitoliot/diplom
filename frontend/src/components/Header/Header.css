@@ -5,8 +5,8 @@
   justify-content: space-between;
   align-items: center;
   margin: auto;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 32px;
+  padding-bottom: 32px;
   padding-left: 4em;
   padding-right: 4em;
 }
@@ -22,75 +22,84 @@
   gap: 1em;
 }
 
+
+
 .profileLink {
 }
 
 .authLink {
-    margin: auto;
-    height: 2em;
-    display: flex;
-    text-transform: uppercase;
-    text-decoration-color:#ebe2ca;
-    text-decoration: underline; 
-    align-items: center;
-    background: #908373;
-    border: 2px solid #908373;
-    border-radius: 5px;
-    font-family: 'Athelas';
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 20px;
-    text-align: center;
-    letter-spacing: 0.04em;
-    border-bottom: 1px solid transparent;
-    transition: .2s;
+  margin: auto;
+  height: 2em;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  background: #908373;
+  border: 2px solid #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid transparent;
+  transition: 0.2s;
 }
 
 .authLink h3 {
-    color: #ebe2ca;
-    text-decoration-line:underline;
-    text-decoration-color: #908373;
+  color: #ebe2ca;
+  text-decoration-line: underline;
+  text-decoration-color: #908373;
 }
 
-
 @media screen and (max-width: 1280px) {
-    .header {
-        padding: 0 50px;
-    }
+  .header {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    padding-left: 4em;
+    padding-right: 4em;
+  }
 
-    .links {
-        gap: 25px;
-    }
+  .links {
+    gap: 25px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .header {
-        height: 124px;
-        padding: 12px 50px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .header {
+    height: 125px;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-left: 4em;
+    padding-right: 4em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    .logo {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
+  .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .links {
+    gap: 20px;
+    height: 50px;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .header {
-        padding: 12px 0px;
-    }
+  .header {
+    padding: 34px 0px;
+  }
 
-    .logo {
-        width: 312px;
-    }
+  .logo {
+    width: 200px;
+  }
 
-    .links {
-        margin: auto;
-        justify-content: center;
-        width: 312px;
-        gap: 15px;
-    }
+  .links {
+    margin: auto;
+    justify-content: center;
+    width: 312px;
+    gap: 15px;
+  }
 }

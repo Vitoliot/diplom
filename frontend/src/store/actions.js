@@ -1,5 +1,6 @@
 const actions = {
         apply_course_choicePage_sort: 'apply_course_choicePage_sort',
+        apply_course_choicePage_sort_isChange_off: 'apply_course_choicePage_sort_isChange_off',
         apply_task_choicePage_filters: "apply_task_choicePage_filters",
         apply_task_choicePage_task: "apply_task_choicePage_task",
         break_course_choicePage_sort: 'break_course_choicePage_sort',

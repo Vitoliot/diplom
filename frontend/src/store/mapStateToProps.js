@@ -1,3 +1,5 @@
+import initialState from "./initialState";
+
 function mapStateToProps(component) {
     switch(component) {
         case "TaskCatalog": {
@@ -12,11 +14,10 @@ function mapStateToProps(component) {
             }
         }
         case "Header": {
-            return function(state) {
-                console.log(state)
+            return function(state=initialState) {
                 return {
                     isLogged: false,
-                    userImgPath : state.user.userImgPath
+                    userImgPath : state.user ? console.log(state.user) : 'static/images/person.png'
                 };
             }
         }
@@ -31,7 +32,9 @@ function mapStateToProps(component) {
             return (state) => {
                 return {
                     course_choicePage : state.course_choicePage,
-                    course_sort : state.course_sort
+                    course_sort : state.course_sort,
+                    // isLogged : state.user.id ? true : false
+                    isLogged : false
                 }
             }
         }

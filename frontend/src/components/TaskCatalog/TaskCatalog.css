@@ -21,13 +21,14 @@ TaskSwitch {
 .container {
     width: 100%;
 	max-width: 1200px;
-    height: 700px;
+    min-height: 10em;
 	margin: auto;
     margin-top: 0em;
     padding-top: 25px;
     padding-left: 30px;
     padding-right: 30px;
     margin-bottom: 50px;
+    padding-bottom: 25px;
     background-color: #EBE2CA;
     border-radius: 20px;
     display: flex;
@@ -44,5 +45,4 @@ TaskSwitch {
 
 .taskCard {
     width: 50%;
-    /* height: 50%; */
 }

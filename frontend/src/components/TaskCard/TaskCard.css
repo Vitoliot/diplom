@@ -1,11 +1,10 @@
 .container {
     background-color: #908373;
     width: 90%;
-    height: 50%;
     padding-top: 1em;
     padding-left: 1em;
     padding-right: 1em;
-    padding-bottom: 2em;
+    padding-bottom: 2em;;
     border-radius: 20px;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -16,8 +15,6 @@
     margin-left: 10%;
     width: 80%;
     height: 2em;
-    margin-top: 7em;
-    margin-bottom: 2em;
     background: #EBE2CA;
     border: 2px solid #EBE2CA;
     color: #908373;

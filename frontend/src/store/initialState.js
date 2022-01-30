@@ -41,28 +41,14 @@ const initialState = {
         is_fetched : false,
         is_loading : false,
         courses : [
-            {
-                id : 1,
-                title: "100 стр в час",
-                overview : "Единственный, и, следовательно, лучший",
-                date_create : "07-01-2022",
-                date_update: null,
-                created_by : "admin",
-            },
-            {
-                id : 1,
-                title: "100 стр в час (coppied)",
-                overview : "Единственный, и, следовательно, лучший",
-                date_create : "07-01-2022",
-                date_update: null,
-                created_by : "admin",
-            },
         ],
         usercourses : []
     },
     course_sort : {
         date : false,
         alphabet : false,
+        rule : false,
+        is_changed : false,
     },
     task_choicePage : {
         is_fecthed : false,

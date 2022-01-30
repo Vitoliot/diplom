@@ -83,5 +83,5 @@ const Header = (props) => {
 export default connect(
   mapStateToProps("Header"),
   mapDispatchToProps("Header")
-)(CSSModules(Header, styles, { allowMultiple: true }));
+)(CSSModules(Header, styles, { allowMultiple: false }));
 // CSSModules(Header, styles, { allowMultiple: true });

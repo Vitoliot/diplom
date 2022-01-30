@@ -1,0 +1,63 @@
+.coursesSort {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 30px;
+    padding-left: 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+}
+
+.coursesSort > div {
+    /* margin-bottom: 0.5em; */
+}
+
+.coursesSort > div > h5 {
+    font-family: "UbuntuBold";
+    color: #EBE2CA;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.coursesSort > div > select {
+    font-family: "UbuntuBold";
+    /* color: #000; */
+    display: inline-block;
+    border-radius: 20px;
+}
+
+.coursesSort > div > h5 > button {
+    font-family: "UbuntuBold";
+    background-color: #EBE2CA;
+    color: #908373;
+    display: inline-block;
+    margin-left: 1em;
+    border-radius: 20px;
+    border: none;
+    /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+
+.container {
+    width: 100%;
+	max-width: 1200px;
+    min-height: 10em;
+	margin: auto;
+    margin-top: 0em;
+    padding-top: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+    background-color: #EBE2CA;
+    border-radius: 20px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.courses {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+    gap : 2em;
+    width: 100%;
+}
