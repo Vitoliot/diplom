@@ -21,5 +21,8 @@ urlpatterns = [
     path('education/', include("course.urls")),
     path('user/', include("user_profile.urls")),
     path('activities/', include("user_activities.urls")),
-    path('', include("frontend.urls"))
+    path('', include("frontend.urls")),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('my_auth.urls'))
 ]

@@ -3,6 +3,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('<int:pk>/courses', UserCoursesView.as_view()),
-    path('usercourses/new', UserCoursesCreateView.as_view())
+    path('<int:user>/courses', UserCoursesView.as_view()),
+    path('<int:user>/<int:course>', UserCourseRetrieveView.as_view()),
+    path('usercourses/new', UserCoursesCreateView.as_view()),
 ]

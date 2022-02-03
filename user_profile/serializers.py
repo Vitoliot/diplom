@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from djoser.serializers import UserCreateSerializer
 from .models import *
 
 
@@ -7,6 +8,7 @@ class BOFISerializer(serializers.ModelSerializer):
     class Meta:
         model = BOFI
         fields = "__all__"
+
 
 class MemorySerializer(serializers.ModelSerializer):
 
@@ -32,7 +34,17 @@ class QERSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta(serializers.ModelSerializer):
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'icon', 'task_in_day']
+        fields = ['username', 'first_name',
+                  'last_name', 'email', 'icon', 'task_in_day']
+
+
+class MyUserCreateSerializer(UserCreateSerializer):
+
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'first_name',
+                  'last_name', 'email', 'task_in_day']
+
 
 class UserwithParamsSerializer(UserSerializer):
     BOFI = BOFISerializer(many=True)
@@ -41,4 +53,5 @@ class UserwithParamsSerializer(UserSerializer):
     QER = QERSerializer(many=True)
 
     class Meta(UserSerializer.Meta):
-        fields = ['username', 'first_name', 'last_name', 'email', 'icon', 'task_in_day', "BOFI", "Memory", "AA", "QER"]
+        fields = ['username', 'first_name', 'last_name', 'email',
+                  'icon', 'task_in_day', "BOFI", "Memory", "AA", "QER"]

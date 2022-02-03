@@ -73,7 +73,7 @@ class Task(EducationObject):
 
 class ModuleTasks(models.Model):
     number = models.PositiveIntegerField()
-    module = models.ForeignKey(Module, on_delete=CASCADE)
+    module = models.ForeignKey(Module, on_delete=CASCADE, related_name='moduletasks')
     task = models.ForeignKey(Task, on_delete=CASCADE)
 
     class Meta:
