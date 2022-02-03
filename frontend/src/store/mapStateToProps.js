@@ -38,6 +38,15 @@ function mapStateToProps(component) {
                 }
             }
         }
+        case "Course" : {
+            return (state) => {
+                return {
+                    // current_course: state.current_course,
+                    // isLogged : state.user.id ? true : false
+                    // isLogged: false
+                }
+            }
+        }
         default: return "undefined";
     }
 }

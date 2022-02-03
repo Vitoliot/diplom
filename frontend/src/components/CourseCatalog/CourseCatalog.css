@@ -40,7 +40,7 @@
 .container {
     width: 100%;
 	max-width: 1200px;
-    min-height: 10em;
+    min-height: 500px;
 	margin: auto;
     margin-top: 0em;
     padding-top: 25px;

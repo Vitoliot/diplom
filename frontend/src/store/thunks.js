@@ -84,4 +84,25 @@ export function fetchUserCourses(){
     }
 }
 
+export function fetchCourseData(course, isLogged){
+    return async function (dispatch, getState, extraArgument) {
+        dispatch(actionCreators.select_course_with_module_request_started())
+        let url = ""
+        if (isLogged) {
+            user = getState().user.id
+            url += `activities/${user}/${course}`
+        }
+        else {
+            url += `education/course/${course}`
+        }
+        return await axios.get(url)
+        .then(
+        response => dispatch(actionCreators.select_course_with_module_request_successed(response.data)),
+        error => {
+            dispatch(actionCreators.select_course_with_module_request_failed());
+            dispatch(actionCreators.addError(error))
+        }
+        )
+    }
+}
 

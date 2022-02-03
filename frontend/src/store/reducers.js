@@ -111,6 +111,30 @@ const Reducers = {
         return state;
     }
   },
+  current_course: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.select_course_with_module_request_started:
+        return {
+          is_fecthed: false,
+          is_loading: true,
+          course: state.course
+        }
+      case actions.select_course_with_module_request_failed:
+        return {
+          is_fecthed: false,
+          is_loading: false,
+          course: state.course
+        }
+      case actions.select_course_with_module_request_successed:
+        return {
+          is_fecthed: true,
+          is_loading: false,
+          course: action.course
+        }
+      default:
+        return state
+    }
+  }
 };
 
 export default Reducers;

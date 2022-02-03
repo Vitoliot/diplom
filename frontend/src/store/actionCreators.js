@@ -131,6 +131,22 @@ const actionCreators = {
             type: Actions.update_usercourses_request_failed,
         }
     },
+    select_course_with_module_request_started: () => {
+        return {
+            type: Actions.select_course_with_module_request_started
+        }
+    },
+    select_course_with_module_request_failed: () => {
+        return {
+            type: Actions.select_course_with_module_request_failed
+        }
+    },
+    select_course_with_module_request_successed: (course) => {
+        return {
+            type: Actions.select_course_with_module_request_successed,
+            course
+        }
+    },
 }
 
 export default actionCreators;
