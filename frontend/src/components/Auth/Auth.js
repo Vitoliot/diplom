@@ -6,9 +6,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import mapDispatchToProps from "../../store/mapDispatchToProps";
 import mapStateToProps from "../../store/mapStateToProps";
+import { Navigate } from "react-router";
 
 const Auth = ({
-  location,
   isLoading,
   isLogged,
   onSignIn,
@@ -34,13 +34,6 @@ const Auth = ({
       agreement: false,
     },
   });
-
-  const redirectPath = () => {
-    const locationState = location.state;
-    const pathname =
-      locationState && locationState.from && locationState.from.pathname;
-    return pathname || "/profile";
-  };
 
   function validate(action, value) {
     switch (action) {
@@ -178,7 +171,7 @@ const Auth = ({
     !notValid ? onSignUp(state.signUp) : onError(notValid);
   }
 
-  let [activeAction, setActiveAction] = useState("signIn");
+  let [activeAction, setActiveAction] = useState("Sign in");
 
   function handleActiveAction(action) {
     return () => setActiveAction(action);
@@ -186,104 +179,115 @@ const Auth = ({
 
   return (
     <section className="authBack" styleName="authBack">
-      {isLogged ? <Redirect to={redirectPath()} /> : null}
+      {isLogged ? <Navigate to='/taskCatalog'/> : 
       <div className="authContainer" styleName="authContainer">
+        {/* <img src="../../../static/images/auth_backend_image.png" height={720} width={1510}></img> */}
+        <div>
         <img src="../../../static/images/logo.svg"></img>
-        <div className="authHead" styleName="authHead">
-          <h3>Авторизация</h3>
-          <h3>Регистрация</h3>
-        </div>
-        <div className="signInInputs" styleName="signInInputs">
-          {isLoading && (
-            <div className={"userActionLocker"}>
-              {SVGManager.getSvg("lockerSvg")}
-            </div>
-          )}
-          <Input
-            id={"signInUsername"}
-            error={state.signIn.usernameError}
-            label={"username/Email"}
-            isEmpty={!state.signIn.username}
-            onChange={handleSignInUsernameChange}
-            onFocus={handleActiveAction("signIn")}
-          />
-          <Input
-            id={"signInPassword"}
-            error={state.signIn.passError}
-            label={"Password"}
-            isEmpty={!state.signIn.pass}
-            onChange={handleSignInPasswordChange}
-            onFocus={handleActiveAction("signIn")}
-            password
-          />
-          <button
-            text={"Sign in"}
-            onClick={handleSignInTry}
-            style={{ marginTop: "15px" }}
-          />
-        </div>
-        <div className="signUpInputs" styleName="signUpInputs">
-          {isLoading && (
-            <div className={"userActionLocker"}>
-              {SVGManager.getSvg("lockerSvg")}
-            </div>
-          )}
-          <Input
-            id={"signUpUsername"}
-            error={state.signUp.usernameError}
-            label={"username"}
-            isEmpty={!state.signUp.username}
-            onChange={handleSignUpUsernameChange}
-            onFocus={handleActiveAction("signUp")}
-          />
-          <Input
-            id={"signUpEmail"}
-            error={state.signUp.emailError}
-            label={"emailname"}
-            isEmpty={!state.signUp.email}
-            onChange={handleSignUpEmailChange}
-            onFocus={handleActiveAction("signUp")}
-          />
-          <Input
-            id={"signUpPassword"}
-            error={state.signUp.passError}
-            label={"Password"}
-            isEmpty={!state.signUp.pass}
-            onChange={handleSignUpPasswordChange}
-            onFocus={handleActiveAction("signUp")}
-            password
-          />
-          <Input
-            id={"signUpRePassword"}
-            error={state.signUp.rePassError}
-            label={"Repeat password"}
-            isEmpty={!state.signUp.rePass}
-            onChange={handleSignUpRePasswordChange}
-            onFocus={handleActiveAction("signUp")}
-            password
-          />
-          <div className="agreementButton" styleName="agreementButton">
-            <input
-              type="checkbox"
-              id="checkbox"
-              checked={state.signUp.agreement}
-              onChange={handleAgreementClick}
-            />
-            <label style={{ marginLeft: "10px" }} htmlFor="checkbox">
-              {"Я согласен"}
-              <Link to={"/terms"}>
-                Terms & conditions
-              </Link>
-            </label>
+          <div className="authHead" styleName="authHead">
+            <h3 onClick={handleActiveAction("Sign in")}>Авторизация</h3>
+            <h3 onClick={handleActiveAction("Sign up")}>Регистрация</h3>
           </div>
-          <button text={"Зарегистрироваться"} onClick={handleSignUpTry} />
+          {activeAction === "Sign in" && (
+            <div className="signInInputs" styleName="signInInputs">
+              {isLoading && (
+                <div className={"userActionLocker"}>
+                  {SVGManager.getSvg("lockerSvg")}
+                </div>
+              )}
+              <Input
+                id={"signInUsername"}
+                error={state.signIn.usernameError}
+                label={"никнейм"}
+                isEmpty={!state.signIn.username}
+                onChange={handleSignInUsernameChange}
+                // onFocus={handleActiveAction("signIn")}
+              />
+              <Input
+                id={"signInPassword"}
+                error={state.signIn.passError}
+                label={"пароль"}
+                isEmpty={!state.signIn.pass}
+                onChange={handleSignInPasswordChange}
+                // onFocus={handleActiveAction("signIn")}
+                password
+              />
+              <button
+                styleName="goButton"
+                text={"Sign in"}
+                onClick={handleSignInTry}
+                style={{ marginTop: "15px" }}
+              >
+                {"Войти"}
+              </button>
+            </div>
+          )}
+          {activeAction === "Sign up" && (
+            <div className="signUpInputs" styleName="signUpInputs">
+              {isLoading && (
+                <div className={"userActionLocker"}>
+                  {SVGManager.getSvg("lockerSvg")}
+                </div>
+              )}
+              <Input
+                id={"signUpUsername"}
+                error={state.signUp.usernameError}
+                label={"никнейм"}
+                isEmpty={!state.signUp.username}
+                onChange={handleSignUpUsernameChange}
+                // onFocus={handleActiveAction("signUp")}
+              />
+              <Input
+                id={"signUpEmail"}
+                error={state.signUp.emailError}
+                label={"email"}
+                isEmpty={!state.signUp.email}
+                onChange={handleSignUpEmailChange}
+                // onFocus={handleActiveAction("signUp")}
+              />
+              <Input
+                id={"signUpPassword"}
+                error={state.signUp.passError}
+                label={"пароль"}
+                isEmpty={!state.signUp.pass}
+                onChange={handleSignUpPasswordChange}
+                // onFocus={handleActiveAction("signUp")}
+                password
+              />
+              <Input
+                id={"signUpRePassword"}
+                error={state.signUp.rePassError}
+                label={"пароль"}
+                isEmpty={!state.signUp.rePass}
+                onChange={handleSignUpRePasswordChange}
+                // onFocus={handleActiveAction("signUp")}
+                password
+              />
+              <div className="agreementButton" styleName="agreementButton">
+                <input
+                  type="checkbox"
+                  id="checkbox"
+                  checked={state.signUp.agreement}
+                  onChange={handleAgreementClick}
+                />
+                <label style={{ marginLeft: "10px" }} htmlFor="checkbox">
+                  {"Cогласен c "}
+                  <Link to={"/terms"}>условиями</Link>
+                </label>
+              </div>
+              <button styleName="goButton" onClick={handleSignUpTry}>
+                {"Зарегистрироваться"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
+      }
     </section>
   );
 };
 
 export default connect(
+  mapStateToProps("Auth"),
   mapDispatchToProps("Auth"),
-  mapStateToProps("Auth")
 )(CSSModules(Auth, styles, { allowMultiple: true }));

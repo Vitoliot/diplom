@@ -1,12 +1,66 @@
 
 .authBack {
     background-image: url('../../../static/images/auth_backend_image.png');
+    background-size: cover;
+    min-height: 750px;
+    display: flex;
+    justify-content: center;
 }
 
-.authContainer {
-
+.authContainer > div {
+    margin: auto;
+    margin-top: 200px;
+    margin-bottom: 50px;
+    padding: 2em;
+    background-color: #ebe2ca;
+    width: 20em;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.signUpContainer {
+.authHead {
+    display: flex;
+    justify-content: space-between;
+    gap: 5em;
+    font-family: 'UbuntuBold';
+    font-size: 12pt;
+}
+
+.signInInputs {
+    padding-right: 0.7em;
+}
+
+.signUpInputs {
+    padding-right: 0.7em;
+}
+
+.agreementButton {
+    font-family: 'UbuntuBold';
+    font-size: 12pt;
+    margin-bottom: 10px;
+}
+
+.goButton {
+    cursor: pointer;
+    margin-left: 10%;
+    width: 80%;
+    height: 2em;
+    border: none;
+    color: #EBE2CA;
+    background: #908373;
+    border-radius: 5px;
+    font-family: 'Athelas';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 1280px) {
     
 }

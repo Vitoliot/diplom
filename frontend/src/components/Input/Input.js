@@ -24,45 +24,46 @@ const Input = ({
   }
   return (
     <div className="inputField" styleName="inputField">
-      <input
-        className={
-          password
-            ? "passwordInput"
-            : readonly
-            ? "readonlyInput"
-            : "defaultInput"
-        }
-        styleName={
-          password
-            ? "passwordInput"
-            : readonly
-            ? "readonlyInput"
-            : "defaultInput"
-        }
-        id={id}
-        value={value}
-        onChange={onChange}
-        onFocus={onFocus}
-        readOnly={readonly}
-        type={hideSymbols ? "password" : "text"}
-        // style={{ paddingRight: "50px" }}
-      />
-      <label className="labelInput" styleName="labelInput" htmlFor={id}>
-        {label}
-      </label>
-      <p className="inputError" styleName="inputError">
+      <div>
+        <label className="labelInput" styleName="labelInput" htmlFor={id}>
+          {label}
+        </label>
+        <input
+          className={
+            password
+              ? "passwordInput"
+              : readonly
+              ? "readonlyInput"
+              : "defaultInput"
+          }
+          styleName={
+            password
+              ? "passwordInput"
+              : readonly
+              ? "readonlyInput"
+              : "defaultInput"
+          }
+          id={id}
+          value={value}
+          onChange={onChange}
+          onFocus={onFocus}
+          readOnly={readonly}
+          type={hideSymbols ? "password" : "text"}
+        />
+        {password ? (
+          <div
+            className="imgInput"
+            styleName="imgInput"
+            onMouseEnter={handlePasswordToText}
+            onMouseLeave={handleTextToPassword}
+          >
+            <img src="../../../static/images/show_password.svg"></img>
+          </div>
+        ) : null}
+      </div>
+      <span className="inputError" styleName="inputError">
         {error}
-      </p>
-      {password ? (
-        <div
-          className="imgInput"
-          styleName="imgInput"
-          onMouseEnter={handlePasswordToText}
-          onMouseLeave={handleTextToPassword}
-        >
-          <img src="../../../static/images/show_password.svg"></img>
-        </div>
-      ) : null}
+      </span>
     </div>
   );
 };
