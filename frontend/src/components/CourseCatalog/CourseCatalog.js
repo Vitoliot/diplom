@@ -8,6 +8,7 @@ import mapDispatchToProps from "../../store/mapDispatchToProps";
 import mapStateToProps from "../../store/mapStateToProps";
 
 const CourseCatalog = (props) => {
+  console.log(props.isLogged);
   useEffect(() => {
     if (
       (props.course_choicePage.courses.length === 0 ||

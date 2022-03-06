@@ -5,5 +5,4 @@ import Reducers from './reducers';
 import thunkMiddleware from 'redux-thunk';
 
 const store = createStore(combineReducers(Reducers), initialState, applyMiddleware(thunkMiddleware.withExtraArgument(API_URL)));
-
 export default store;

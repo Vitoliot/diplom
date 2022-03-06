@@ -5,4 +5,5 @@ urlpatterns = [
     path('', index, name=''),
     path('taskCatalog', index),
     path('courseCatalog', index),
+    path('login', index),
 ]

@@ -1,7 +1,68 @@
 import actions from "./actions";
 import initialState from "./initialState";
+import { afterSignIn } from "./thunks";
 
 const Reducers = {
+  cookie: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.cookie_agreement: {
+        localStorage.setItem("knowAboutCookie", true);
+        return localStorage.getItem("knowAboutCookie");
+      }
+      default:
+        return state;
+    }
+  },
+  errors: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.remove_error: {
+        let ind = state.content.findIndex((e) => e.id === action.id);
+
+        return {
+          content: [
+            ...state.content.slice(0, ind),
+            ...state.content.slice(ind + 1, state.content.length),
+          ],
+        };
+      }
+      case actions.add_error: {
+        console.log("error added", action);
+        return {
+          content: state.content.concat({
+            text: action.text,
+            type: "error",
+            created: Date.now(),
+          }),
+        };
+      }
+      default:
+        return state;
+    }
+  },
+  successes: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.add_success: {
+        return {
+          content: state.content.concat({
+            text: action.text,
+            type: "success",
+            created: Date.now(),
+          }),
+        };
+      }
+      case actions.remove_success: {
+        let ind = state.content.findIndex((e) => e.id === action.id);
+        return {
+          content: [
+            ...state.content.slice(0, ind),
+            ...state.content.slice(ind + 1, state.content.length),
+          ],
+        };
+      }
+      default:
+        return state;
+    }
+  },
   course_sort: (state = initialState, action) => {
     switch (action.type) {
       case actions.apply_course_choicePage_sort:
@@ -117,24 +178,52 @@ const Reducers = {
         return {
           is_fecthed: false,
           is_loading: true,
-          course: state.course
-        }
+          course: state.course,
+        };
       case actions.select_course_with_module_request_failed:
         return {
           is_fecthed: false,
           is_loading: false,
-          course: state.course
-        }
+          course: state.course,
+        };
       case actions.select_course_with_module_request_successed:
         return {
           is_fecthed: true,
           is_loading: false,
-          course: action.course
-        }
+          course: action.course,
+        };
       default:
-        return state
+        return state;
     }
-  }
+  },
+  user: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.select_user_data_successed:
+        return action.data;
+      default:
+        return state;
+    }
+  },
+  refreshToken: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.auth_request_successed:
+        return action.refresh;
+      default:
+        return state;
+    }
+  },
+  user_for_profile: (state = initialState, action) => {
+    switch (action.type) {
+      default:
+        return state;
+    }
+  },
+  current_task: (state = initialState, action) => {
+    switch (action.type) {
+      default:
+        return state;
+    }
+  },
 };
 
 export default Reducers;

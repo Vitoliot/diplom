@@ -28,26 +28,24 @@ const Header = (props) => {
             />
           </NavLink>
           <NavLink to={"/courseCatalog"}>
-            {"asd"}
             <HeaderLink
               title="курсы"
               imgPath="../../../static/images/courseCatalog.svg"
             />
           </NavLink>
           <NavLink to={"/taskCatalog"}>
-            {"asd"}
             <HeaderLink
               title="упражнения"
               imgPath="../../../static/images/task_list.svg"
-            />
+              />
           </NavLink>
-          <NavLink to={"/profile"} styleName="profileLink">
-            {"asd"}
+          <NavLink to={"/profile"}>
             <HeaderLink
               title="профиль"
+              isProfile={true}
               imgPath={
-                props.imgPath
-                  ? props.imgPath
+                props.userImgPath
+                  ? '../../../static/' + props.userImgPath
                   : "frontend\\static\\images\\user.svg"
               }
             />
@@ -68,7 +66,7 @@ const Header = (props) => {
             />
           </NavLink>
           <button styleName="authLink">
-          <NavLink to={"/auth"}>
+          <NavLink to={"/login"}>
             <h3>
             {"вход"}
             </h3>

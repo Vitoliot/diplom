@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 
 const CourseCard = (props) => {
   const [current_course, setCurrent_course] = useState(0);
-  console.log(props);
   return (
     <div className="container" styleName="container">
       <h1 className="title" styleName="title">
@@ -79,6 +78,6 @@ const CourseCard = (props) => {
   );
 };
 
-export default connect(mapDispatchToProps("CourseCard"))(
+export default connect(null, mapDispatchToProps("CourseCard"))(
   CSSModules(CourseCard, styles, { allowMultiple: true })
 );

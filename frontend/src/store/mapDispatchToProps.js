@@ -4,6 +4,8 @@ import {
   fetchCourses,
   fetchTasks,
   fetchUserCourses,
+  onSignIn,
+  onSignUp,
 } from "./thunks";
 
 function mapDispatchToProps(component) {
@@ -73,13 +75,42 @@ function mapDispatchToProps(component) {
             dispatch(addCourseToUser(course));
           },
           on_init: (course) => {
-              dispatch(fetchCourseData(course))
+            dispatch(fetchCourseData(course));
           },
           // on_answer_delete: (answer) => {
           //     return null
           // }
         };
       };
+    case "Auth":
+      return (dispatch) => {
+        return {
+          onSignIn: (data) => {
+            dispatch(onSignIn(data));
+          },
+          onSignUp: (data) => {
+            dispatch(onSignUp(data));
+          },
+          onError: (err) => {
+            dispatch(actionCreators.addError(err));
+          },
+        };
+      };
+    case "EventsView":
+      return (dispatch) => {
+        return {
+          onRemoveError: (id) => {
+            dispatch(actionCreators.removeError(id));
+          },
+          onRemoveSuccess: (id) => {
+            dispatch(actionCreators.removeSuccess(id));
+          },
+        };
+      };
+    case "Profile":
+      return (dispatch) => {
+        
+      }
     default:
       return "undefined";
   }

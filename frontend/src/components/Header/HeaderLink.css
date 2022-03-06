@@ -21,3 +21,11 @@
   text-decoration-color: #ebe2ca;
   color: #000;
 }
+
+.profileImage {
+  border: 5px solid #908373;
+  border-radius: 10px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}

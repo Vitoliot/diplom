@@ -1,27 +1,30 @@
 .wrapper {
+    margin: 10em;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .contentWrapper {
-    width: 312px !important;
-    height: 312px;
+    width: 30em !important;
+    height: 15em;
+    display: flex;
+    background-color: white;
 }
 
 .contentWrapper img {
-    width: 100%;
-    height: auto;
+    width: 50%;
+    /* height: 50%; */
+    /* height: auto; */
 }
 
 .contentWrapper button {
     cursor: pointer;
     position: relative;
     margin-left: 10%;
-    width: 80%;
+    width: 11em;
     height: 2em;
-    margin-top: 7em;
-    margin-bottom: 2em;
+    margin-top: 5.5em;
     background: #EBE2CA;
     border: 2px solid #EBE2CA;
     color: #908373;

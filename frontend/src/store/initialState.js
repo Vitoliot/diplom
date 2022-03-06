@@ -1,13 +1,6 @@
 const initialState = {
   user: {
-    id: 1,
-    login: null,
-    nickname: null,
-    auth: {
-      isChecking: false,
-    },
-    isLoading: false,
-    userImgPath: "static/images/person.png",
+    id: null
   },
   user_for_profile: {
     id: 1,
@@ -105,7 +98,7 @@ const initialState = {
           ],
         },
       ],
-    is_completed: false,
+      is_completed: false,
     },
     is_fetched: false,
     is_loading: false,
@@ -150,7 +143,7 @@ const initialState = {
     },
   },
   errors: {
-    content: [],
+    content: [{ text: 's', type: "error", created: Date.now() }],
   },
   successes: {
     content: [],
