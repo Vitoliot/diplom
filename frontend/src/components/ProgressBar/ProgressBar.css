@@ -1,0 +1,29 @@
+.progressBar {
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: white;
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  /* padding: 0 5px; */
+  display: flex;
+  height: 1em;
+  /* width: 24em; */
+}
+
+.progress-value {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #9ac563;
+  height: 1em;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: width;
+  }
+}
