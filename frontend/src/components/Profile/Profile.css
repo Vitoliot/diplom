@@ -1,0 +1,470 @@
+.parentProfileContainer {
+  display: flex;
+  padding: 25px 30px 30px 25px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+}
+
+.userDataContainer {
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  width: 64%;
+  padding: 2em 2em 2em 1em;
+  margin: 1em;
+}
+
+.iconData {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+.iconData > img {
+  border: 5px solid #908373;
+  border-radius: 10px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.iconData > h3 {
+  margin: auto;
+  font-family: "UbuntuBold";
+  font-size: 24pt;
+  color: #000;
+}
+.userData {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em 13em;
+  width: 70%;
+}
+.userData > div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+.userData > div > span {
+  font-family: "AthelasBold";
+  font-size: 18pt;
+  color: #908373;
+  margin: auto;
+}
+.first_NameData {
+  display: flex;
+  flex-direction: column;
+}
+
+.last_NameData {
+  display: flex;
+  flex-direction: column;
+}
+
+.emailData {
+  display: flex;
+  flex-direction: column;
+}
+
+.taskInDayData {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonsInUserData {
+  justify-content: end;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 1em;
+}
+.buttonsInUserData > button {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  padding: auto;
+  width: 50px;
+  height: 50px;
+}
+
+.userEditDataContainer {
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2em 2em 2em 1em;
+  margin: 1em;
+}
+
+.userDataUpdatePart {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 2em 2em;
+  width: 75%;
+}
+
+.userDataUpdatePart > div > Input {
+  margin: auto;
+}
+.userDataUpdatePart > div {
+  margin: auto;
+}
+.userDataUpdatePart > button {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+}
+
+.imageUpdate {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 22%;
+}
+
+.udup1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 6em;
+}
+
+.udup1 > div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+
+.udup2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+}
+
+.udup2 > div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+
+.udup2 > div > div {
+  display: flex;
+  margin: auto;
+}
+
+.imageUpdate > div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+.imageUpdate > img {
+  margin: auto;
+}
+.imageUpdate > button {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.imageUpdate > button * {
+  margin: auto;
+}
+
+.imageUpdate > input {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+}
+
+.usernameUpdate {
+  display: flex;
+  flex-direction: column;
+}
+.first_nameUpdate {
+  display: flex;
+  flex-direction: column;
+}
+
+.last_nameUpdate {
+  display: flex;
+  flex-direction: column;
+}
+
+.emailUpdate {
+  display: flex;
+  flex-direction: column;
+}
+
+.taskInDayUpdate {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+}
+
+.helpButton {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  padding: auto;
+  width: 18.8px;
+  height: 18.8px;
+}
+.helpButton > * {
+  margin: auto;
+}
+
+.submitUserDataButton {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+}
+
+.submitUserDataButton * {
+  margin: auto;
+}
+
+.passPart {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.passPart > button {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.passPart > button * {
+  margin: auto;
+}
+
+.pp1 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+.pp1 > div > * {
+  margin: auto;
+}
+.pp1 > button {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+}
+
+.pp1 > button * {
+  margin: auto;
+}
+.pp1 > div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+
+.oldPassData {
+  display: flex;
+  flex-direction: column;
+}
+.passData {
+  display: flex;
+  flex-direction: column;
+}
+.rePassData {
+  display: flex;
+  flex-direction: column;
+}
+.delPassData {
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+  margin: auto;
+}
+.delPassData > button {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+}
+
+.delPassData > button * {
+  margin: auto;
+}
+
+.delPassData > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+
+.edButDiv {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.edButDiv > button {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  padding: auto;
+  width: 50px;
+  height: 50px;
+}
+
+.deleteUserDataButton {
+}
+
+.radarDiagram {
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 2em;
+  width: 20%;
+  margin: 1em;
+}
+
+.radarDiagram button {
+  margin: auto;
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+  width: 100%;
+}
+
+.radarDiagram button * {
+  margin: auto;
+}
+
+.statsDiagram {
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 2em;
+  margin: 1em;
+  width: 100%;
+}
+
+@media all and (max-width: 800px) {
+  .parentProfileContainer {
+    display: flex;
+    justify-content: space-around;
+  }
+  .userEditDataContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+/* Маленькие экраны */
+@media all and (max-width: 500px) {
+  .parentProfileContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .userEditDataContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .userEditDataContainer > div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .radarDiagram {
+    max-width: 400px;
+  }
+
+  .statsDiagram {
+    max-width: 400px;
+  }
+
+  .userDataContainer {
+    max-width: 400px;
+  }
+}
+
+.loader * {
+  margin: auto;
+}
+.loader {
+  margin: auto;
+}

@@ -55,4 +55,4 @@ const EventsView = ({ errors, successes, onRemoveSuccess, onRemoveError }) => {
 export default connect(
     mapStateToProps("EventsView"),
     mapDispatchToProps("EventsView"),
-)(CSSModules(styles, EventsView, { allowMultiple: true }));
+)(CSSModules(EventsView, styles, { allowMultiple: true }));

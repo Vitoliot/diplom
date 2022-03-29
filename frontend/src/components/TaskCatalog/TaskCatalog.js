@@ -1,5 +1,5 @@
 import React from "react";
-import Header from '../Header/Header.js';
+import Header from "../Header/Header.js";
 import TascCard from "../TaskCard/TaskCard";
 import TaskAcordion from "../TaskAccordion/TaskAccordion";
 import TaskSwitch from "../TaskSwitch/TaskSwitch";
@@ -21,7 +21,11 @@ const TaskCatalog = (props) => {
       e.target.parentNode.parentNode.previousSibling.lastChild.innerText;
     var taskTitle = e.target.innerText;
     for (let index = 0; index < props.tasks.length; index++) {
-      if (props.is_theme ? (props.tasks[index].task[0].theme) : (props.tasks[index].task[0].type)  === theme) {
+      if (
+        props.is_theme
+          ? props.tasks[index].task[0].theme
+          : props.tasks[index].task[0].type === theme
+      ) {
         taskTheme = index;
         taskID = props.tasks[index].task.findIndex((element) => {
           return element.title === taskTitle;
@@ -34,32 +38,34 @@ const TaskCatalog = (props) => {
     props.on_init();
   return (
     <section>
-        <Header title="Каталог упражнений"></Header>
-      <div className="taskSwitch" styleName="taskSwitch">
-        <h5>Упражнения</h5>
-        <TaskSwitch
-          onClick={props.on_apply_task_choicePage_filters}
-          isTheme={props.is_theme}
-        />
-      </div>
-      <div className="container" styleName="container">
-        <div className="tasks" styleName="tasks">
-          {props.tasks.map((theme) => (
-            <TaskAcordion
-              theme={theme}
-              onTaskClick={onTaskClick}
-              isTheme={props.is_theme}
-            ></TaskAcordion>
-          ))}
-        </div>
-        <div className="taskCard" styleName="taskCard">
-          <TascCard
-            task={
-              taskTheme !== null && taskID !== null && props.tasks[taskTheme]
-                ? props.tasks[taskTheme].task[taskID]
-                : null
-            }
+      <Header title="Каталог упражнений"></Header>
+      <div className="taskCatalogParent" styleName="taskCatalogParent">
+        <div className="taskSwitch" styleName="taskSwitch">
+          <h5>Упражнения</h5>
+          <TaskSwitch
+            onClick={props.on_apply_task_choicePage_filters}
+            isTheme={props.is_theme}
           />
+        </div>
+        <div className="container" styleName="container">
+          <div className="tasks" styleName="tasks">
+            {props.tasks.map((theme) => (
+              <TaskAcordion
+                theme={theme}
+                onTaskClick={onTaskClick}
+                isTheme={props.is_theme}
+              ></TaskAcordion>
+            ))}
+          </div>
+          <div className="taskCard" styleName="taskCard">
+            <TascCard
+              task={
+                taskTheme !== null && taskID !== null && props.tasks[taskTheme]
+                  ? props.tasks[taskTheme].task[taskID]
+                  : null
+              }
+            />
+          </div>
         </div>
       </div>
     </section>

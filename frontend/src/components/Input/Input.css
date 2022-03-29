@@ -1,61 +1,64 @@
 .inputField {
-    margin-bottom: 10px;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #c2c2c2;
-    display: inline-flex;
-    flex-direction: column;
-    transition: .2s;
-    padding: 0.5em;
-    margin-right: 10px;
-    border-radius: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #c2c2c2;
+  display: inline-flex;
+  flex-direction: column;
+  transition: 0.2s;
+  padding: 0.5em;
+  margin-right: 10px;
+  border-radius: 5px;
 }
 
 .inputField > div {
-    display: flex;
+  display: flex;
 }
 
 .passwordInput {
-    width: 100%;
-    padding: 10px;
-    border: none;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-family: "Athelas";
 }
 
-.readonlyInput {    
-    padding: 10px;
-    transition: .2s;
+.readonlyInput {
+  padding: 10px;
+  transition: 0.2s;
+  font-family: "Athelas";
 }
 
 .defaultInput {
-    width: 100%;
-    border: none;
-    max-width: 100%;
-    padding: 10px;
+  width: 100%;
+  border: none;
+  max-width: 100%;
+  padding: 10px;
+  font-family: "Athelas";
 }
 
 .labelInput {
-    max-height: 50%;
-    padding: 0px 10px;
-    width: max-content;
-    margin-top: auto;
-    margin-bottom: auto;
-    pointer-events: none;
-    display: flex;
-    transition: .2s;
-    opacity: .7;
-    font-family: 'Ubuntu';
+  max-height: 50%;
+  padding: 0px 10px;
+  width: max-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  pointer-events: none;
+  display: flex;
+  transition: 0.2s;
+  opacity: 0.7;
+  font-family: "Ubuntu";
 }
 
 .inputError {
-    font-family: 'UbuntuBold';
-    font-size: 10pt;
-    color: red;
+  font-family: "UbuntuBold";
+  font-size: 10pt;
+  color: red;
 }
 
 .imgInput {
-	height: 100%;
-	width: max-content;
-	align-items: center;
-    margin: auto;
-    cursor: pointer;
+  height: 100%;
+  width: max-content;
+  align-items: center;
+  margin: auto;
+  cursor: pointer;
 }

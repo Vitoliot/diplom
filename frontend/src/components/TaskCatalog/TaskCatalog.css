@@ -5,6 +5,10 @@ h5 {
     color: #EBE2CA;
 }
 
+.taskCatalogParent{
+    padding: 2em;
+}
+
 .taskSwitch {
     margin-bottom: 1em;
     width: 100%;

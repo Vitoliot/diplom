@@ -45,7 +45,7 @@ const Header = (props) => {
               isProfile={true}
               imgPath={
                 props.userImgPath
-                  ? '../../../static/' + props.userImgPath
+                  ?  props.userImgPath
                   : "frontend\\static\\images\\user.svg"
               }
             />
