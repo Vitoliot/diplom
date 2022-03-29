@@ -15,7 +15,7 @@
 }
 
 .desc:hover {
-  text-decoration-color: #EBE2CA;
+  text-decoration-color: #ebe2ca;
 }
 
 .container {
@@ -27,14 +27,22 @@
 }
 
 .container > h3 {
-  color: #EBE2CA;
+  color: #ebe2ca;
   font-size: 10pt;
   font-family: "UbuntuBold";
   /* margin-top: 0em; */
 }
 
 .author > h3 {
-  color: #EBE2CA;
+  color: #ebe2ca;
+  font-size: 10pt;
+  font-family: "UbuntuBold";
+  margin-top: 0em;
+}
+.pB {
+}
+.pB > h3 {
+  color: #ebe2ca;
   font-size: 10pt;
   font-family: "UbuntuBold";
   margin-top: 0em;
@@ -46,10 +54,10 @@
   width: 80%;
   height: 2em;
   border: none;
-  background: #EBE2CA;
+  background: #ebe2ca;
   color: #908373;
   border-radius: 5px;
-  font-family: 'Athelas';
+  font-family: "Athelas";
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -65,10 +73,10 @@
   width: 80%;
   height: 2em;
   border: none;
-  background: #EBE2CA;
+  background: #ebe2ca;
   color: #908373;
   border-radius: 5px;
-  font-family: 'Athelas';
+  font-family: "Athelas";
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -80,36 +88,4 @@
 
 .courseButton button:hover {
   border: 3px solid white;
-}
-
-
-
-.progressBar {
-  /* background: rgba(255, 255, 255, 0.1); */
-  background: white;
-  justify-content: flex-start;
-  border-radius: 100px;
-  align-items: center;
-  position: relative;
-  /* padding: 0 5px; */
-  display: flex;
-  height: 1em;
-  /* width: 24em; */
-}
-
-.progress-value {
-  animation: load 3s normal forwards;
-  box-shadow: 0 10px 40px -10px #fff;
-  border-radius: 100px;
-  background: #9AC563;
-  height: 1em;
-}
-
-@keyframes load {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: width;
-  }
 }

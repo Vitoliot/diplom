@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import CourseCard from "../CourseCard/CourseCard";
 import styles from "./CourseCatalog.css";
@@ -8,7 +8,6 @@ import mapDispatchToProps from "../../store/mapDispatchToProps";
 import mapStateToProps from "../../store/mapStateToProps";
 
 const CourseCatalog = (props) => {
-  console.log(props.isLogged);
   useEffect(() => {
     if (
       (props.course_choicePage.courses.length === 0 ||
@@ -18,6 +17,10 @@ const CourseCatalog = (props) => {
       if (props.isLogged) props.on_init_authorize();
       else props.on_init();
     }
+    if (props.course_choicePage.usercourses) usercoursesResponse();
+  });
+
+  function usercoursesResponse() {
     props.course_choicePage.courses.forEach((element) => {
       element.count_of_complete_tasks = 0;
       element.usercourse = false;
@@ -33,7 +36,7 @@ const CourseCatalog = (props) => {
         }
       }
     });
-  });
+  }
 
   useEffect(() => {
     document.getElementById("defaultSort").selected = true;
@@ -49,73 +52,76 @@ const CourseCatalog = (props) => {
     } else {
       document.getElementById("upRule").selected = true;
     }
+    if (props.course_choicePage.usercourses) usercoursesResponse();
   });
 
   return (
     <section>
       <Header title="Каталог курсов"></Header>
-      <div className="coursesSort" styleName="coursesSort">
-        <h5>Курсы</h5>
-        <div>
-          <h5 for="sortParam"> Сортировать по: </h5>
-          <select
-            className="sortParam"
-            onChange={(event) => {
-              let sort_params = {
-                date: false,
-                alphabet: false,
-                rule: props.course_sort.rule,
-                is_changed: true,
-              };
-              if (event.target.selectedIndex === 1) {
-                sort_params.date = true;
-              }
-              if (event.target.selectedIndex === 2) {
-                sort_params.alphabet = true;
-              }
-              props.apply_course_choicePage_sort(sort_params);
-            }}
-          >
-            <option id="defaultSort">{"по умолчанию"}</option>
-            <option id="dateSort">{"по дате"}</option>
-            <option id="titleSort">{"по названию"}</option>
-          </select>
-          <label for="sortRule"></label>
-          <select
-            className="sortRule"
-            onChange={(event) => {
-              let sort_params = {
-                date: props.course_sort.date,
-                alphabet: props.course_sort.alphabet,
-                rule: false,
-                is_changed: true,
-              };
-              if (event.target.selectedIndex === 1) {
-                sort_params.rule = true;
-              }
-              props.apply_course_choicePage_sort(sort_params);
-            }}
-          >
-            <option id="upRule">{"по возрастанию"}</option>
-            <option id="downRule">{"по убыванию"}</option>
-          </select>
-          <h5>
-            <button
-              className="breakButton"
-              onClick={() => {
-                props.break_course_choicePage_sort();
+      <div className="coursesSortParent" styleName="coursesSortParent">
+        <div className="coursesSort" styleName="coursesSort">
+          <h5>Курсы</h5>
+          <div>
+            <h5 for="sortParam"> Сортировать по: </h5>
+            <select
+              className="sortParam"
+              onChange={(event) => {
+                let sort_params = {
+                  date: false,
+                  alphabet: false,
+                  rule: props.course_sort.rule,
+                  is_changed: true,
+                };
+                if (event.target.selectedIndex === 1) {
+                  sort_params.date = true;
+                }
+                if (event.target.selectedIndex === 2) {
+                  sort_params.alphabet = true;
+                }
+                props.apply_course_choicePage_sort(sort_params);
               }}
             >
-              {"Сброс"}
-            </button>
-          </h5>
+              <option id="defaultSort">{"по умолчанию"}</option>
+              <option id="dateSort">{"по дате"}</option>
+              <option id="titleSort">{"по названию"}</option>
+            </select>
+            <label for="sortRule"></label>
+            <select
+              className="sortRule"
+              onChange={(event) => {
+                let sort_params = {
+                  date: props.course_sort.date,
+                  alphabet: props.course_sort.alphabet,
+                  rule: false,
+                  is_changed: true,
+                };
+                if (event.target.selectedIndex === 1) {
+                  sort_params.rule = true;
+                }
+                props.apply_course_choicePage_sort(sort_params);
+              }}
+            >
+              <option id="upRule">{"по возрастанию"}</option>
+              <option id="downRule">{"по убыванию"}</option>
+            </select>
+            <h5>
+              <button
+                className="breakButton"
+                onClick={() => {
+                  props.break_course_choicePage_sort();
+                }}
+              >
+                {"Сброс"}
+              </button>
+            </h5>
+          </div>
         </div>
-      </div>
-      <div className="container" styleName="container">
-        <div className="courses" styleName="courses">
-          {props.course_choicePage.courses.map((element) => (
-            <CourseCard course={element}></CourseCard>
-          ))}
+        <div className="container" styleName="container">
+          <div className="courses" styleName="courses">
+            {props.course_choicePage.courses.map((element) => (
+              <CourseCard course={element}></CourseCard>
+            ))}
+          </div>
         </div>
       </div>
     </section>

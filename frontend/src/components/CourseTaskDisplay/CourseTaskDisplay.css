@@ -1,0 +1,172 @@
+.taskHead {
+  background-color: #ebe2ca;
+  padding: auto;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.taskHead > div {
+  display: flex;
+  justify-content: space-around;
+  width: 5%;
+}
+.taskHead h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+}
+
+.taskPanel {
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0 0px;
+  background-color: #fff;
+  max-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  display: block;
+  transition: max-height 0.2s ease-out;
+}
+
+.taskPanelContent {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskPanelButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.taskPanelButtons button {
+  font-family: "UbuntuBold";
+  text-decoration: underline;
+  border: none;
+  background-color: #fff;
+  color: #908373;
+  cursor: pointer;
+}
+
+.taskPanelProperties {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: baseline;
+  min-height: 287px;
+}
+
+.taskPanelProperties div {
+  margin: auto;
+}
+.taskPanelProperties h3 {
+  font-family: "AthelasBold";
+  font-size: 14pt;
+  color: #908373;
+}
+.taskPanelProperties h4 {
+  font-family: "UbuntuBold";
+  font-size: 10pt;
+}
+.taskPanelAnswers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.taskPanelAnswers > div {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+}
+.ansContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.ansContainer  > h3{
+  margin: auto;
+}
+
+
+.delAnsBut {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  padding: auto;
+  height: 10%;
+}
+
+.delAnsBut * {
+  margin: auto;
+}
+
+.lookAnsBut {
+  font-family: "AthelasBold";
+  border: none;
+  background-color: #fff;
+  color: #908373;
+  cursor: pointer;
+}
+
+.taskPanelAnswers h3 {
+  font-family: "AthelasBold";
+  font-size: 12pt;
+  color: #908373;
+}
+.taskPanelAnswers h4 {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+}
+
+.taskPanelOverview {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  flex-wrap: wrap;
+  /* gap: 1em; */
+}
+
+.taskPanelOverview h3 {
+  font-family: "AthelasBold";
+  font-size: 14pt;
+  color: #908373;
+}
+.taskPanelOverview h4 {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+}
+.taskPanelOverview button * {
+  margin: auto;
+}
+.taskPanelOverview button {
+  cursor: pointer;
+  font-size: 12pt;
+  background: #908373;
+  border: none;
+  color: #ebe2ca;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.taskOverview {
+  width: 80%;
+}
+
+.taskType {
+  text-align: right;
+  width: 20%;
+}

@@ -1,0 +1,190 @@
+.courseParentContainer {
+  padding: 2em;
+}
+.courseContainer {
+  padding: 1em;
+  margin: auto;
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  width: 20%;
+  gap: 1em;
+  overflow: auto;
+  /* justify-content: ; */
+}
+
+.leftPanel > button {
+  border: none;
+  background-color: #908373;
+  border-radius: 20px;
+}
+
+.leftPanel > button > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.leftPanel > button * {
+  margin: auto;
+}
+
+.leftPanel > button > div > h3 {
+  /* margin: auto; */
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  /* color: #ebe2ca; */
+  color: #fff;
+}
+.leftPanel > button > div > h2 {
+  font-family: "AthelasBold";
+  font-size: 14pt;
+  color: #ebe2ca;
+}
+
+.courseTitle {
+}
+.courseTitle div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.courseTitle div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+}
+.courseTitle div > h2 {
+  font-family: "AthelasBold";
+  font-size: 18pt;
+  color: #908373;
+}
+
+.progressBar {
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: white;
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  /* padding: 0 5px; */
+  display: flex;
+  height: 1em;
+  /* width: 24em; */
+}
+
+.progressValue {
+  animation: load 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #9ac563;
+  height: 1em;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: width;
+  }
+}
+
+.rightPanel {
+  width: 80%;
+}
+
+.moduleInfo {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+}
+.moduleInfo span {
+  font-family: "AthelasBold";
+  font-size: 18pt;
+  color: #908373;
+}
+.moduleInfo h3 {
+  font-family: "AthelasBold";
+  font-size: 12pt;
+  color: #908373;
+  text-align: right;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  /* max-height: ; */
+  overflow: auto;
+  gap: 1em;
+}
+
+.courseData {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  flex-direction: column;
+}
+
+.courseData > div > h2 {
+  font-family: "AthelasBold";
+  font-size: 18pt;
+  color: #908373;
+}
+.courseData > div > h3 {
+  font-family: "AthelasBold";
+  text-align: right;
+  font-size: 12pt;
+  color: #908373;
+}
+
+.nextTask {
+  height: 50%;
+  display: flex;
+}
+
+.nextTask > div > h2 {
+  font-family: "UbuntuBold";
+  font-size: 18pt;
+  color: #908373;
+}
+.nextTask > div > h3 {
+  font-family: "UbuntuBold";
+  font-size: 18pt;
+  color: #908373;
+  margin: auto;
+}
+.nextTask > div > span {
+  font-family: "AthelasBold";
+  font-size: 14pt;
+  color: #908373;
+}
+.nextTask button {
+  margin: auto;
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

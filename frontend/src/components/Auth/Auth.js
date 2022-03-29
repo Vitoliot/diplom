@@ -192,7 +192,7 @@ const Auth = ({
             <div className="signInInputs" styleName="signInInputs">
               {isLoading && (
                 <div className={"userActionLocker"}>
-                  {SVGManager.getSvg("lockerSvg")}
+                  <svg path="../../../static/images/user.svg"> </svg>
                 </div>
               )}
               <Input
@@ -226,7 +226,7 @@ const Auth = ({
             <div className="signUpInputs" styleName="signUpInputs">
               {isLoading && (
                 <div className={"userActionLocker"}>
-                  {SVGManager.getSvg("lockerSvg")}
+                  <h1> Auth is isLoading </h1>
                 </div>
               )}
               <Input
