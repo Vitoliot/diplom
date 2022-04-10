@@ -3,28 +3,41 @@ import { Route, Routes, Link } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter } from "react-router-dom";
 import EventsView from "./components/EventsView/EventsView";
+import Profile from "./components/Profile/Profile";
 
-const TaskCatalog = lazy(() => import("./components/TaskCatalog/TaskCatalog"))
+const TaskCatalog = lazy(() => import("./components/TaskCatalog/TaskCatalog"));
 
-const CourseCatalog = lazy(() => import("./components/CourseCatalog/CourseCatalog"))
+const CourseCatalog = lazy(() =>
+  import("./components/CourseCatalog/CourseCatalog")
+);
 
-const InvalidRoute = lazy(() => import("./components/404/404"))
+const InvalidRoute = lazy(() => import("./components/404/404"));
 
-const AuthComponent = lazy(() => import("./components/Auth/Auth"))
+const AuthComponent = lazy(() => import("./components/Auth/Auth"));
+
+const CourseComponent = lazy(() => import("./components/Course/Course"));
+
+const ExerciseComponent = lazy(() => import("./components/Exercise/Exercise"));
+
+const ParamsComponent = lazy(() => import("./components/DefParams/DefParams"));
 
 function App() {
   return (
     <BrowserRouter>
       <section className="App">
-        <Suspense fallback={<section></section>}>
-        <Routes>
-          <Route path="/taskCatalog" element={<TaskCatalog/>} />
-          <Route path="/courseCatalog" element={<CourseCatalog/>} />
-          <Route path="/login" element={<AuthComponent/>} />
-          <Route path="/" element={<InvalidRoute/>} />
-        </Routes>
+        <Suspense fallback={<h1>Loading profile...</h1>}>
+          <Routes>
+            <Route path="/taskCatalog" element={<TaskCatalog />} />
+            <Route path="/courseCatalog" element={<CourseCatalog />} />
+            <Route path="/login" element={<AuthComponent />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/exercise" element={<ExerciseComponent />} />
+            <Route path="/course" element={<CourseComponent />} />
+            <Route path="/params" element={<ParamsComponent />} />
+            <Route path="/" element={<InvalidRoute />} />
+          </Routes>
         </Suspense>
-        <EventsView/>
+        <EventsView />
         <Footer />
       </section>
     </BrowserRouter>

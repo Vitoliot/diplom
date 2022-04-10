@@ -1,39 +1,43 @@
 .eventsSection {
-    padding: 30px 0;
-    position: fixed;
-    bottom: 0;
-    right: 30px;
-    width: 300px;
-    height: max-content;
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    justify-content: right;
-    flex-wrap: wrap;
-    overflow: hidden;
-    pointer-events: none;
+  padding: 30px 0;
+  position: fixed;
+  bottom: 0;
+  right: 30px;
+  width: 300px;
+  height: max-content;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  justify-content: right;
+  flex-wrap: wrap;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .eventSuc {
-    width: 100%;
-    padding: 20px;
-    color: var(--light);
-    cursor: pointer;
-    pointer-events: all;
-    background-color: rgb(67, 167, 80);
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  color: var(--light);
+  font-family: "AthelasBold";
+  cursor: pointer;
+  pointer-events: all;
+  background-color: #9ac563;
 }
 
 .eventErr {
-    width: 100%;
-    padding: 20px;
-    color: var(--light);
-    cursor: pointer;
-    pointer-events: all;
-    background-color: rgb(238, 65, 65);
+  border-radius: 20px;
+  font-family: "AthelasBold";
+  width: 100%;
+  padding: 20px;
+  color: var(--light);
+  cursor: pointer;
+  pointer-events: all;
+  background-color: #db6d6d;
 }
 
 @media screen and (max-width: 768px) {
-    .eventsSection {
-        right: 6px;
-    } 
+  .eventsSection {
+    right: 6px;
+  }
 }

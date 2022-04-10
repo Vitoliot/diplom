@@ -17,9 +17,9 @@ function mapStateToProps(component) {
     case "Header": {
       return function (state = initialState) {
         return {
-          isLogged : state.user.id ? true : false,
-          userImgPath: state.user
-            ? state.user.userImgPath
+          isLogged: state.user_for_profile.data.id ? true : false,
+          userImgPath: state.user_for_profile.data.icon
+            ? state.user_for_profile.data.icon
             : "static/images/person.png",
         };
       };
@@ -27,7 +27,7 @@ function mapStateToProps(component) {
     case "AuthorizeRoute": {
       return function (state) {
         return {
-          isLogged : state.user.id ? true : false
+          isLogged: state.user_for_profile.data.id ? true : false,
         };
       };
     }
@@ -36,7 +36,16 @@ function mapStateToProps(component) {
         return {
           course_choicePage: state.course_choicePage,
           course_sort: state.course_sort,
-          isLogged : state.user.id ? true : false
+          isLogged: state.user_for_profile.data.id ? true : false,
+        };
+      };
+    }
+    case "CourseCard": {
+      return (state) => {
+        return {
+          isLogged: state.user_for_profile.data.id ? true : false,
+          course_sort: state.course_sort,
+          course_choicePage: state.course_choicePage,
         };
       };
     }
@@ -44,16 +53,17 @@ function mapStateToProps(component) {
       return (state) => {
         return {
           current_course: state.current_course,
-          isLogged : state.user.id ? true : false
+          todayCompleteTasks: state.todayCompleteTasks,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          taskInDay: state.user_for_profile.data.task_in_day,
         };
       };
     }
     case "Auth": {
       return (state) => {
         return {
-          isLogged: state.user.id ? true : false,
-          isLoading: state.user.isLoading,
-          // isLoading: false,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          isLoading: state.user_for_profile.isLoading,
         };
       };
     }
@@ -61,14 +71,118 @@ function mapStateToProps(component) {
       return (state) => {
         return {
           errors: state.errors.content,
-          successes: state.successes.content
+          successes: state.successes.content,
         };
       };
     }
     case "Profile": {
       return (state) => {
-        return
-      }
+        return {
+          user_for_profile: state.user_for_profile,
+          user_params: state.user_params,
+          user_answers: null,
+        };
+      };
+    }
+    case "Exercise": {
+      return (state) => {
+        return {
+          current_task: state.current_task,
+          exerciseState: state.exerciseState,
+          isLogged: state.user_for_profile.data.id ? true : false,
+        };
+      };
+    }
+    case "DefParams": {
+      return (state) => {
+        return {
+          user_params: state.user_params,
+          new_params: state.new_params,
+        };
+      };
+    }
+    case "ExerciseText": {
+      return (state) => {
+        return {
+          item:
+            state.current_task.data.items.length != 0
+              ? state.current_task.data.items[0]
+              : null,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          taskId: state.current_task.data.id,
+          usercourseId: state.current_course.id,
+        };
+      };
+    }
+    case "ExerciseTest": {
+      return (state) => {
+        return {
+          item:
+            state.current_task.data.items.length != 0
+              ? state.current_task.data.items[0]
+              : null,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          usertaskId: state.current_task.usertask,
+          taskId: state.current_task.data.id,
+          usercourseId: state.current_course.id,
+        };
+      };
+    }
+    case "TenThesis": {
+      return (state) => {
+        return {
+          item:
+            state.current_task.data.items.length != 0
+              ? state.current_task.data.items[0]
+              : null,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          usertaskId: state.current_task.usertask,
+          taskId: state.current_task.data.id,
+          usercourseId: state.current_course.id,
+        };
+      };
+    }
+    case "TenWords": {
+      return (state) => {
+        return {
+          item:
+            state.current_task.data.items.length != 0
+              ? state.current_task.data.items[0]
+              : null,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          usertaskId: null,
+          taskId: state.current_task.data.id,
+          usercourseId: state.current_course.id,
+        };
+      };
+    }
+    case "BOFIPiramids": {
+      return (state) => {
+        return {
+          item:
+            state.current_task.data.items.length != 0
+              ? state.current_task.data.items[0]
+              : null,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          usertaskId: state.current_task.usertask,
+          taskId: state.current_task.data.id,
+          usercourseId: state.current_course.id,
+        };
+      };
+    }
+    case "CountObjects": {
+      return (state) => {
+        return {
+          item:
+            state.current_task.data.items.length != 0
+              ? state.current_task.data.items[0]
+              : null,
+          isLogged: state.user_for_profile.data.id ? true : false,
+          usertaskId: state.current_task.usertask,
+          taskId: state.current_task.data.id,
+          usercourseId: state.current_course.id,
+        };
+      };
     }
     default:
       return "undefined";

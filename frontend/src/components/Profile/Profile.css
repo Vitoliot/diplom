@@ -343,7 +343,9 @@
   margin: auto;
 }
 .delPassData > button {
-  margin: auto;
+  margin-top: 0.7em;
+  margin-left: auto;
+  margin-right: auto;
   cursor: pointer;
   border: none;
   color: #ebe2ca;

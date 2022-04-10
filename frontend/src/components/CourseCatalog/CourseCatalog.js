@@ -20,6 +20,8 @@ const CourseCatalog = (props) => {
     if (props.course_choicePage.usercourses) usercoursesResponse();
   });
 
+  console.log(props.course_choicePage.usercourses);
+
   function usercoursesResponse() {
     props.course_choicePage.courses.forEach((element) => {
       element.count_of_complete_tasks = 0;

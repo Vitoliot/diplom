@@ -1,6 +1,6 @@
 import actions from "./actions";
 import initialState from "./initialState";
-import { afterSignIn } from "./thunks";
+import { afterSignIn, tokenUpdate } from "./thunks";
 
 const Reducers = {
   cookie: (state = initialState, action) => {
@@ -27,6 +27,7 @@ const Reducers = {
       }
       case actions.add_error: {
         console.log("error added", action);
+        if (action.status === "401") action.dispatch(tokenUpdate());
         return {
           content: state.content.concat({
             text: action.text,
@@ -87,6 +88,33 @@ const Reducers = {
   },
   task_choicePage: (state = initialState, action) => {
     switch (action.type) {
+      case actions.task_is_complete_update:
+        return {
+          is_fecthed: false,
+          is_loading: false,
+          is_changed: true,
+          is_theme: state.is_theme,
+          tasks: state.tasks,
+          current_task_by_theme_and_id: state.current_task_by_theme_and_id,
+        };
+      case actions.logout_request_successed:
+        return {
+          is_fecthed: state.is_fecthed,
+          is_loading: state.is_loading,
+          is_changed: true,
+          is_theme: state.is_theme,
+          tasks: state.tasks,
+          current_task_by_theme_and_id: state.current_task_by_theme_and_id,
+        };
+      case actions.auth_request_successed:
+        return {
+          is_fecthed: state.is_fecthed,
+          is_loading: state.is_loading,
+          is_changed: true,
+          is_theme: state.is_theme,
+          tasks: state.tasks,
+          current_task_by_theme_and_id: state.current_task_by_theme_and_id,
+        };
       case actions.apply_task_choicePage_filters:
         return {
           is_fecthed: state.is_fecthed,
@@ -138,6 +166,22 @@ const Reducers = {
   },
   course_choicePage: (state = initialState, action) => {
     switch (action.type) {
+      case actions.logout_request_successed:
+        return {
+          is_fecthed: false,
+          is_loading: false,
+          is_changed: true,
+          courses: state.courses,
+          usercourses: state.usercourses,
+        };
+      case actions.auth_request_successed:
+        return {
+          is_fecthed: false,
+          is_loading: false,
+          is_changed: true,
+          courses: state.courses,
+          usercourses: state.usercourses,
+        };
       case actions.select_courses_request_started:
       case actions.select_user_courses_request_started:
         return {
@@ -158,7 +202,7 @@ const Reducers = {
           is_fecthed: true,
           is_loading: false,
           courses: state.courses,
-          usercourses: state.usercourses + { course: action.course },
+          usercourses: action.courses,
         };
       case actions.select_courses_request_failed:
       case actions.select_user_courses_request_failed:
@@ -174,32 +218,62 @@ const Reducers = {
   },
   current_course: (state = initialState, action) => {
     switch (action.type) {
+      case actions.logout_request_successed:
+        return {
+          isFetched: false,
+          isLoading: false,
+          isChanged: true,
+          data: state.data,
+        };
+      case actions.auth_request_successed:
+        return {
+          isFetched: false,
+          isLoading: false,
+          isChanged: true,
+          data: state.data,
+        };
       case actions.select_course_with_module_request_started:
         return {
-          is_fecthed: false,
-          is_loading: true,
-          course: state.course,
+          isFetched: false,
+          isLoading: true,
+          isChanged: false,
+          data: state.data,
         };
       case actions.select_course_with_module_request_failed:
         return {
-          is_fecthed: false,
-          is_loading: false,
-          course: state.course,
+          isFetched: false,
+          isLoading: false,
+          isChanged: false,
+          data: state.data,
         };
       case actions.select_course_with_module_request_successed:
         return {
-          is_fecthed: true,
-          is_loading: false,
-          course: action.course,
+          isFetched: true,
+          isLoading: false,
+          isChanged: false,
+          data: action.course,
         };
-      default:
-        return state;
-    }
-  },
-  user: (state = initialState, action) => {
-    switch (action.type) {
-      case actions.select_user_data_successed:
-        return action.data;
+      case actions.select_course_with_module_request_successed_to_unathorized:
+        return {
+          isFetched: true,
+          isLoading: false,
+          isChanged: false,
+          data: action.course,
+        };
+      case actions.course_frontend_update:
+        return {
+          isFetched: false,
+          isLoading: false,
+          isChanged: false,
+          data: action.data,
+        };
+      case actions.task_is_complete_update:
+        return {
+          isFetched: state.isFetched,
+          isLoading: state.isLoading,
+          isChanged: true,
+          data: state.data,
+        };
       default:
         return state;
     }
@@ -214,12 +288,269 @@ const Reducers = {
   },
   user_for_profile: (state = initialState, action) => {
     switch (action.type) {
+      case actions.select_user_data_started:
+        return {
+          isLoading: true,
+          isFetched: false,
+          data: { id: null },
+        };
+      case actions.select_user_data_failed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: { id: null },
+        };
+      case actions.select_user_data_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          data: action.data,
+        };
+      case actions.update_user_icon_successed:
+        return {
+          isLoading: state.isLoading,
+          isFetched: state.isFetched,
+          data: Object.assign({}, state.data, { icon: action.data.icon }),
+        };
+      case actions.logout_request_successed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: { id: null },
+        };
+      case actions.delete_profile_request_successed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: { id: null },
+        };
+      default:
+        return state;
+    }
+  },
+  user_params: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.select_user_params_started:
+        return {
+          isLoading: true,
+          isFetched: false,
+          data: {},
+        };
+      case actions.select_user_params_failed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: {},
+        };
+      case actions.select_user_params_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          data: action.data,
+        };
+      case actions.logout_request_successed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: {},
+        };
+      case actions.delete_profile_request_successed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: {},
+        };
+      case actions.newAAalue:
+      case actions.newQERValue:
+      case actions.newBOFIValue:
+      case actions.newVMValue:
+      case actions.newVMWPValue:
+      case actions.newLMValue:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: state.data,
+        };
       default:
         return state;
     }
   },
   current_task: (state = initialState, action) => {
     switch (action.type) {
+      case actions.changeExerciseState:
+        return {
+          isLoading: false,
+          isFetched: false,
+          isChanged: true,
+          isComplete: false,
+          data: state.data,
+          usertask: state.usertask,
+        };
+      case actions.task_frontend_update:
+        return {
+          isLoading: false,
+          isFetched: false,
+          isChanged: true,
+          isComplete: false,
+          data: action.task,
+          usertask: state.usertask,
+        };
+      case actions.task_is_complete_update:
+        return {
+          isLoading: state.isLoading,
+          isFetched: state.isFetched,
+          isChanged: state.isChanged,
+          isComplete: action.isComplete,
+          correctness: action.correctness,
+          data: state.data,
+          usertask: state.usertask,
+        };
+      case actions.create_usertask_request_successed:
+        return {
+          isLoading: state.isLoading,
+          isFetched: state.isFetched,
+          isChanged: false,
+          isComplete: state.isComplete,
+          data: state.data,
+          usertask: action.data.id,
+        };
+      case actions.select_task_request_started:
+        return {
+          isLoading: true,
+          isFetched: false,
+          isChanged: false,
+          isComplete: false,
+          data: state.data,
+          usertask: state.usertask,
+        };
+      case actions.select_task_request_failed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          isChanged: false,
+          isComplete: false,
+          data: state.data,
+          usertask: state.usertask,
+        };
+      case actions.select_task_request_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          isChanged: false,
+          isComplete: false,
+          data: action.data,
+          usertask: state.usertask,
+        };
+      default:
+        return state;
+    }
+  },
+  todayCompleteTasks: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.create_today_complete_tasks_started:
+        return {
+          isLoading: true,
+          isFetched: false,
+          data: {},
+        };
+      case actions.create_today_complete_tasks_failed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          data: {},
+        };
+      case actions.create_today_complete_tasks_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          data: action.data,
+        };
+      case actions.select_today_complete_tasks_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          data: action.data,
+        };
+      default:
+        return state;
+    }
+  },
+  new_params: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.newAAalue:
+        return {
+          BOFI: state.BOFI,
+          VM: state.VM,
+          VMWP: state.VMWP,
+          LM: state.LM,
+          AA: { value: action.value },
+          QER: state.QER,
+        };
+      case actions.newQERValue:
+        return {
+          BOFI: state.BOFI,
+          VM: state.VM,
+          VMWP: state.VMWP,
+          LM: state.LM,
+          AA: state.AA,
+          QER: { value: action.value, WPM: action.WPM, QU: action.QU },
+        };
+      case actions.newBOFIValue:
+        return {
+          BOFI: { value: action.value },
+          VM: state.VM,
+          VMWP: state.VMWP,
+          LM: state.LM,
+          AA: state.AA,
+          QER: state.QER,
+        };
+      case actions.newVMValue:
+        return {
+          BOFI: state.BOFI,
+          VM: { value: action.value },
+          VMWP: state.VMWP,
+          LM: state.LM,
+          AA: state.AA,
+          QER: state.QER,
+        };
+      case actions.newVMWPValue:
+        return {
+          BOFI: state.BOFI,
+          VM: state.VM,
+          VMWP: { value: action.value },
+          LM: state.LM,
+          AA: state.AA,
+          QER: state.QER,
+        };
+      case actions.newLMValue:
+        return {
+          BOFI: state.BOFI,
+          VM: state.VM,
+          VMWP: state.VMWP,
+          LM: { value: action.value },
+          AA: state.AA,
+          QER: state.QER,
+        };
+      case actions.nullNewParams:
+        return {
+          BOFI: null,
+          VM: null,
+          VMWP: null,
+          LM: null,
+          AA: null,
+          QER: null,
+        };
+      default:
+        return state;
+    }
+  },
+  exerciseState: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.changeExerciseState:
+        return {
+          isParam: action.isParam,
+          param: action.param,
+        };
       default:
         return state;
     }

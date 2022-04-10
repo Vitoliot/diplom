@@ -125,6 +125,7 @@
 .tasks {
   display: flex;
   flex-direction: column;
+  max-height: 25em;
   /* max-height: ; */
   overflow: auto;
   gap: 1em;
@@ -151,8 +152,6 @@
 }
 
 .nextTask {
-  height: 50%;
-  display: flex;
 }
 
 .nextTask > div > h2 {
@@ -168,7 +167,7 @@
 }
 .nextTask > div > span {
   font-family: "AthelasBold";
-  font-size: 14pt;
+  font-size: 16pt;
   color: #908373;
 }
 .nextTask button {

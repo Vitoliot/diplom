@@ -20,9 +20,11 @@ const Course = ({
   todayCompleteTasks,
   taskInDay,
 }) => {
-  let [currModule, setCurrModule] = useState(-1);
-  let [isUserCourse, setIsUserCourse] = useState(false);
-  let [nextTask, setNextTask] = useState({});
+  const [currModule, setCurrModule] = useState(-1);
+  const [isUserCourse, setIsUserCourse] = useState(false);
+  const [nextTask, setNextTask] = useState({});
+
+  console.log(current_course.data.count_of_complete_tasks, current_course.data.count_of_tasks)
 
   function handleCurrModuleChange(number) {
     return () => setCurrModule(number - 1);
@@ -36,24 +38,20 @@ const Course = ({
     ) {
       onInit(current_course.data.course.id, isLogged);
     }
-    setIsUserCourse(current_course.data.hasOwnProperty("usertasks"));
-    if (isUserCourse) {
-      indexesOfCompleteTasks = defineIndexesOfCompleteTasks();
-      setAmountOfCompleteTasks(
-        defineNumOfCompleteTasks(indexesOfCompleteTasks)
-      );
-      setNextTask(findNextTask(indexesOfCompleteTasks));
+    if (Object.keys(nextTask).length === 0) {
+      setIsUserCourse(current_course.data.hasOwnProperty("usertasks"));
+      if (isUserCourse) {
+        indexesOfCompleteTasks = defineIndexesOfCompleteTasks();
+        setAmountOfCompleteTasks(
+          defineNumOfCompleteTasks(indexesOfCompleteTasks)
+        );
+        setNextTask(findNextTask(indexesOfCompleteTasks));
+        console.log(nextTask);
+        // onChangeCurrentTask(nextTask);
+      }
     }
-    if (nextTask) onChangeCurrentTask(nextTask);
-    console.log(
-      isUserCourse,
-      indexesOfCompleteTasks,
-      amountOfCompleteTasks,
-      nextTask
-    );
+    console.log(nextTask);
   });
-
-  console.log("tct", todayCompleteTasks, taskInDay);
 
   function defineIndexesOfCompleteTasks() {
     let indexesOfCompleteTasks = [];
@@ -77,21 +75,22 @@ const Course = ({
   }
 
   function findNextTask(indexesOfCompleteTasks) {
-    let nextTask = null;
+    let nextTask = {};
     let modules = current_course.data.course.modules;
     modules.forEach((element) => {
       element.moduletasks.every((element) => {
         if (!indexesOfCompleteTasks.includes(element.task.id)) {
           nextTask = element.task;
+          console.log("yeaaaaaah");
           return false;
         }
         return true;
       });
     });
+    console.log("fnt", nextTask, Object.keys(nextTask).length);
     return nextTask;
   }
 
-  console.log(current_course);
   return (
     <section>
       {current_course.data.hasOwnProperty("course") &&
@@ -117,14 +116,8 @@ const Course = ({
                   </div>
                   {isLogged && isUserCourse && (
                     <ProgressBar
-                      count_of_complete_tasks={
-                        5
-                      }
-                      count_of_tasks={5}
-                      // count_of_complete_tasks={
-                      //   current_course.data.count_of_complete_tasks
-                      // }
-                      // count_of_tasks={current_course.data.count_of_tasks}
+                      count_of_complete_tasks={current_course.data.count_of_complete_tasks}
+                      count_of_tasks={current_course.data.count_of_tasks}
                     />
                   )}
                   {isLogged && isUserCourse && (
@@ -159,12 +152,29 @@ const Course = ({
                 {isLogged && isUserCourse && (
                   <div className="nextTask" styleName="nextTask">
                     {todayCompleteTasks.data.amount_of_tasks < taskInDay ? (
-                      nextTask.hasOwnProperty("task") ? (
-                        <div>
-                          <h2>{nextTask.task.title}</h2>
-                          <span>{nextTask.task.overview}</span>
-                          <Link to="/exercise">
-                            <button>Приступить</button>
+                      Object.keys(nextTask).length !== 0 ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            "flex-direction": "column",
+                            gap: "1em",
+                          }}
+                        >
+                          <h2 style={{ margin: "auto" }}>
+                            {"Следующее задание"}
+                          </h2>
+                          <span style={{ margin: "auto" }}>
+                            {nextTask.title}
+                          </span>
+                          <Link style={{ margin: "auto" }} to="/exercise">
+                            <button
+                              style={{ margin: "auto" }}
+                              onClick={() => {
+                                onChangeCurrentTask(nextTask);
+                              }}
+                            >
+                              Приступить
+                            </button>
                           </Link>
                         </div>
                       ) : (
@@ -231,8 +241,7 @@ const Course = ({
                         <h3>{current_course.data.course.overview}</h3>
                       </div>
                       {isLogged ? (
-                        isUserCourse ? (
-                          null) : (
+                        isUserCourse ? null : (
                           <button
                             onClick={() => {
                               onCourseAdd(current_course.data.course.id);

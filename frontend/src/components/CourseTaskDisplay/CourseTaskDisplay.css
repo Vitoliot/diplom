@@ -101,6 +101,7 @@
   background: #908373;
   border-radius: 5px;
   padding: auto;
+  display: flex;
   height: 10%;
 }
 

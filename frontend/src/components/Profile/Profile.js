@@ -93,10 +93,6 @@ const Profile = ({
     QER: "КЭЧ",
   };
 
-  let radarOptions = {};
-
-  let radarData = {};
-
   function constructRadarData() {
     let radarKeys = [];
     let radarValues = [];
@@ -116,9 +112,10 @@ const Profile = ({
         {
           label: "пунктов",
           data: radarValues,
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
+          backgroundColor: "rgba(144, 131, 115, 1)",
+          borderColor: "rgba(144, 131, 115, 1)",
+          borderWidth: 5,
+          fill: true,
         },
       ],
     };
@@ -147,9 +144,9 @@ const Profile = ({
         {
           label: Translator[choice],
           data: statData.length ? statData : [],
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
+          backgroundColor: "rgba(144, 131, 115, 1)",
+          borderColor: "rgba(144, 131, 115, 1)",
+          borderWidth: 5,
         },
       ],
     };
@@ -698,8 +695,8 @@ const Profile = ({
               <div>
                 <Select
                   id={"stats_choice"}
-                  value={Object.keys(user_params.data)[statValue]}
-                  values={Object.keys(user_params.data)}
+                  value={Translator[Object.keys(user_params.data)[statValue]]}
+                  values={Object.values(Translator)}
                   onChange={handleStatChange}
                 />
                 <Line data={statsData} redraw={true} />

@@ -13,6 +13,7 @@ const CourseTaskDisplay = ({
   onChangeCurrentTask,
   onDeleteAnswer,
 }) => {
+  console.log(task);
 
   let [overviewOrAnswers, setOverviewOrAnswers] = useState(0);
   let taskInfoFromUserTasks = null;
@@ -64,10 +65,12 @@ const CourseTaskDisplay = ({
           />
           <h3> {task.number + "."} </h3>
         </div>
-        <h3> {task.task.title} </h3>
-        {indexesOfCompleteTasks.includes(task.task.id) ? (
-          <h3> выполнено </h3>
-        ) : null}
+        <h3
+          style={taskInfoFromUserTasks?.is_complete ? { color: "#9ac563" } : {}}
+        >
+          {" "}
+          {task.task.title}{" "}
+        </h3>
       </button>
       <div styleName="taskPanel" className="taskPanel">
         <div styleName="taskPanelContent" className="taskPanelContent">
@@ -131,7 +134,10 @@ const CourseTaskDisplay = ({
                             onDeleteAnswer(answer.id);
                           }}
                         >
-                          <img src="../../../static/images/del_ans.svg" color="#ebe2ca"/>
+                          <img
+                            src="../../../static/images/del_ans.svg"
+                            color="#ebe2ca"
+                          />
                         </button>
                       </div>
                     </div>
