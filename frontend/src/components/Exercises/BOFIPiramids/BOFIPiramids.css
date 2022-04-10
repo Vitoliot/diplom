@@ -1,0 +1,115 @@
+.normalContainer {
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+
+  background: #aba593;
+  border-radius: 20px;
+}
+
+.blackContainer {
+  background: #aba593;
+  border-radius: 20px;
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+}
+.normalContainer h1 {
+  font-family: "UbuntuBold";
+  font-size: 20pt;
+  color: #ebe2ca;
+  margin-top: 7em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blackContainer h1 {
+  font-family: "UbuntuBold";
+  font-size: 20pt;
+  color: #ebe2ca;
+  margin: auto;
+}
+
+.normalContainer h2 {
+  font-family: "Athelas";
+  font-size: 12pt;
+  color: black;
+  margin: auto;
+  text-align: center;
+}
+
+.blackContainer h2 {
+  font-family: "Athelas";
+  font-size: 12pt;
+  color: #908373;
+  margin: auto;
+  text-align: center;
+}
+
+.whitePanel {
+  margin: auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  min-height: 70px;
+}
+
+.redPanel {
+  margin: auto;
+  background-color: #db6d6d;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  min-height: 70px;
+}
+
+.greenPanel {
+  margin: auto;
+  background-color: #9ac563;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  min-height: 70px;
+}
+
+.coffeePanel {
+  margin: auto;
+  background-color: #ebe2ca;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  min-height: 70px;
+}
+
+.point {
+  background-color: red;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.inputDiv {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 15%;
+}
+
+.inputDiv input {
+  width: 100%;
+  text-align: center;
+  border-radius: 20px;
+  border: none;
+  font-family: "Athelas";
+  font-size: 12pt;
+  color: black;
+  text-align: center;
+}

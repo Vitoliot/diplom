@@ -1,0 +1,194 @@
+.tenWordsWithPosition {
+  background: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.tenWordsWithoutPosition {
+  background: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: space-evenly;
+}
+.tenWordsWithoutPosition > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 50%;
+  justify-content: space-around;
+}
+.tenWordsWithoutPosition > div > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.tenWordsWithPositionAnswers {
+  background: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.tenWordsWithPositionAnswers > div {
+  display: flex;
+  gap: 1em;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tenWordsWithPositionAnswers > div > div {
+  width: 23%;
+  margin: auto;
+}
+
+.tenWordsWithPosition h2 {
+  font-family: "Athelas";
+  font-size: 20pt;
+  color: #908373;
+  margin: auto;
+  width: 23%;
+  text-align: center;
+}
+
+.tenWordsWithoutPositionAnswer {
+  background: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.tenWordsWithoutPositionAnswer > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: space-evenly;
+}
+.tenWordsWithoutPositionAnswer > div > div {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  width: 50%;
+}
+.tenWordsWithoutPositionAnswer > div > div > div {
+  display: flex;
+  gap: 1em;
+}
+
+.explainContainer {
+  background: #aba593;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+}
+
+.hideWords {
+  background: #aba593;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+}
+
+.tenWordsParentContainer h1 {
+  font-family: "UbuntuBold";
+  font-size: 20pt;
+  color: #ebe2ca;
+  margin-top: 7em;
+  text-align: center;
+}
+
+.tenWordsParentContainer h2 {
+  font-family: "Athelas";
+  font-size: 20pt;
+  color: #908373;
+  margin: auto;
+  text-align: center;
+}
+
+.wordNumber {
+  background: #908373;
+  border-radius: 5px;
+  width: 10%;
+}
+
+.wordNumber h3 {
+  font-family: "Athelas";
+  font-size: 14pt;
+  color: #ffffff;
+  text-align: center;
+}
+
+.sucNumber {
+  background: #9ac563;
+  border-radius: 5px;
+  width: 10%;
+}
+
+.sucNumber h3 {
+  font-family: "Athelas";
+  font-size: 14pt;
+  color: #ffffff;
+  text-align: center;
+}
+
+.errNumber {
+  background: #db6d6d;
+  border-radius: 5px;
+  width: 10%;
+}
+
+.errNumber h3 {
+  font-family: "Athelas";
+  font-size: 14pt;
+  color: #ffffff;
+  text-align: center;
+}
+
+.tenWordsParentContainer button {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}

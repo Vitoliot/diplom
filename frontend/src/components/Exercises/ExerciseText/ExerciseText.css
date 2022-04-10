@@ -1,0 +1,87 @@
+.exerciseTextParent {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+  min-height: 950px;
+  padding: 1em;
+  background-color: #ebe2ca;
+  border-radius: 20px;
+}
+
+.exerciseTextContainer {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+.exerciseTextContainer > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.exerciseTextContainer h2 {
+  font-family: "AthelasBold";
+  font-size: 18pt;
+  color: black;
+}
+.exerciseTextContainer h3 {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: #ebe2ca;
+  margin-top: 0.7em;
+  text-align: center;
+}
+
+.currentPageContainer {
+  background-color: #908373;
+  border-radius: 20px;
+  width: 58px;
+  height: 43px;
+}
+
+.textContainer {
+}
+
+.textContainer span {
+  font-family: "Athelas";
+  font-size: 14pt;
+  color: black;
+  /* text-align: center; */
+}
+
+.doneButton {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  font-family: "UbuntuBold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.changeButton {
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.changeButton button {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.changeButton img {
+  margin: auto;
+  color: #ebe2ca;
+}

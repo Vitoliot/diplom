@@ -1,0 +1,34 @@
+.questionContainer {
+  display: flex;
+  gap: 1em;
+}
+.questionContainer > div {
+  display: flex;
+  background: #908373;
+  border-radius: 20px;
+  width: 10%;
+}
+.questionContainer > div h3 {
+  text-align: center;
+  margin: auto;
+  color: white;
+}
+
+.correct label {
+  color: #9ac563;
+}
+
+.incorrect label {
+  color: #db6d6d;
+}
+
+.correctPos {
+  background: #9ac563;
+}
+
+.incorrectPos {
+  background: #db6d6d;
+}
+
+.posAnswer {
+}

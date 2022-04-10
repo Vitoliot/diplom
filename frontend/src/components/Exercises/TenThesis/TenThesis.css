@@ -1,0 +1,108 @@
+.TenThesisParent {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: #ebe2ca;
+  border-radius: 20px;
+}
+
+.TenThesisContainer {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+.TenThesisContainer > div {
+  display: flex;
+  gap: 1em;
+}
+
+.questionsContainer {
+  display: flex;
+  gap: 1em;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+.questionsContainer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: baseline;
+  gap: 1em;
+}
+
+.questionsContainer form div {
+  margin-left: 2.5em;
+}
+.questionsContainer h3 {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: black;
+}
+.questionsContainer label {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: black;
+}
+
+.doneButton {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  font-family: "UbuntuBold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.changeButton {
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.changeButton button {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.changeButton img {
+  margin: auto;
+  color: #ebe2ca;
+}
+
+.correct label {
+  color: #9ac563;
+}
+
+.incorrect label {
+  color: #db6d6d;
+}
+
+.correctPos {
+  background: #9ac563;
+}
+
+.incorrectPos {
+  background: #db6d6d;
+}
+
+.posAnswer {
+}
+
+.breakColumn {
+  height: 100%;
+  width: 0;
+}

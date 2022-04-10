@@ -1,0 +1,39 @@
+.resultParent {
+  background-color: white;
+  /* height: 45%; */
+  max-width: 15em;
+  padding: 1em;
+  border-radius: 20px;
+}
+
+.resultParent > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.resultParent button {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  font-family: "UbuntuBold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.resultParent h1 {
+  font-family: "UbuntuBold";
+  font-size: 20pt;
+  color: black;
+  margin: auto;
+  /* margin-top: 0.7em; */
+  /* text-align: center; */
+}

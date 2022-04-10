@@ -1,0 +1,127 @@
+.exerciseTestParent {
+  display: flex;
+  flex-direction: column;
+  min-width: 650px;
+  min-height: 950px;
+  padding: 1em;
+  background-color: #ebe2ca;
+  border-radius: 20px;
+}
+
+.exerciseTestContainer {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+.exerciseTestContainer > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.exerciseTestContainer h2 {
+  font-family: "AthelasBold";
+  font-size: 18pt;
+  color: black;
+}
+.exerciseTestContainer h3 {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: #ebe2ca;
+  margin-top: 0.7em;
+  text-align: center;
+}
+
+.currentPageContainer {
+  background-color: #908373;
+  border-radius: 20px;
+  width: 58px;
+  height: 43px;
+}
+
+.questionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.questionsContainer form * {
+  margin-left: 3em;
+}
+.questionsContainer h3 {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: black;
+  /* margin-top: 0.7em; */
+  /* text-align: center; */
+}
+.questionsContainer label {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: black;
+  /* margin-top: 0.7em; */
+  /* text-align: center; */
+}
+
+.questionContainer {
+  display: flex;
+  gap: 1em;
+}
+.questionContainer > div {
+  display: flex;
+  background: #908373;
+  border-radius: 20px;
+  width: 10%;
+}
+.questionContainer > div h3 {
+  text-align: center;
+  margin: auto;
+  color: white;
+}
+
+.doneButton {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  font-family: "UbuntuBold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.changeButton {
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.changeButton button {
+  cursor: pointer;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 20px;
+  margin: auto;
+}
+
+.changeButton img {
+  margin: auto;
+  color: #ebe2ca;
+}
+
+.correct label {
+  color: #9ac563;
+}
+
+.incorrect label {
+  color: #db6d6d;
+}
+
+.posAnswer {
+}

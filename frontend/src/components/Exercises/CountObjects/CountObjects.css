@@ -1,0 +1,79 @@
+.explainContainer {
+  background: #aba593;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+}
+
+.hideWords {
+  background: #aba593;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+}
+
+.countObjectsParent {
+  display: flex;
+  flex-direction: column;
+}
+
+.countObjectsParent img {
+  margin: auto;
+}
+.countObjectsParent h1 {
+  font-family: "UbuntuBold";
+  font-size: 20pt;
+  color: #ebe2ca;
+  margin-top: 7em;
+  text-align: center;
+}
+
+.countObjectsParent button {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto
+}
+
+.countObjectsContainer {
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 700px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.butContainer {
+  margin-top: auto;
+  margin-left: auto;
+  width: 40%;
+}
+.butContainer > div {
+  display: flex;
+  gap: 1em;
+}
+
+.butContainer > div * {
+    margin: auto;
+  }

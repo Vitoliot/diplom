@@ -1,0 +1,94 @@
+.dataContainer {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 1em;
+  margin: 1em;
+  min-width: 500px;
+  justify-content: space-evenly;
+}
+
+.dataContainer > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataContainer > div h1 {
+  font-family: "UbuntuBold";
+  font-size: 20pt;
+  color: #000;
+  margin: auto;
+}
+.dataContainer > div span {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: #000;
+  margin: auto;
+}
+
+.dataContainer > div > div > canvas {
+  height: 100px;
+  width: 100px;
+}
+
+.paramTaskContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #ebe2ca;
+  border-radius: 20px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 0em 1em 1em 1em;
+  margin: 1em;
+
+  min-width: 500px;
+  max-width: 500px;
+}
+
+.paramTaskContainer h1 {
+  font-family: "UbuntuBold";
+  font-size: 18pt;
+  color: #000;
+}
+.paramTaskContainer span {
+  font-family: "UbuntuBold";
+  font-size: 11pt;
+  color: #000;
+}
+
+.paramTaskContainer a {
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.paramTaskContainer button {
+  float: right;
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  color: #ebe2ca;
+  background: #908373;
+  border-radius: 5px;
+  font-family: "Athelas";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.paramsParentContainer {
+  display: flex;
+  padding: 50px 30px 30px 50px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+}
+
+.paramsParentContainer > div {
+  display: flex;
+}
+
+
