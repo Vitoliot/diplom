@@ -6,6 +6,7 @@ from rest_framework import generics
 from rest_framework import permissions, authentication
 from rest_framework.filters import OrderingFilter
 
+
 class TaskTypeView(generics.ListAPIView):
     queryset = TaskType.objects.all()
     serializer_class = TaskTypeSerializer
@@ -29,8 +30,8 @@ class CourseOneView(generics.RetrieveAPIView):
 
 class CourseListView(generics.ListAPIView):
     queryset = Course.objects.all().annotate(
-        count_of_modules = Count('modules'),
-        count_of_tasks = Count('modules__moduletasks')
+        count_of_modules=Count('modules', distinct=True),
+        count_of_tasks=Count('modules__moduletasks', distinct=True)
     )
     serializer_class = CourseSerializer
     permission_classes = [permissions.AllowAny]
@@ -48,8 +49,8 @@ class CourseUpdateView(generics.RetrieveUpdateDestroyAPIView):
 
 class CourseWithModules(generics.RetrieveDestroyAPIView):
     queryset = Course.objects.all().annotate(
-        count_of_modules = Count('modules'),
-        count_of_tasks = Count('modules__moduletasks')
+        count_of_modules=Count('modules', distinct=True),
+        count_of_tasks=Count('modules__moduletasks', distinct=True)
     )
     serializer_class = CourseWithModules
     permission_classes = [permissions.AllowAny]
@@ -111,11 +112,13 @@ class TaskUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAdminUser]
     authentication_classes = []
 
+
 class TaskCreateView(generics.CreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskWithItems
     permission_classes = [permissions.IsAdminUser]
     authentication_classes = []
+
 
 class TaskListView(generics.ListAPIView):
     queryset = Task.objects.all()

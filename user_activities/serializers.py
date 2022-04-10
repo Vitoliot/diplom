@@ -1,6 +1,8 @@
+from dataclasses import field
 from rest_framework import serializers
 from .models import *
 from course.serializers import CourseForUserCoursesSerializer
+
 
 class UserCoursesSerialezer(serializers.ModelSerializer):
     count_of_complete_tasks = serializers.IntegerField()
@@ -10,7 +12,8 @@ class UserCoursesSerialezer(serializers.ModelSerializer):
 
     class Meta:
         model = UserCourses
-        fields = ['count_of_tasks', 'count_of_complete_tasks', 'course', 'date_init', 'date_close']
+        fields = ['count_of_tasks', 'count_of_complete_tasks',
+                  'course', 'date_init', 'date_close']
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -23,10 +26,25 @@ class AnswerSerializer(serializers.ModelSerializer):
 class UserTasksSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True)
 
+    class Meta:
+        model = UserTasks
+        fields = ('id', 'task', 'date_init', 'time',
+                  'correctness', 'is_complete', 'answers')
+
+
+class UserTasksCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserTasks
-        fields = ('id', 'task', 'date_init', 'time', 'correctness', 'is_complete', 'answers')
+        fields = ('task', 'time', 'usercourse')
+
+
+class UserDailySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserDaily
+        fields = '__all__'
+
 
 class UserCourseSerializer(serializers.ModelSerializer):
     count_of_complete_tasks = serializers.IntegerField()
@@ -37,7 +55,8 @@ class UserCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserCourses
-        fields = ['usertasks', 'count_of_modules', 'count_of_tasks', 'count_of_complete_tasks', 'course', 'date_init', 'date_close']
+        fields = ['id', 'usertasks', 'count_of_modules', 'count_of_tasks',
+                  'count_of_complete_tasks', 'course', 'date_init', 'date_close']
 
 
 class CreateUserCoursesSerializer(serializers.ModelSerializer):

@@ -5,10 +5,10 @@ from user_profile.models import User
 
 class EducationObject(models.Model):
     title = models.CharField(max_length=100)
-    overview = models.CharField(max_length=500, blank=True)
-    date_create = models.DateTimeField(auto_now_add=True)
-    date_update = models.DateTimeField(blank=True, null=True)
-    created_by = models.ForeignKey(User, on_delete=PROTECT)
+    overview = models.TextField()
+    date_create = models.DateField(auto_now_add=True)
+    date_update = models.DateField(blank=True, null=True)
+    created_by = models.CharField(max_length=100)
 
     class Meta:
         abstract = True
@@ -62,7 +62,7 @@ class Item(models.Model):
     date_create = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(blank=True)
     content = models.TextField(blank=True)
-    icon = models.ImageField(blank=True, upload_to="frontend\static\\tasks_icons")
+    icon = models.ImageField(blank=True, upload_to="static/tasks_icons")
 
 class Task(EducationObject):
     type = models.ForeignKey(TaskType, on_delete=PROTECT, related_name='task')

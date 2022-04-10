@@ -33,7 +33,7 @@ class TaskforModuleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ("type", "theme", "title", 'overview')
+        fields = ("id", "type", "theme", "title", "overview")
 
 
 class ModuleTasksSerializer(serializers.ModelSerializer):
@@ -85,7 +85,8 @@ class QuestionForUserCoursesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('id', 'question', 'number')
+        fields = ('id', 'question', 'number', 'answer',
+                  'posible_answer_1', 'posible_answer_2', 'posible_answer_3')
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -101,7 +102,7 @@ class ItemForUserCoursesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ('id', 'questions')
+        fields = ('id', 'questions', 'content', 'title')
 
 
 class TaskWithItems(TaskSerializer):
@@ -109,7 +110,7 @@ class TaskWithItems(TaskSerializer):
 
     class Meta:
         model = Task
-        fields = ('id', 'type', 'theme', 'items', 'title')
+        fields = ('id', 'type', 'theme', 'items', 'title', 'overview')
 
 
 class ModuleTasksForUserCoursesSerializer(serializers.ModelSerializer):

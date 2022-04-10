@@ -9,6 +9,14 @@ from django.dispatch.dispatcher import receiver
 # Create your models here.
 
 
+class UserDaily(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    date_init = models.DateField(auto_now_add=True)
+    amount_of_tasks = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = ['user', 'date_init']
+
 class UserCourses(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     course = models.ForeignKey(Course, on_delete=CASCADE)

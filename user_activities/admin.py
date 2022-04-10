@@ -4,4 +4,5 @@ from .models import *
 
 admin.site.register(UserCourses)
 admin.site.register(UserTasks)
+admin.site.register(UserDaily)
 admin.site.register(Answer)

@@ -3,39 +3,110 @@ from djoser.serializers import UserCreateSerializer
 from .models import *
 
 
+class BOFICreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BOFI
+        fields = ['user', 'value']
+
+
+class VMCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = VM
+        fields = ['user', 'value']
+
+
+class VMWPCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = VMWP
+        fields = ['user', 'value']
+
+
+class LMCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = LM
+        fields = ['user', 'value']
+
+
+class AACreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AA
+        fields = ['user', 'value']
+
+
+class QERCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = QER
+        fields = ['user', 'value', "WPM", "QU"]
+
+
 class BOFISerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BOFI
-        fields = "__all__"
+        fields = ['date_init', 'value']
 
 
-class MemorySerializer(serializers.ModelSerializer):
+class VMSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Memory
-        fields = "__all__"
+        model = VM
+        fields = ['date_init', 'value']
+
+
+class VMWPSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = VMWP
+        fields = ['date_init', 'value']
+
+
+class LMSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = LM
+        fields = ['date_init', 'value']
 
 
 class AASerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AA
-        fields = "__all__"
+        fields = ['date_init', 'value']
 
 
 class QERSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QER
-        fields = "__all__"
+        fields = ['date_init', 'value', "WPM", "QU"]
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta(serializers.ModelSerializer):
         model = User
         fields = ['username', 'first_name',
                   'last_name', 'email', 'icon', 'task_in_day']
+        # validators = None
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name',
+                  'last_name', 'email', 'task_in_day']
+
+
+class UserIconUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['icon']
 
 
 class MyUserCreateSerializer(UserCreateSerializer):
@@ -48,10 +119,11 @@ class MyUserCreateSerializer(UserCreateSerializer):
 
 class UserwithParamsSerializer(UserSerializer):
     BOFI = BOFISerializer(many=True)
-    Memory = MemorySerializer(many=True)
+    VM = VMSerializer(many=True)
+    VMWP = VMWPSerializer(many=True)
+    LM = LMSerializer(many=True)
     AA = AASerializer(many=True)
     QER = QERSerializer(many=True)
 
     class Meta(UserSerializer.Meta):
-        fields = ['username', 'first_name', 'last_name', 'email',
-                  'icon', 'task_in_day', "BOFI", "Memory", "AA", "QER"]
+        fields = ["BOFI", "VM", "VMWP", "LM", "AA", "QER"]
