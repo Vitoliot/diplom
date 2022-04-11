@@ -1,0 +1,26 @@
+.dlcButton {
+  margin: auto;
+  padding-left: 1em;
+  background-color: white;
+  border: 2px solid;
+  border-color: #908373;
+  border-radius: 20px;
+  text-align: left;
+  padding: 1em;
+  width: 180px;
+  height: 110px;
+
+  cursor: pointer;
+}
+
+.dlcButton h2 {
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: black;
+  margin: 0;
+}
+.dlcButton h3 {
+  font-family: "Ubuntu";
+  font-size: 12pt;
+  color: black;
+}

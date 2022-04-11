@@ -1,0 +1,16 @@
+.paramButton {
+  background-color: white;
+  border: 2px solid 2px;
+  border-color: #908373;
+  display: flex;
+  border-radius: 20px;
+  width: 70px;
+  height: 55px;
+}
+
+.paramButton h2 {
+  margin: auto;
+  font-family: "UbuntuBold";
+  font-size: 15pt;
+  color: white;
+}

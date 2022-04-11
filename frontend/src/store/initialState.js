@@ -175,6 +175,13 @@ const initialState = {
     content: [],
   },
   cookie: localStorage.getItem("knowAboutCookie") || false,
+  taskChoicePage: {
+    isLoading: false,
+    isFetched: false,
+    isChanged: false,
+    params: {},
+    tasks: []
+  },
 };
 
 export default initialState;

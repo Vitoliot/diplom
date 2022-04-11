@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from sympy import true
 from .models import *
 
 
@@ -27,6 +28,23 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class TaskSerializerForTaskChoicePage(serializers.ModelSerializer):
+    type = serializers.StringRelatedField()
+    theme = serializers.StringRelatedField()
+    method = serializers.StringRelatedField()
+    have_test = serializers.StringRelatedField()
+    test_prop = serializers.StringRelatedField()
+    target = serializers.StringRelatedField()
+    target_audience = serializers.StringRelatedField()
+    rsp = serializers.StringRelatedField()
+    token = serializers.StringRelatedField()
+    isOnSite = serializers.BooleanField()
+
+    class Meta:
+        model = Task
+        fields = "__all__"
+
+
 class TaskforModuleSerializer(serializers.ModelSerializer):
     type = serializers.StringRelatedField()
     theme = serializers.StringRelatedField()
@@ -41,7 +59,7 @@ class ModuleTasksSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ModuleTasks
-        fields = ('number', 'task')
+        fields = ('number', 'task',)
 
 
 class ModuleWithTasksSerializer(ModuleSerializer):
@@ -49,7 +67,7 @@ class ModuleWithTasksSerializer(ModuleSerializer):
 
     class Meta:
         model = Module
-        # fields = ('number', 'title', 'overview', 'moduletasks')
+        # fields = ('number', 'title', 'overview', 'moduletasks',)
         fields = "__all__"
 
 
@@ -58,12 +76,88 @@ class CourseWithModules(CourseSerializer):
     modules = ModuleWithTasksSerializer(many=True)
 
 
+class TaskThemeSerializerForTaskChoice(serializers.ModelSerializer):
+    theme_choices = serializers.ChoiceField(choices=TaskTheme.theme_choices)
+
+    class Meta:
+        model = TaskTheme
+        fields = ('theme_choices',)
+
+
+class TaskTypeSerializerForTaskChoice(serializers.ModelSerializer):
+    type_choices = serializers.ChoiceField(choices=TaskType.type_choices)
+
+    class Meta:
+        model = TaskType
+        fields = ('type_choices',)
+
+
+class TaskMethodOfLearningSerializer(serializers.ModelSerializer):
+    methods_of_learning_choices = serializers.ChoiceField(
+        choices=TaskMethodOfLearning.methods_of_learning_choices)
+
+    class Meta:
+        model = TaskMethodOfLearning
+        fields = ('methods_of_learning_choices',)
+
+
+class TaskDoHaveTestSerializer(serializers.ModelSerializer):
+    do_have_test_choices = serializers.ChoiceField(
+        TaskDoHaveTest.do_have_test_choices)
+
+    class Meta:
+        model = TaskDoHaveTest
+        fields = ('do_have_test_choices',)
+
+
+class TaskTestPropertiesSerializer(serializers.ModelSerializer):
+    test_property_choices = serializers.ChoiceField(
+        choices=TaskTestProperties.test_property_choices)
+
+    class Meta:
+        model = TaskTestProperties
+        fields = ('test_property_choices',)
+
+
+class TaskTargetSerializer(serializers.ModelSerializer):
+    target_choices = serializers.ChoiceField(choices=TaskTarget.target_choices)
+
+    class Meta:
+        model = TaskTarget
+        fields = ('target_choices',)
+
+
+class TaskRSPSerializer(serializers.ModelSerializer):
+    rsp_choices = serializers.ChoiceField(choices=TaskRSP.rsp_choices)
+
+    class Meta:
+        model = TaskRSP
+        fields = ('rsp_choices',)
+
+
+class TaskTokenSerializer(serializers.ModelSerializer):
+    token_choices = serializers.ChoiceField(choices=TaskToken.token_choices)
+
+    class Meta:
+        model = TaskToken
+        fields = ('token_choices',)
+
+
+class TaskTargetAudienceSerializer(serializers.ModelSerializer):
+    target_audience_choices = serializers.ChoiceField(
+        choices=TaskTargetAudience.target_audience_choices)
+
+    class Meta:
+        model = TaskTargetAudience
+        fields = ('target_audience_choices',)
+
+
 class TaskThemeSerializer(serializers.ModelSerializer):
     task = TaskSerializer(many=True)
 
     class Meta:
         model = TaskTheme
-        fields = ('theme', 'task')
+        fields = ('theme', 'task',)
 
 
 class TaskTypeSerializer(serializers.ModelSerializer):
@@ -71,7 +165,7 @@ class TaskTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskType
-        fields = ('type', 'task')
+        fields = ('type', 'task',)
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -86,7 +180,7 @@ class QuestionForUserCoursesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ('id', 'question', 'number', 'answer',
-                  'posible_answer_1', 'posible_answer_2', 'posible_answer_3')
+                  'posible_answer_1', 'posible_answer_2', 'posible_answer_3',)
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -102,7 +196,7 @@ class ItemForUserCoursesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ('id', 'questions', 'content', 'title')
+        fields = ('id', 'questions', 'content', 'title',)
 
 
 class TaskWithItems(TaskSerializer):
@@ -110,7 +204,7 @@ class TaskWithItems(TaskSerializer):
 
     class Meta:
         model = Task
-        fields = ('id', 'type', 'theme', 'items', 'title', 'overview')
+        fields = ('id', 'type', 'theme', 'items', 'title', 'overview',)
 
 
 class ModuleTasksForUserCoursesSerializer(serializers.ModelSerializer):
@@ -118,7 +212,7 @@ class ModuleTasksForUserCoursesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ModuleTasks
-        fields = ('number', 'task')
+        fields = ('number', 'task',)
 
 
 class ModuleForUserCoursesSerializer(ModuleSerializer):

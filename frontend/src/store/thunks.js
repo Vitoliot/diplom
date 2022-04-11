@@ -22,6 +22,236 @@ export function fetchTasks() {
     );
   };
 }
+// доделать после бэка
+export function getTasksForTaskChoice(
+  type,
+  theme,
+  method,
+  have_test,
+  test_prop,
+  target,
+  rsp,
+  token,
+  target_audience,
+  adaptivity,
+  control,
+  individual,
+  toQER,
+  toBOFI,
+  toAA,
+  toVM,
+  toVMWP,
+  toLM,
+  fast_to_do,
+  effectivity,
+  chalenge,
+  compressed,
+  gaming,
+  fast_to_complete,
+  isOnSite
+) {
+  return async function (dispatch, getState, extraArgument) {
+    dispatch(actionCreators.select_tasks_for_task_choice_started());
+    let url = `education/taskforchoice/all?type=${type}&theme=${theme}&method=${method}&have_test=${have_test}&test_prop=${test_prop}&target=${target}&rsp=${rsp}&token=${token}&target_audience=${target_audience}&adaptivity=${adaptivity}&control=${control}&individual=${individual}&toQER=${toQER}&toBOFI=${toBOFI}&toAA=${toAA}&toVM=${toVM}&toVMWP=${toVMWP}&toLM=${toLM}&fast_to_do=${fast_to_do}&effectivity=${effectivity}&chalenge=${chalenge}&compressed=${compressed}&gaming=${gaming}&fast_to_complete=${fast_to_complete}&isOnSite=${isOnSite}`;
+    return await axios.get(url).then(
+      (response) => {
+        dispatch(
+          actionCreators.select_tasks_for_task_choice_successed(response.data)
+        );
+      },
+      (error) => {
+        dispatch(actionCreators.select_tasks_for_task_choice_failed());
+        dispatch(
+          actionCreators.addError(error.response.data.detail, null, dispatch)
+        );
+      }
+    );
+  };
+}
+
+export function getParamsForTaskChoice() {
+  return async function (dispatch, getState, extraArgument) {
+    let paramData = {};
+    dispatch(actionCreators.select_params_for_task_choice_started());
+    try {
+      let type = (await getTypeParams()).data;
+      let theme = (await getThemeParams()).data;
+      let method = (await getMethodParams()).data;
+      let target = (await getTargetParams()).data;
+      let targetAudience = (await getTargetAudienceParams()).data;
+      let doHaveTest = (await getDoHaveTestParams()).data;
+      let testProp = (await getTestPropParams()).data;
+      let rsp = (await getRspParams()).data;
+      let token = (await getTokenParams()).data;
+      Object.assign(paramData, paramData, type);
+      Object.assign(paramData, paramData, theme);
+      Object.assign(paramData, paramData, method);
+      Object.assign(paramData, paramData, target);
+      Object.assign(paramData, paramData, targetAudience);
+      Object.assign(paramData, paramData, doHaveTest);
+      Object.assign(paramData, paramData, testProp);
+      Object.assign(paramData, paramData, rsp);
+      Object.assign(paramData, paramData, token);
+      dispatch(
+        actionCreators.select_params_for_task_choice_successed(paramData)
+      );
+    } catch (err) {
+      dispatch(actionCreators.select_params_for_task_choice_failed());
+      dispatch(actionCreators.addError("ошибка", null, dispatch));
+    }
+  };
+}
+
+async function getTypeParams() {
+  let url = "education/taskforchoice/props/type/1";
+  return await axios.get(url).catch((error) => null);
+}
+async function getThemeParams() {
+  let url = "education/taskforchoice/props/theme/1";
+  return await axios.get(url).catch((error) => null);
+}
+async function getMethodParams() {
+  let url = "education/taskforchoice/props/method/1";
+  return await axios.get(url).catch((error) => null);
+}
+async function getDoHaveTestParams() {
+  let url = "education/taskforchoice/props/dohavetest/1";
+  return await axios.get(url).catch((error) => null);
+}
+async function getTestPropParams() {
+  let url = "education/taskforchoice/props/testprop/1";
+  return await axios.get(url).catch((error) => null);
+}
+async function getTargetParams() {
+  let url = "education/taskforchoice/props/target/1";
+  return await axios.get(url).catch((error) => null);
+}
+async function getRspParams() {
+  let url = "education/taskforchoice/props/rsp/1";
+  return await axios.get(url).catch((error) => null);
+}
+
+async function getTokenParams() {
+  let url = "education/taskforchoice/props/token/1";
+  return await axios.get(url).catch((error) => null);
+}
+
+async function getTargetAudienceParams() {
+  let url = "education/taskforchoice/props/targetaudience/1";
+  return await axios.get(url).catch((error) => null);
+}
+// function getTypeParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/type/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getThemeParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/theme/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getMethodParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/method/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getDoHaveTestParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/dohavetest/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getTestPropParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/testprop/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getTargetParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/target/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getRspParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/rsp/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
+// function getTokenParams() {
+//   return async function (dispatch, getState, extraArgument) {
+//     let url = "education/taskforchoice/props/token/1";
+//     return await axios.get(url).then(
+//       (response) => {},
+//       (error) => {
+//         dispatch(actionCreators.select_params_for_task_choice_failed());
+//         dispatch(
+//           actionCreators.addError(error.response.data.detail, null, dispatch)
+//         );
+//       }
+//     );
+//   };
+// }
 
 export function fetchCourses() {
   return async function (dispatch, getState, extraArgument) {

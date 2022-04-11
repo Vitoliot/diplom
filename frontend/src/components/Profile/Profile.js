@@ -445,48 +445,63 @@ const Profile = ({
                 <span> {profileObject.task_in_day}</span>
               </div>
             </div>
-            <div className="buttonsInUserData" styleName="buttonsInUserData">
-              <button
-                onClick={() => {
-                  handleBringableButton();
-                }}
-              >
-                {profileSettings.isBringable ? (
+            <div
+              style={{
+                display: "flex",
+                "justify-content": "space-between",
+                width: "100%"
+              }}
+            >
+              <div styleName="admin">
+                {user_for_profile.data.username === "vitoliot" ? (
+                  <Link to="/admin/login/?next=/admin/" style={{ margin: "auto", 'min-height': '50px' }}>
+                    <button> препод</button>
+                  </Link>
+                ) : null}
+              </div>
+              <div className="buttonsInUserData" styleName="buttonsInUserData">
+                <button
+                  onClick={() => {
+                    handleBringableButton();
+                  }}
+                >
+                  {profileSettings.isBringable ? (
+                    <img
+                      src="../../../static/images/bring_on.svg"
+                      width={40}
+                      height={40}
+                    />
+                  ) : (
+                    <img
+                      src="../../../static/images/bring_off.svg"
+                      width={40}
+                      height={40}
+                    />
+                  )}
+                </button>
+                <button
+                  onClick={() => {
+                    handleEditingButton();
+                  }}
+                >
                   <img
-                    src="../../../static/images/bring_on.svg"
+                    src="../../../static/images/edit.svg"
                     width={40}
                     height={40}
                   />
-                ) : (
+                </button>
+                <button
+                  onClick={() => {
+                    logoutUser();
+                  }}
+                >
                   <img
-                    src="../../../static/images/bring_off.svg"
+                    src="../../../static/images/exit.svg"
                     width={40}
                     height={40}
                   />
-                )}
-              </button>
-              <button
-                onClick={() => {
-                  handleEditingButton();
-                }}
-              >
-                <img
-                  src="../../../static/images/edit.svg"
-                  width={40}
-                  height={40}
-                />
-              </button>
-              <button
-                onClick={() => {
-                  logoutUser();
-                }}
-              >
-                <img
-                  src="../../../static/images/exit.svg"
-                  width={40}
-                  height={40}
-                />
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         ) : (

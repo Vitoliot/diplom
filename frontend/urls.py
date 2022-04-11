@@ -10,4 +10,5 @@ urlpatterns = [
     path('course', index),
     path('exercise', index),
     path('params', index),
+    path('taskChoice', index),
 ]

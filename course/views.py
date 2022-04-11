@@ -5,6 +5,8 @@ from .serializers import *
 from rest_framework import generics
 from rest_framework import permissions, authentication
 from rest_framework.filters import OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models import Exists, OuterRef
 
 
 class TaskTypeView(generics.ListAPIView):
@@ -130,6 +132,112 @@ class TaskListView(generics.ListAPIView):
 class TaskOneView(generics.RetrieveAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+# class TaskForTaskChoicePageOneView(generics.RetrieveAPIView):
+#     queryset = Task.objects.all().annotate(isOnSite=Exists(module=OuterRef('pk')))
+#     serializer_class = TaskSerializerForTaskChoicePage
+#     permission_classes = [permissions.AllowAny]
+#     authentication_classes = []
+
+
+class TaskForTaskChoicePageManyView(generics.ListAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializerForTaskChoicePage
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+    filter_backends = [OrderingFilter, DjangoFilterBackend]
+    ordering_fields = ['date_create', 'title']
+    filterset_fields = [
+        "type",
+        "theme",
+        "method",
+        "have_test",
+        "test_prop",
+        "target",
+        "rsp",
+        "token",
+        "target_audience",
+        'adaptivity',
+        'control',
+        'individual',
+        'toQER',
+        'toBOFI',
+        'toAA',
+        'toVM',
+        'toVMWP',
+        'toLM',
+        'fast_to_do',
+        'effectivity',
+        'chalenge',
+        'compressed',
+        'gaming',
+        'fast_to_complete',
+        'isOnSite',
+    ]
+
+
+class TaskThemePropView(generics.RetrieveAPIView):
+    queryset = TaskTheme.objects.all()
+    serializer_class = TaskThemeSerializerForTaskChoice
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskTypePropView(generics.RetrieveAPIView):
+    queryset = TaskType.objects.all()
+    serializer_class = TaskTypeSerializerForTaskChoice
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskMethodOfLearningPropView(generics.RetrieveAPIView):
+    queryset = TaskMethodOfLearning.objects.all()
+    serializer_class = TaskMethodOfLearningSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskDoHaveTestPropView(generics.RetrieveAPIView):
+    queryset = TaskDoHaveTest.objects.all()
+    serializer_class = TaskDoHaveTestSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskTestPropertiesPropView(generics.RetrieveAPIView):
+    queryset = TaskTestProperties.objects.all()
+    serializer_class = TaskTestPropertiesSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskTargetPropView(generics.RetrieveAPIView):
+    queryset = TaskTarget.objects.all()
+    serializer_class = TaskTargetSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskRSPPropView(generics.RetrieveAPIView):
+    queryset = TaskRSP.objects.all()
+    serializer_class = TaskRSPSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskTokenPropView(generics.RetrieveAPIView):
+    queryset = TaskToken.objects.all()
+    serializer_class = TaskTokenSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = []
+
+
+class TaskTargetAudiencePropView(generics.RetrieveAPIView):
+    queryset = TaskTargetAudience.objects.all()
+    serializer_class = TaskTargetAudienceSerializer
     permission_classes = [permissions.AllowAny]
     authentication_classes = []
 

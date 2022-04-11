@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import { BrowserRouter } from "react-router-dom";
 import EventsView from "./components/EventsView/EventsView";
 import Profile from "./components/Profile/Profile";
+import TaskChoice from "./components/TaskChoiceComponents/TaskChoice/TaskChoice";
 
 const TaskCatalog = lazy(() => import("./components/TaskCatalog/TaskCatalog"));
 
@@ -27,14 +28,14 @@ function App() {
       <section className="App">
         <Suspense fallback={<h1>Loading profile...</h1>}>
           <Routes>
-            <Route path="/taskCatalog" element={<TaskCatalog />} />
             <Route path="/courseCatalog" element={<CourseCatalog />} />
             <Route path="/login" element={<AuthComponent />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/exercise" element={<ExerciseComponent />} />
             <Route path="/course" element={<CourseComponent />} />
             <Route path="/params" element={<ParamsComponent />} />
-            <Route path="/" element={<InvalidRoute />} />
+            <Route path="/" element={<TaskChoice />} />
+            <Route path="/taskCatalog" element={<InvalidRoute />} />
           </Routes>
         </Suspense>
         <EventsView />

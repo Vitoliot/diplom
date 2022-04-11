@@ -1,0 +1,41 @@
+.leftToggleButton {
+  cursor: pointer;
+  border-radius: 20px 0px 0px 20px;
+  background: #ebe2ca;
+  border: 2px solid #908373;
+  box-sizing: border-box;
+  display: flex;
+}
+.rightToggleButton {
+  cursor: pointer;
+  border-radius: 0px 20px 20px 0px;
+  background: #ebe2ca;
+  border: 2px solid #908373;
+  display: flex;
+  box-sizing: border-box;
+}
+.toggleButton {
+  cursor: pointer;
+  background: #ebe2ca;
+  display: flex;
+  border: 2px solid #908373;
+}
+
+.toggleButton h2 {
+  margin: auto;
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: black;
+}
+.leftToggleButton h2 {
+  margin: auto;
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: black;
+}
+.rightToggleButton h2 {
+  margin: auto;
+  font-family: "UbuntuBold";
+  font-size: 14pt;
+  color: black;
+}

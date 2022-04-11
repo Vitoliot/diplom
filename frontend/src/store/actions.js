@@ -83,7 +83,7 @@ const actions = {
     "update_profile_password_request_successed",
   update_profile_password_request_failed:
     "update_profile_password_request_failed",
-    task_is_complete_update : 'task_is_complete_update',
+  task_is_complete_update: "task_is_complete_update",
   delete_profile_request_started: "delete_profile_data_request_started",
   delete_profile_request_successed: "delete_profile_data_request_successed",
   delete_profile_request_failed: "delete_profile_data_request_failed",
@@ -107,12 +107,21 @@ const actions = {
   update_usercourses_request_successed: "update_usercourses_request_successed",
   update_usercourses_request_failed: "update_usercourses_request_failed",
   changeExerciseState: "changeExerciseState",
-  newQERValue: 'newQERValue',
-  newVMValue: 'newVMValue',
-  newVMWPValue: 'newVMWPValue',
-  newLMValue: 'newLMValue',
-  newBOFIValue: 'newBOFIValue',
-  newAAalue: 'newAAValue',
+  newQERValue: "newQERValue",
+  newVMValue: "newVMValue",
+  newVMWPValue: "newVMWPValue",
+  newLMValue: "newLMValue",
+  newBOFIValue: "newBOFIValue",
+  newAAalue: "newAAValue",
+  select_tasks_for_task_choice_started: "select_tasks_for_task_choice_started",
+  select_tasks_for_task_choice_failed: "select_tasks_for_task_choice_failed",
+  select_tasks_for_task_choice_successed:
+    "select_tasks_for_task_choice_successed",
+  select_params_for_task_choice_started:
+    "select_params_for_task_choice_started",
+  select_params_for_task_choice_failed: "select_params_for_task_choice_failed",
+  select_params_for_task_choice_successed:
+    "select_params_for_task_choice_successed",
 };
 
 export default actions;

@@ -46,7 +46,7 @@ const Result = ({ correctness, title, isParams, isLogged }) => {
         </div>
         <h1>{correctness + "%"}</h1>
         <Link
-          to={isLogged ? (isParams ? "/params" : "/course") : "/taskCatalog"}
+          to={isLogged ? (isParams ? "/params" : "/course") : "/"}
           style={{ margin: "auto" }}
         >
           <button>{"Далее"}</button>

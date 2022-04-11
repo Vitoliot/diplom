@@ -1,0 +1,17 @@
+.centerButton {
+  margin: auto;
+  cursor: pointer;
+  background-color: #908373;
+  display: flex;
+  border: white 2px solid;
+  border-radius: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+.centerButton * {
+  margin: auto;
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+  color: #ebe2ca;
+}

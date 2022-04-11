@@ -2,6 +2,13 @@ import initialState from "./initialState";
 
 function mapStateToProps(component) {
   switch (component) {
+    case "TaskChoice": {
+      return function (state) {
+        return {
+          taskChoicePage: state.taskChoicePage
+        };
+      };
+    }
     case "TaskCatalog": {
       return function (state) {
         return {

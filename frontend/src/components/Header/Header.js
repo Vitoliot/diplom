@@ -33,7 +33,7 @@ const Header = (props) => {
               imgPath="../../../static/images/courseCatalog.svg"
             />
           </NavLink>
-          <NavLink to={"/taskCatalog"}>
+          <NavLink to={"/"}>
             <HeaderLink
               title="упражнения"
               imgPath="../../../static/images/task_list.svg"
@@ -59,7 +59,7 @@ const Header = (props) => {
               imgPath="../../../static/images/courseCatalog.svg"
             />
           </NavLink>
-          <NavLink to={"/taskCatalog"}>
+          <NavLink to={"/"}>
             <HeaderLink
               title="упражнения"
               imgPath="../../../static/images/task_list.svg"

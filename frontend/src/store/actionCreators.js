@@ -466,6 +466,38 @@ const actionCreators = {
       value,
     };
   },
+  select_tasks_for_task_choice_started: () => {
+    return {
+      type: Actions.select_tasks_for_task_choice_started,
+    };
+  },
+  select_tasks_for_task_choice_failed: () => {
+    return {
+      type: Actions.select_tasks_for_task_choice_failed,
+    };
+  },
+  select_tasks_for_task_choice_successed: (data) => {
+    return {
+      type: Actions.select_tasks_for_task_choice_successed,
+      data,
+    };
+  },
+  select_params_for_task_choice_started: () => {
+    return {
+      type: Actions.select_params_for_task_choice_started,
+    };
+  },
+  select_params_for_task_choice_failed: () => {
+    return {
+      type: Actions.select_params_for_task_choice_failed,
+    };
+  },
+  select_params_for_task_choice_successed: (data) => {
+    return {
+      type: Actions.select_params_for_task_choice_successed,
+      data,
+    };
+  },
 };
 
 export default actionCreators;

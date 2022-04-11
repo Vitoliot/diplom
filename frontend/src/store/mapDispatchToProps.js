@@ -30,10 +30,27 @@ import {
   onCreateQER,
   onGetTask,
   onChangeExerciseState,
+  getTasksForTaskChoice,
+  getParamsForTaskChoice,
 } from "./thunks";
 
 function mapDispatchToProps(component) {
   switch (component) {
+    case "TaskChoice": {
+      return function (dispatch) {
+        return {
+          onChangeCurrentTask: (task) => {
+            dispatch(changeCurrentTask(task));
+          },
+          onGetTasksForTaskChoice(requestParams) {
+            dispatch(getTasksForTaskChoice(...requestParams))
+          },
+          onGetParamsForTaskChoice() {
+            dispatch(getParamsForTaskChoice())
+          },
+        };
+      };
+    }
     case "TaskCard":
       return function (dispatch) {
         return {

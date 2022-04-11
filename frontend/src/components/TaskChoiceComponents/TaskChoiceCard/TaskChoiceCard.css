@@ -1,0 +1,41 @@
+.taskChoiceCard {
+  padding: 1em;
+  background-color: #908373;
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+}
+.taskChoiceCard h1 {
+  color: #ebe2ca;
+  font-family: "UbuntuBold";
+  text-align: left;
+  font-size: 20pt;
+}
+.taskChoiceCard h2 {
+  color: white;
+  text-align: left;
+  font-family: "UbuntuBold";
+  font-size: 16pt;
+}
+.taskChoiceCard h3 {
+  text-align: left;
+  color: #ebe2ca;
+  font-family: "AthelasBold";
+  font-size: 12pt;
+}
+.taskChoiceCard button {
+  cursor: pointer;
+  height: 2em;
+  border: none;
+  background: #ebe2ca;
+  color: #908373;
+  border-radius: 20px;
+  font-family: "UbuntuBold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: auto;
+}

@@ -555,6 +555,52 @@ const Reducers = {
         return state;
     }
   },
+  taskChoicePage: (state = initialState, action) => {
+    switch (action.type) {
+      case actions.select_params_for_task_choice_started:
+        return {
+          isLoading: true,
+          isFetched: false,
+          isChanged: false,
+          params: state.params,
+          tasks: state.tasks,
+        };
+      case actions.select_params_for_task_choice_failed:
+        return {
+          isLoading: false,
+          isFetched: false,
+          isChanged: false,
+          params: state.params,
+          tasks: state.tasks,
+        };
+      case actions.select_params_for_task_choice_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          isChanged: false,
+          params: action.data,
+          tasks: state.tasks,
+        };
+      case actions.select_tasks_for_task_choice_started:
+        return {
+          isLoading: true,
+          isFetched: true,
+          isChanged: false,
+          params: state.params,
+          tasks: state.tasks,
+        };
+      case actions.select_tasks_for_task_choice_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          isChanged: false,
+          params: state.params,
+          tasks: action.data,
+        };
+      default:
+        return state;
+    }
+  },
 };
 
 export default Reducers;

@@ -4,3 +4,7 @@
   display: inline-block;
   border-radius: 20px;
 }
+.sLabel {
+  font-family: "UbuntuBold";
+  font-size: 12pt;
+}

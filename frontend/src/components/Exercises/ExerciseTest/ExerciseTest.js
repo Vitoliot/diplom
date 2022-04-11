@@ -219,7 +219,7 @@ const ExerciseTest = ({
         <div>
           {isExerciseTestDone ? (
             <Link
-              to={isLogged ? (isParam ? "/params" : "/course") : "/taskCatalog"}
+              to={isLogged ? (isParam ? "/params" : "/course") : "/"}
               style={{ margin: "auto" }}
             >
               <button className="doneButton" styleName="doneButton">

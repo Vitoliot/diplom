@@ -1,0 +1,76 @@
+.switchContainer {
+  transform: rotate(90deg);
+  margin: auto;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 108px;
+  height: 48px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  outline: 2px solid #908373;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 44px;
+  width: 44px;
+  left: 5px;
+  bottom: 2.5px;
+  background-color: #908373;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: white;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #908373;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(54px);
+  -ms-transform: translateX(54px);
+  transform: translateX(54px);
+}
+
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.switchContainer h5 {
+  margin: auto;
+  font-family: "UbuntuBold";
+  color: black;
+  font-size: 18pt;
+  transform: rotate(180deg);
+}
+
+.impH5 {
+  margin-bottom: 24px;
+}
