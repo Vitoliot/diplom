@@ -1,10 +1,11 @@
 from datetime import datetime
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
+from matplotlib.style import use
 from user_profile.validators import procent_validator
 from course.models import Course, ModuleTasks, Question, Item
 from user_profile.models import User
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, pre_delete
 from django.dispatch.dispatcher import receiver
 # Create your models here.
 
@@ -16,6 +17,7 @@ class UserDaily(models.Model):
 
     class Meta:
         unique_together = ['user', 'date_init']
+
 
 class UserCourses(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
@@ -31,15 +33,15 @@ class UserTasks(models.Model):
     time = models.PositiveIntegerField()
     correctness = models.FloatField(
         validators=[procent_validator], default=0)
-    is_complete = models.BooleanField(default=False)
+    is_complete = models.BooleanField(default=True)
     usercourse = models.ForeignKey(
         UserCourses, on_delete=CASCADE, blank=True, related_name='usertasks')
 
 
 @receiver(post_save, sender=UserTasks)
 def check_course_ending(sender, instance, **kwargs):
-    usercourse = UserCourses.objects.get(id = instance.usercourse.id)
-    usertasks = UserTasks.objects.filter(usercourse = usercourse.id)
+    usercourse = UserCourses.objects.get(id=instance.usercourse.id)
+    usertasks = UserTasks.objects.filter(usercourse=usercourse.id)
     uc_flag = True
     for task in usertasks:
         if not task.is_complete:
@@ -77,4 +79,16 @@ def check_correctness_usertasks(sender, instance, **kwargs):
                 instance.is_correct = False
     usertask.is_complete = True
 
+    usertask.save()
+
+
+@receiver(pre_delete, sender=Answer)
+def pre_delete_check_correctness_usertasks(sender, instance, **kwargs):
+    usertask = UserTasks.objects.get(id=instance.usertask.id)
+    questions = Question.objects.filter(item=instance.item)
+    if sender.is_correct:
+        usertask.correctness = usertask.correctness - \
+            (1/len(questions))*100
+    if (usertask.correctness < 40): 
+        usertask.is_complete = False
     usertask.save()

@@ -96,7 +96,7 @@ const DefParams = ({ user_params, new_params, changeExerciseState }) => {
             </div>
           </div>
           <div styleName="paramTaskContainer">
-            <h1>{"Определение КЭЧ"}</h1>
+            <h1>{"Определение Коэффициента Эффективности Чтения"}</h1>
             <span>Внимательно прочтите текст. Далее ответьте на вопросы.</span>
             {new_params["QER"] ? (
               <div>
@@ -113,7 +113,7 @@ const DefParams = ({ user_params, new_params, changeExerciseState }) => {
         </div>
         <div>
           <div styleName="paramTaskContainer">
-            <h1>{"Определение широты поля зрения"}</h1>
+            <h1>{"Определение Широты Поля Зрения"}</h1>
             <span>Внимательно прочтите текст. Далее ответьте на вопросы.</span>
             {new_params["BOFI"] ? (
               <div>
@@ -178,7 +178,7 @@ const DefParams = ({ user_params, new_params, changeExerciseState }) => {
             </div>
           </div>
           <div styleName="paramTaskContainer">
-            <h1>{"Определение ВП"}</h1>
+            <h1>{"Определение Визуальной Памяти"}</h1>
             <span>
               За 10 секунд постарайтесь запомнить все слова и их номер. Далее
               запишите их в предоставленные поля.
@@ -198,7 +198,7 @@ const DefParams = ({ user_params, new_params, changeExerciseState }) => {
         </div>
         <div>
           <div styleName="paramTaskContainer">
-            <h1>{"Определение ЛП"}</h1>
+            <h1>{"Определение Логической Памяти"}</h1>
             <span>
               Внимательно прочтите текст. Далее запишите тезисы текста в порядке
               их появления.
@@ -266,7 +266,7 @@ const DefParams = ({ user_params, new_params, changeExerciseState }) => {
             </div>
           </div>
           <div styleName="paramTaskContainer">
-            <h1>{"Определение ВПСП"}</h1>
+            <h1>{"Определение Визуальной Памяти с учётом позиции"}</h1>
             <span>
               За 10 секунд постарайтесь запомнить все слова и их позицию. Далее
               запишите их в предоставленные поля.
@@ -286,7 +286,7 @@ const DefParams = ({ user_params, new_params, changeExerciseState }) => {
         </div>
         <div>
           <div styleName="paramTaskContainer">
-            <h1>{"Определение КВ"}</h1>
+            <h1>{"Определение Коэффициента Внимания"}</h1>
             <span>Внимательно прочтите текст. Далее ответьте на вопросы.</span>
             {new_params["AA"] ? (
               <div>
@@ -334,9 +334,3 @@ export default connect(
   mapStateToProps("DefParams"),
   mapDispatchToProps("DefParams")
 )(CSSModules(DefParams, styles, { allowMultiple: true }));
-
-// проверка на содержимое параметра в newParams, если пусто, то использовать старые параметры, если они пусты, то вывести нули
-// изменять содержимое newParams после прохождения проверки
-// добавить в state curr_task параметр isDefParams и whatParam
-// написать запрос на изменение isDefParams и whatParam
-// в CSS написать два класса и распространить их на все группы параметров

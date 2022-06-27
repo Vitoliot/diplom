@@ -75,6 +75,13 @@ const Reducers = {
           rule: false,
           is_changed: true,
         };
+      case actions.create_usercourses_request_successed:
+        return {
+          date: false,
+          alphabet: false,
+          rule: false,
+          is_changed: true,
+        };
       case actions.apply_course_choicePage_sort_isChange_off:
         return {
           date: state.date,
@@ -212,6 +219,14 @@ const Reducers = {
           courses: state.courses,
           usercourses: state.usercourses,
         };
+      case actions.create_usercourses_request_successed:
+        return {
+          is_fecthed: false,
+          is_loading: false,
+          is_changed: true,
+          courses: state.courses,
+          usercourses: state.usercourses,
+        };
       default:
         return state;
     }
@@ -237,6 +252,13 @@ const Reducers = {
           isFetched: false,
           isLoading: true,
           isChanged: false,
+          data: state.data,
+        };
+      case actions.delete_answer_request_successed:
+        return {
+          isFetched: false,
+          isLoading: false,
+          isChanged: true,
           data: state.data,
         };
       case actions.select_course_with_module_request_failed:
@@ -269,8 +291,8 @@ const Reducers = {
         };
       case actions.task_is_complete_update:
         return {
-          isFetched: state.isFetched,
-          isLoading: state.isLoading,
+          isFetched: false,
+          isLoading: false,
           isChanged: true,
           data: state.data,
         };
@@ -383,6 +405,17 @@ const Reducers = {
           isFetched: false,
           isChanged: true,
           isComplete: false,
+          isNotTimer: false,
+          data: state.data,
+          usertask: state.usertask,
+        };
+      case actions.task_frontend_update_started:
+        return {
+          isLoading: true,
+          isFetched: false,
+          isChanged: false,
+          isNotTimer: false,
+          isComplete: false,
           data: state.data,
           usertask: state.usertask,
         };
@@ -391,6 +424,7 @@ const Reducers = {
           isLoading: false,
           isFetched: false,
           isChanged: true,
+          isNotTimer: false,
           isComplete: false,
           data: action.task,
           usertask: state.usertask,
@@ -400,6 +434,7 @@ const Reducers = {
           isLoading: state.isLoading,
           isFetched: state.isFetched,
           isChanged: state.isChanged,
+          isNotTimer: true,
           isComplete: action.isComplete,
           correctness: action.correctness,
           data: state.data,
@@ -409,16 +444,19 @@ const Reducers = {
         return {
           isLoading: state.isLoading,
           isFetched: state.isFetched,
+          correctness: action.correctness,
+          isNotTimer: true,
           isChanged: false,
           isComplete: state.isComplete,
           data: state.data,
-          usertask: action.data.id,
+          usertask: action.data,
         };
       case actions.select_task_request_started:
         return {
           isLoading: true,
           isFetched: false,
           isChanged: false,
+          isNotTimer: false,
           isComplete: false,
           data: state.data,
           usertask: state.usertask,
@@ -428,6 +466,7 @@ const Reducers = {
           isLoading: false,
           isFetched: false,
           isChanged: false,
+          isNotTimer: false,
           isComplete: false,
           data: state.data,
           usertask: state.usertask,
@@ -437,6 +476,17 @@ const Reducers = {
           isLoading: false,
           isFetched: true,
           isChanged: false,
+          isNotTimer: false,
+          isComplete: false,
+          data: action.data,
+          usertask: state.usertask,
+        };
+      case actions.select_paramtask_request_successed:
+        return {
+          isLoading: false,
+          isFetched: true,
+          isChanged: false,
+          isNotTimer: false,
           isComplete: false,
           data: action.data,
           usertask: state.usertask,
@@ -546,6 +596,16 @@ const Reducers = {
   },
   exerciseState: (state = initialState, action) => {
     switch (action.type) {
+      case actions.select_task_request_successed:
+        return {
+          isParam: false,
+          param: "",
+        };
+      // case actions.task_is_complete_update:
+      //   return {
+      //     isParam: false,
+      //     param: ""
+      //   }
       case actions.changeExerciseState:
         return {
           isParam: action.isParam,

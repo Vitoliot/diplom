@@ -8,39 +8,31 @@ import mapDispatchToProps from "../../store/mapDispatchToProps";
 const CourseTaskDisplay = ({
   task,
   usertasks,
-  isLogged,
-  indexesOfCompleteTasks,
   onChangeCurrentTask,
   onDeleteAnswer,
 }) => {
-  console.log(task);
-
   let [overviewOrAnswers, setOverviewOrAnswers] = useState(0);
-  let taskInfoFromUserTasks = null;
+  let [taskInfoFromUserTasks, setTaskInfoFromUserTasks] = useState({});
 
-  usertasks
-    ? usertasks.every((usertask) => {
-        if (usertask.id === task.task.id) {
-          taskInfoFromUserTasks = usertask;
-          return false;
-        }
-        return true;
-      })
-    : null;
+  taskInfoFromUserTasks = usertasks.find((usertask) => {
+    return usertask.task == task.task.id;
+  });
 
   function handleOverviewOrAnswersChange(param) {
     return () => setOverviewOrAnswers(param);
   }
 
   function taskHeadOn(target) {
-    console.log(target);
     var pan = target.nextElementSibling;
     var accordSrc = target.firstChild;
     if (pan.style.maxHeight) {
+      pan.style.minHeight = null;
       pan.style.maxHeight = null;
       pan.style.padding = "0 18px";
       accordSrc.src = "../../../static/images/dropdown.svg";
     } else {
+      pan.style.overflow = "scroll";
+      pan.style.minHeight = pan.scrollHeight + "px";
       pan.style.maxHeight = pan.scrollHeight + "px";
       pan.style.padding = "2 em";
       accordSrc.src = "../../../static/images/dropup.svg";
@@ -100,7 +92,11 @@ const CourseTaskDisplay = ({
               </div>
               <div>
                 <h4>{"Пройдено когда"}</h4>
-                <h3>{taskInfoFromUserTasks.date_init}</h3>
+                <h3>
+                  {new Date(taskInfoFromUserTasks.date_init).toLocaleDateString(
+                    "ru"
+                  )}
+                </h3>
               </div>
               <div>
                 <h4>{"Пройдено ли"}</h4>
@@ -112,7 +108,7 @@ const CourseTaskDisplay = ({
             <div styleName="taskPanelAnswers" className="taskPanelAnswers">
               {task.task.items[0].questions.map((question) => {
                 let answer = taskInfoFromUserTasks.answers.find((answer) => {
-                  return answer.number === question.number;
+                  return answer ? answer.number === question.number : false;
                 });
 
                 return (
@@ -125,20 +121,22 @@ const CourseTaskDisplay = ({
                       <h4> {"Ответ"} </h4>
                       <div styleName="ansContainer">
                         <h3> {answer ? answer.answer : "Нет ответа"} </h3>
-                        <button
-                          styleName="delAnsBut"
-                          onClick={() => {
-                            taskInfoFromUserTasks.answers[
-                              answer.number - 1
-                            ].answer = null;
-                            onDeleteAnswer(answer.id);
-                          }}
-                        >
-                          <img
-                            src="../../../static/images/del_ans.svg"
-                            color="#ebe2ca"
-                          />
-                        </button>
+
+                        {answer && (
+                          <button
+                            styleName="delAnsBut"
+                            onClick={() => {
+                              onDeleteAnswer(answer.id);
+                              taskInfoFromUserTasks.answers[answer.number - 1] =
+                                null;
+                            }}
+                          >
+                            <img
+                              src="../../../static/images/del_ans.svg"
+                              color="#ebe2ca"
+                            />
+                          </button>
+                        )}
                       </div>
                     </div>
                     <div>
@@ -181,7 +179,7 @@ const CourseTaskDisplay = ({
                 <Link to="/exercise">
                   <button
                     onClick={() => {
-                      onChangeCurrentTask(task);
+                      onChangeCurrentTask(task.task.id);
                     }}
                   >
                     {taskInfoFromUserTasks ? "Перепройти" : "К выполнению"}

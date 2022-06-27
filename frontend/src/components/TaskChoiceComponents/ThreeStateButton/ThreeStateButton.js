@@ -5,11 +5,15 @@ import CSSModules from "react-css-modules";
 const ThreeStateButton = ({
   paramsPressState,
   handlersParamButton = [],
+  onMouseEnter,
+  onMouseLeave,
   focus = () => {},
 }) => {
   const PB = CSSModules(ParamButton, styles, { allowMultiple: true });
   return (
     <div
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={{
         display: "flex",
         "flex-direction": "row",

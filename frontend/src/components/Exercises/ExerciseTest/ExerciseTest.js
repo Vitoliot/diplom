@@ -27,6 +27,17 @@ const ExerciseTest = ({
   let maxPage = 1;
   let questionParts = [];
 
+  function randomPositions() {
+    // let randPosArr = []
+    //   for (let i =0; i<item.questions.length; i++) {
+    //     randPosArr.unshift(Math.ceil(Math.random()*7));
+    //   }
+    // console.log(randPosArr)
+    return [0, 8, 3, 5, 3, 5, 8, 0, 2, 6];
+  }
+
+  let randomPos = randomPositions();
+
   function divideQuestionsToPage(questions) {
     let divVal = 5;
     if (questions.length > divVal) {
@@ -69,9 +80,8 @@ const ExerciseTest = ({
       let answer = document.getElementsByName(
         question.number + " posible_answer_1"
       )[0];
-      console.log(answer, answer.checked);
       if (answer.checked) {
-        if (isLogged && !QERTest) {
+        if (isLogged && !isParam) {
           createAnswer(usertaskId, question.number, answer.value, item.id);
         }
       }
@@ -79,7 +89,7 @@ const ExerciseTest = ({
         question.number + " posible_answer_2"
       )[0];
       if (answer.checked) {
-        if (isLogged && !QERTest) {
+        if (isLogged && !isParam) {
           createAnswer(usertaskId, question.number, answer.value, item.id);
         }
       }
@@ -87,14 +97,15 @@ const ExerciseTest = ({
         question.number + " posible_answer_3"
       )[0];
       if (answer.checked) {
-        if (isLogged && !QERTest) {
+        if (isLogged && !isParam) {
           createAnswer(usertaskId, question.number, answer.value, item.id);
         }
       }
       answer = document.getElementsByName(question.number + " answer")[0];
+      console.log(answer, answer.checked);
       if (answer.checked) {
         correct_answers++;
-        if (isLogged && !QERTest) {
+        if (isLogged && !isParam) {
           createAnswer(usertaskId, question.number, answer.value, item.id);
         }
       }
@@ -109,16 +120,16 @@ const ExerciseTest = ({
   }
 
   function handleDoneButton() {
-    if (isLogged && !QERTest) createUserTask(taskId, usercourseId, time);
-    let correctness = Math.ceil(parseAnswers());
+    let correctness = parseAnswers();
     let QER = [0, 0, 0];
     if (QERTest) {
       QER = parseAnswersQER(words, correctness);
     }
+    console.log(QER);
     if (isLogged && QERTest) {
-      createQER(QER[0], QER[1], QER[2]);
+      createQER(QER[0], QER[1], Math.ceil(QER[2]));
     }
-    doneTask(correctness * 100);
+    doneTask(Math.ceil(correctness * 100));
     setIsExerciseTestDone(true);
   }
   divideQuestionsToPage(item.questions);
@@ -149,9 +160,16 @@ const ExerciseTest = ({
                   <h3>{question.question}</h3>
                 </div>
                 <div>
-                  <form>
+                  <form
+                    style={{
+                      display: "flex",
+                      "flex-direction": "column",
+                      gap: "1em",
+                    }}
+                  >
                     {question.posible_answer_1 ? (
                       <div
+                        style={{ order: "2" }}
                         styleName={
                           isExerciseTestDone ? "incorrect" : "posAnswer"
                         }
@@ -168,6 +186,7 @@ const ExerciseTest = ({
                     ) : null}
                     {question.posible_answer_2 ? (
                       <div
+                        style={{ order: "4" }}
                         styleName={
                           isExerciseTestDone ? "incorrect" : "posAnswer"
                         }
@@ -185,6 +204,7 @@ const ExerciseTest = ({
                     {question.answer ? (
                       <div
                         styleName={isExerciseTestDone ? "correct" : "posAnswer"}
+                        style={{ order: randomPos[question.number - 1] }}
                       >
                         <input
                           type="radio"
@@ -196,6 +216,7 @@ const ExerciseTest = ({
                     ) : null}
                     {question.posible_answer_3 ? (
                       <div
+                        style={{ order: "6" }}
                         styleName={
                           isExerciseTestDone ? "incorrect" : "posAnswer"
                         }

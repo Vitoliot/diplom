@@ -118,6 +118,12 @@ const actionCreators = {
       data,
     };
   },
+  select_paramtask_request_successed: (data) => {
+    return {
+      type: Actions.select_paramtask_request_successed,
+      data,
+    };
+  },
   create_usercourses_request_started: () => {
     return {
       type: Actions.create_usercourses_request_started,
@@ -434,6 +440,8 @@ const actionCreators = {
     return {
       type: Actions.newQERValue,
       value,
+      WPM,
+      QU,
     };
   },
   newVMValue: (value) => {
@@ -490,6 +498,11 @@ const actionCreators = {
   select_params_for_task_choice_failed: () => {
     return {
       type: Actions.select_params_for_task_choice_failed,
+    };
+  },
+  task_frontend_update_started: () => {
+    return {
+      type: Actions.task_frontend_update_started,
     };
   },
   select_params_for_task_choice_successed: (data) => {

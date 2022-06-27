@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import CSSModules from "react-css-modules";
 import mapDispatchToProps from "../../store/mapDispatchToProps";
 import mapStateToProps from "../../store/mapStateToProps";
+import ReactLoading from "react-loading";
 
 const Course = ({
   current_course,
@@ -24,13 +25,11 @@ const Course = ({
   const [isUserCourse, setIsUserCourse] = useState(false);
   const [nextTask, setNextTask] = useState({});
 
-  console.log(current_course.data.count_of_complete_tasks, current_course.data.count_of_tasks)
-
   function handleCurrModuleChange(number) {
     return () => setCurrModule(number - 1);
   }
   let [amountOfCompleteTasks, setAmountOfCompleteTasks] = useState([]);
-  let indexesOfCompleteTasks = [];
+  let [indexesOfCompleteTasks, setIndexesOfCompleteTasks] = useState([]);
   useEffect(() => {
     if (
       (!current_course.isLoading && !current_course.isFetched) ||
@@ -38,19 +37,24 @@ const Course = ({
     ) {
       onInit(current_course.data.course.id, isLogged);
     }
-    if (Object.keys(nextTask).length === 0) {
-      setIsUserCourse(current_course.data.hasOwnProperty("usertasks"));
+    setIsUserCourse(current_course.data.hasOwnProperty("usertasks"));
+    if (current_course.isFetched) {
       if (isUserCourse) {
         indexesOfCompleteTasks = defineIndexesOfCompleteTasks();
-        setAmountOfCompleteTasks(
-          defineNumOfCompleteTasks(indexesOfCompleteTasks)
+        amountOfCompleteTasks = defineNumOfCompleteTasks(
+          indexesOfCompleteTasks
         );
-        setNextTask(findNextTask(indexesOfCompleteTasks));
-        console.log(nextTask);
-        // onChangeCurrentTask(nextTask);
+        setIndexesOfCompleteTasks(indexesOfCompleteTasks);
+        setAmountOfCompleteTasks(amountOfCompleteTasks);
       }
+      console.log(current_course.data.usertasks);
+      if (
+        Object.keys(nextTask).length === 0 ||
+        indexesOfCompleteTasks.includes(nextTask.id)
+      )
+        setNextTask(findNextTask(indexesOfCompleteTasks));
+      console.log(nextTask, amountOfCompleteTasks);
     }
-    console.log(nextTask);
   });
 
   function defineIndexesOfCompleteTasks() {
@@ -76,18 +80,21 @@ const Course = ({
 
   function findNextTask(indexesOfCompleteTasks) {
     let nextTask = {};
+    let breakAll = false;
     let modules = current_course.data.course.modules;
     modules.forEach((element) => {
-      element.moduletasks.every((element) => {
-        if (!indexesOfCompleteTasks.includes(element.task.id)) {
-          nextTask = element.task;
-          console.log("yeaaaaaah");
-          return false;
+      if (!breakAll) {
+        for (let i = 0; i < element.moduletasks.length; i++) {
+          let mtask = element.moduletasks[i];
+          console.log(mtask, indexesOfCompleteTasks.includes(mtask.task.id));
+          if (!indexesOfCompleteTasks.includes(mtask.task.id)) {
+            nextTask = mtask.task;
+            breakAll = true;
+            break;
+          }
         }
-        return true;
-      });
+      }
     });
-    console.log("fnt", nextTask, Object.keys(nextTask).length);
     return nextTask;
   }
 
@@ -95,7 +102,16 @@ const Course = ({
     <section>
       {current_course.data.hasOwnProperty("course") &&
       !current_course.data.course.hasOwnProperty("title") ? (
-        <h1> Loading... </h1>
+        <div style={{ display: "flex", color: "ebe2ca" }}>
+          <div style={{ margin: "auto" }}>
+            <ReactLoading
+              height={"50px"}
+              width={"50px"}
+              color="#908373"
+              type="spin"
+            />
+          </div>
+        </div>
       ) : (
         <section>
           <Header title={current_course.data.course.title} />
@@ -116,7 +132,9 @@ const Course = ({
                   </div>
                   {isLogged && isUserCourse && (
                     <ProgressBar
-                      count_of_complete_tasks={current_course.data.count_of_complete_tasks}
+                      count_of_complete_tasks={
+                        current_course.data.count_of_complete_tasks
+                      }
                       count_of_tasks={current_course.data.count_of_tasks}
                     />
                   )}
@@ -170,7 +188,7 @@ const Course = ({
                             <button
                               style={{ margin: "auto" }}
                               onClick={() => {
-                                onChangeCurrentTask(nextTask);
+                                onChangeCurrentTask(nextTask.id);
                               }}
                             >
                               Приступить
@@ -224,7 +242,6 @@ const Course = ({
                                 : null
                             }
                             isLogged={isLogged}
-                            indexesOfCompleteTasks={indexesOfCompleteTasks}
                           />
                         ))}
                       </div>

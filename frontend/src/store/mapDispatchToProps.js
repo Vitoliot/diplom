@@ -43,10 +43,10 @@ function mapDispatchToProps(component) {
             dispatch(changeCurrentTask(task));
           },
           onGetTasksForTaskChoice(requestParams) {
-            dispatch(getTasksForTaskChoice(...requestParams))
+            dispatch(getTasksForTaskChoice(...requestParams));
           },
           onGetParamsForTaskChoice() {
-            dispatch(getParamsForTaskChoice())
+            dispatch(getParamsForTaskChoice());
           },
         };
       };
@@ -217,14 +217,20 @@ function mapDispatchToProps(component) {
       };
     case "ExerciseText":
       return (dispatch) => {
-        return {};
+        return {
+          createUserTask: (taskId, usercourse, time, correctness = 100) => {
+            dispatch(onCreateUserTask(taskId, usercourse, time, correctness));
+          },
+          stopTimer: () => {
+            dispatch(
+              actionCreators.create_usertask_request_successed(null)
+            );
+          }
+        };
       };
     case "ExerciseTest":
       return (dispatch) => {
         return {
-          createUserTask: (taskId, time, usercourse, correctness = 0) => {
-            dispatch(onCreateUserTask(taskId, time, usercourse, correctness));
-          },
           createAnswer: (usertaskId, number, answer, item) => {
             dispatch(onCreateAnswer(usertaskId, number, answer, item));
           },

@@ -117,3 +117,26 @@
   text-transform: uppercase;
   margin: auto;
 }
+
+.helpContainer {
+  background: #ebe2ca;
+  position: absolute;
+  left: 1220px;
+  display: flex;
+  padding: 1em;
+  max-height: 235px;
+  border-radius: 20px;
+}
+.helpContainer div {
+  flex-direction: column;
+  gap: 0.25em;
+  display: flex;
+  margin: auto;
+}
+
+.helpContainer h3 {
+  color: #908373;
+  margin: 0em;
+  font-family: "UbuntuBold";
+  font-size: 9pt;
+}

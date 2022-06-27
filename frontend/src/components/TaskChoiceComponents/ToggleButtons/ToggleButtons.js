@@ -28,7 +28,6 @@ const ToggleButtons = ({
 };
 
 const ToggleButton = ({ title, isPressed, handle, focus, index, length }) => {
-  console.log("toggleButton", index, length);
   return (
     <button
       onClick={() => handle(index)}

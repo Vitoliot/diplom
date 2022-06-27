@@ -8,7 +8,6 @@ import mapStateToProps from "../../store/mapStateToProps";
 const EventsView = ({ errors, successes, onRemoveSuccess, onRemoveError }) => {
   let all = errors.concat(successes);
 
-  console.log(errors)
   function compare(a, b) {
     if (a.created < b.created) {
       return -1;

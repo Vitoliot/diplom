@@ -62,7 +62,16 @@ const CourseCatalog = (props) => {
       <Header title="Каталог курсов"></Header>
       <div className="coursesSortParent" styleName="coursesSortParent">
         <div className="coursesSort" styleName="coursesSort">
-          <h5>Курсы</h5>
+          <h5
+            style={{
+              "font-family": "UbuntuBold",
+              color: "#EBE2CA",
+              display: "inline-block",
+              "margin-right": "1em",
+            }}
+          >
+            Курсы
+          </h5>
           <div>
             <h5 for="sortParam"> Сортировать по: </h5>
             <select

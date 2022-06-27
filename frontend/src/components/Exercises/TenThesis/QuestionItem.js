@@ -12,6 +12,17 @@ const QuestionItem = ({ question, index, isTenThesisDone, moveListItem }) => {
     }),
   });
 
+  function randomPositions() {
+    // let randPosArr = [];
+    // for (let i = 0; i < item.questions.length; i++) {
+    //   randPosArr.unshift(Math.ceil(Math.random() * 4));
+    // }
+    // console.log(randPosArr);
+    return [0, 8, 3, 5, 3, 5, 8, 0, 2, 6];
+  }
+
+  let randomPos = randomPositions();
+
   const [spec, dropRef] = useDrop({
     accept: "item",
     hover: (item, monitor) => {
@@ -38,7 +49,10 @@ const QuestionItem = ({ question, index, isTenThesisDone, moveListItem }) => {
   const opacity = isDragging ? 0 : 1;
 
   return (
-    <div ref={dragDropRef} style={{ opacity: opacity, height:'100%', width:'100%'}}>
+    <div
+      ref={dragDropRef}
+      style={{ opacity: opacity, height: "100%", width: "100%" }}
+    >
       <div className="questionContainer" styleName="questionContainer">
         <div>
           <h3>{isTenThesisDone ? question.number : "?"} </h3>
@@ -46,9 +60,15 @@ const QuestionItem = ({ question, index, isTenThesisDone, moveListItem }) => {
         <h3>{question.question}</h3>
       </div>
       <div>
-        <form>
+        <form style={{
+          display: 'flex',
+          'flex-direction': 'column'
+        }}>
           {question.posible_answer_1 ? (
-            <div styleName={isTenThesisDone ? "incorrect" : "posAnswer"}>
+            <div
+              style={{ order: 2 }}
+              styleName={isTenThesisDone ? "incorrect" : "posAnswer"}
+            >
               <input
                 type="radio"
                 name={question.number + " posible_answer_1"}
@@ -58,7 +78,10 @@ const QuestionItem = ({ question, index, isTenThesisDone, moveListItem }) => {
             </div>
           ) : null}
           {question.posible_answer_2 ? (
-            <div styleName={isTenThesisDone ? "incorrect" : "posAnswer"}>
+            <div
+              style={{ order: 4 }}
+              styleName={isTenThesisDone ? "incorrect" : "posAnswer"}
+            >
               <input
                 type="radio"
                 name={question.number + " posible_answer_2"}
@@ -68,7 +91,10 @@ const QuestionItem = ({ question, index, isTenThesisDone, moveListItem }) => {
             </div>
           ) : null}
           {question.answer ? (
-            <div styleName={isTenThesisDone ? "correct" : "posAnswer"}>
+            <div
+              style={{ order: randomPos[question.number - 1] }}
+              styleName={isTenThesisDone ? "correct" : "posAnswer"}
+            >
               <input
                 type="radio"
                 name={question.number + " answer"}
@@ -78,7 +104,10 @@ const QuestionItem = ({ question, index, isTenThesisDone, moveListItem }) => {
             </div>
           ) : null}
           {question.posible_answer_3 ? (
-            <div styleName={isTenThesisDone ? "incorrect" : "posAnswer"}>
+            <div
+              style={{ order: 6 }}
+              styleName={isTenThesisDone ? "incorrect" : "posAnswer"}
+            >
               <input
                 type="radio"
                 name={question.number + " posible_answer_3"}

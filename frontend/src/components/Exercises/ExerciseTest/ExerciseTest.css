@@ -46,6 +46,13 @@
 .questionsContainer form * {
   margin-left: 3em;
 }
+
+.questionsContainer form div  {
+  display: flex;
+  gap: 1em;
+}
+
+
 .questionsContainer h3 {
   font-family: "UbuntuBold";
   font-size: 12pt;

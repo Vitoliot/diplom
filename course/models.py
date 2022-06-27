@@ -18,7 +18,8 @@ class EducationObject(models.Model):
 
 
 class Course(EducationObject):
-    pass
+    def __str__(self) -> str:
+        return f'{self.title}'
 
 
 class Module(EducationObject):
@@ -38,7 +39,9 @@ class TaskType(models.Model):
     type_choices = [
         (1, 'текстовое задание'),
         (2, 'задание с картинкой'),
-        (3, 'другое')]
+        (3, 'другое'),
+        (4, 'задание с графикой'),
+        ]
 
     type = models.PositiveIntegerField(choices=type_choices)
 
@@ -164,6 +167,10 @@ class Item(models.Model):
     content = models.TextField(blank=True)
     icon = models.ImageField(blank=True, upload_to="static/tasks_icons")
 
+    def __str__(self) -> str:
+        return f"{self.title}"
+    
+
 
 class Task(EducationObject):
     type = models.ForeignKey(TaskType, on_delete=PROTECT,
@@ -214,6 +221,9 @@ class ModuleTasks(models.Model):
         Module, on_delete=CASCADE, related_name='moduletasks')
     task = models.ForeignKey(Task, on_delete=CASCADE)
 
+    def __str__(self) -> str:
+        return f"{self.number}  {self.module}  {self.task}"
+    
     class Meta:
         unique_together = ['number', 'task', "module"]
         ordering = ['module', 'number']

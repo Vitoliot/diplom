@@ -26,7 +26,7 @@ const TaskCard = (props) => {
       <Link to={"/exercise"}>
         <button
           onClick={(e) => {
-            props.onChangeCurrentTask(props.task);
+            props.onChangeCurrentTask(props.task.id);
           }}
         >
           Попрактиковаться

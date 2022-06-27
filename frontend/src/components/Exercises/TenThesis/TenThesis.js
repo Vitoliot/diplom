@@ -114,9 +114,9 @@ const TenThesis = ({
       if (rightAnswers.includes(answer)) {
         correctness += 5;
         rightAnswers.splice(rightAnswers.indexOf(answer), 1);
-        if (i == questionsArray[i - 1].number) {
-          correctness += 5;
-        }
+      }
+      if (i == questionsArray[i - 1].number) {
+        correctness += 5;
       }
     }
     return correctness;

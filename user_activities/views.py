@@ -88,8 +88,8 @@ class UserCourseRetrieveView(generics.RetrieveDestroyAPIView):
 class UserCoursesCreateView(generics.CreateAPIView):
     queryset = UserCourses.objects.all()
     serializer_class = CreateUserCoursesSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    authentication_classes = []
+    # permission_classes = [permissions.IsAuthenticated]
+    # authentication_classes = []
 
 
 class UserTasksCreateView(generics.CreateAPIView):

@@ -14,6 +14,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 64%;
+  height: 320px;
   padding: 2em 2em 2em 1em;
   margin: 1em;
 }
@@ -239,12 +240,11 @@
 .helpButton {
   cursor: pointer;
   border: none;
+  display: flex;
   color: #ebe2ca;
   background: #908373;
   border-radius: 5px;
   padding: auto;
-  width: 18.8px;
-  height: 18.8px;
 }
 .helpButton > * {
   margin: auto;
@@ -417,6 +417,7 @@
 .statsDiagram {
   background-color: #ebe2ca;
   border-radius: 20px;
+  height: 685px;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 2em;
   margin: 1em;
@@ -472,6 +473,7 @@
 
 .admin button {
   margin: auto;
+  min-height: 50px;
   cursor: pointer;
   border: none;
   color: #ebe2ca;
@@ -480,7 +482,6 @@
   font-family: "Athelas";
   font-size: 14px;
   text-align: center;
-  height: 100%;
 }
 
 .admin {
@@ -491,4 +492,22 @@
 
 .admin button * {
   margin: auto;
+}
+
+.helpContainer {
+  background: #908373;
+  position: absolute;
+  left: 980px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  padding: 0.3em;
+  border-radius: 20px;
+}
+
+.helpContainer h3 {
+  color: #ebe2ca;
+  margin: 0em;
+  font-family: "AthelasBold";
+  font-size: 8pt;
 }

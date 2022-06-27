@@ -122,6 +122,8 @@ const actions = {
   select_params_for_task_choice_failed: "select_params_for_task_choice_failed",
   select_params_for_task_choice_successed:
     "select_params_for_task_choice_successed",
+  task_frontend_update_started: "task_frontend_update_started",
+  select_paramtask_request_successed: "select_paramtask_request_successed", 
 };
 
 export default actions;

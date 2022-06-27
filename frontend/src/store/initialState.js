@@ -51,6 +51,7 @@ const initialState = {
     isLoading: false,
     isChanged: false,
     usertaskId: null,
+    isNotTimer : false,
     data: {
       id: 4,
       type: "текстовое задание",

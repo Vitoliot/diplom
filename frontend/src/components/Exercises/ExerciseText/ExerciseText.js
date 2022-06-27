@@ -8,9 +8,18 @@ import { connect } from "react-redux";
 import mapDispatchToProps from "../../../store/mapDispatchToProps";
 import TenThesis from "../TenThesis/TenThesis";
 
-import { Link } from "react-router-dom";
-
-const ExerciseText = ({ item, time, QERTest, LMTest, isParam }) => {
+const ExerciseText = ({
+  item,
+  time,
+  QERTest,
+  LMTest,
+  isParam,
+  isLogged,
+  createUserTask,
+  stopTimer,
+  taskId,
+  usercourseId,
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isExerciseTest, setIsExerciseTest] = useState(false);
   console.log(item);
@@ -51,6 +60,8 @@ const ExerciseText = ({ item, time, QERTest, LMTest, isParam }) => {
   }
 
   function handleDoneButton() {
+    if (isLogged && !isParam) createUserTask(taskId, usercourseId, time);
+    if (!isLogged || isParam) stopTimer();
     setIsExerciseTest(true);
   }
   function getAmountOfWords(string) {

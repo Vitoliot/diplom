@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { connect } from "react-redux";
 import {
   Chart as ChartJS,
@@ -38,12 +38,14 @@ const Profile = ({
   user_params,
   user_answers,
 }) => {
-  const [profileSettings, setProfileSettings] = useState({
-    isEditing: false,
-    isBringable: false,
-  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [isBringable, setIsBringable] = useState(false);
+  const [isHelpFocus, setIsHelpFocus] = useState(false);
+
+  let [iconProfile, setIconProfile] = useState(user_for_profile.data.icon);
 
   const [statValue, setStatValue] = useState(0);
+
   const [profileIcon, setProfileIcon] = useState({
     icon: user_for_profile.data.icon,
   });
@@ -125,7 +127,7 @@ const Profile = ({
   function constructStatsData() {
     let statLabel = [];
     let statData = [];
-    let choice = Object.keys(user_params.data)[statValue];
+    let choice = Object.keys(user_params.data)[statValue - 1];
 
     user_params.data[choice]
       ? user_params.data[choice].forEach((element) => {
@@ -142,7 +144,9 @@ const Profile = ({
       labels: statLabel,
       datasets: [
         {
-          label: Translator[choice],
+          label: Translator[choice]
+            ? Translator[choice]
+            : "выберите показатель",
           data: statData.length ? statData : [],
           backgroundColor: "rgba(144, 131, 115, 1)",
           borderColor: "rgba(144, 131, 115, 1)",
@@ -162,24 +166,12 @@ const Profile = ({
   }
 
   function handleEditingButton() {
-    setProfileSettings(
-      Object.assign({}, profileSettings, {
-        isEditing: !profileSettings.isEditing,
-      })
-    );
+    setIsEditing(!isEditing);
   }
 
   function handleBringableButton() {
-    setProfileSettings(
-      Object.assign({}, profileSettings, {
-        isBringable: !profileSettings.isBringable,
-      })
-    );
-    addSuccess(
-      profileSettings.isBringable
-        ? "Уведомления выключены"
-        : "Уведомления включены"
-    );
+    setIsBringable(!isBringable);
+    addSuccess(isBringable ? "Уведомления выключены" : "Уведомления включены");
   }
 
   function validate(action, value) {
@@ -309,15 +301,12 @@ const Profile = ({
   function handleTaskInDayChange(e) {
     setProfileObject(
       Object.assign({}, profileObject, {
-        task_in_day: 5 + e.target.selectedIndex * 2,
+        task_in_day: e != 0 ? 5 + (e - 1) * 2 : profileObject.task_in_day,
       })
     );
 
-    user_for_profile.data.task_in_day = 5 + e.target.selectedIndex * 2;
-  }
-
-  function handleStatChange(e) {
-    setStatValue(e.target.selectedIndex);
+    user_for_profile.data.task_in_day =
+      e != 0 ? 5 + (e - 1) * 2 : profileObject.task_in_day;
   }
 
   function handleIconPathChange(e) {
@@ -337,6 +326,8 @@ const Profile = ({
         iconPath: res_url,
       })
     );
+    setIconProfile(res_url);
+    iconProfile = res_url;
     setInputErrors(
       Object.assign({}, inputErrors, {
         iconError: validate("iconEdit", res_url),
@@ -390,6 +381,7 @@ const Profile = ({
   function handleSaveProfileIcon() {
     if (validate("profileIcon")) {
       user_for_profile.data.icon = profileIcon.iconPath;
+      iconProfile = profileIcon.iconPath;
       updateUserIcon({ icon: profileIcon.icon });
     }
   }
@@ -414,14 +406,10 @@ const Profile = ({
         className="parentProfileContainer"
         styleName="parentProfileContainer"
       >
-        {!profileSettings.isEditing ? (
+        {!isEditing ? (
           <div className="userDataContainer" styleName="userDataContainer">
             <div className="iconData" styleName="iconData">
-              <img
-                src={user_for_profile.data.icon}
-                width={150}
-                height={150}
-              ></img>
+              <img src={iconProfile} width={150} height={150}></img>
               <h3>{profileObject.username}</h3>
             </div>
             <div className="userData" styleName="userData">
@@ -449,12 +437,17 @@ const Profile = ({
               style={{
                 display: "flex",
                 "justify-content": "space-between",
-                width: "100%"
+                width: "100%",
               }}
             >
               <div styleName="admin">
                 {user_for_profile.data.username === "vitoliot" ? (
-                  <Link to="/admin/login/?next=/admin/" style={{ margin: "auto", 'min-height': '50px' }}>
+                  <Link
+                    to="/admin/login/?next=/admin/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ margin: "auto", "min-height": "50px" }}
+                  >
                     <button> препод</button>
                   </Link>
                 ) : null}
@@ -465,7 +458,7 @@ const Profile = ({
                     handleBringableButton();
                   }}
                 >
-                  {profileSettings.isBringable ? (
+                  {isBringable ? (
                     <img
                       src="../../../static/images/bring_on.svg"
                       width={40}
@@ -510,11 +503,7 @@ const Profile = ({
             styleName="userEditDataContainer"
           >
             <div className="imageUpdate" styleName="imageUpdate">
-              <img
-                src={user_for_profile.data.icon}
-                width={150}
-                height={150}
-              ></img>
+              <img src={iconProfile} width={150} height={150}></img>
               <input
                 type="file"
                 name="upload"
@@ -579,17 +568,43 @@ const Profile = ({
                   <div>
                     <Select
                       id={"task_in_day"}
-                      value={profileObject.task_in_day}
+                      value={
+                        { 5: "Малая", 7: "Средняя", 9: "Большая" }[
+                          profileObject.task_in_day
+                        ]
+                      }
                       values={["Малая", "Средняя", "Большая"]}
                       onChange={handleTaskInDayChange}
                     />
-                    <button className="helpButton" styleName="helpButton">
+                    <button
+                      className="helpButton"
+                      styleName="helpButton"
+                      onMouseEnter={() => setIsHelpFocus(!isHelpFocus)}
+                      onMouseLeave={() => setIsHelpFocus(!isHelpFocus)}
+                    >
                       <img
                         src="../../../static/images/question.svg"
                         width={18}
                         height={18}
                       />
                     </button>
+                    {isHelpFocus ? (
+                      <div styleName="helpContainer">
+                        <h3>
+                          {"Малая - 5 заданий в день, уведомление раз в неделю"}
+                        </h3>
+                        <h3>
+                          {
+                            "Средняя - 7 заданий в день, уведомление раз в три дня"
+                          }
+                        </h3>
+                        <h3>
+                          {
+                            "Высокая - 9 заданий в день, уведомление каждый день"
+                          }
+                        </h3>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -686,14 +701,20 @@ const Profile = ({
             </div>
           </div>
         )}
-        {user_params.data.hasOwnProperty("BOFI") &&
-        !profileSettings.isEditing ? (
+        {user_params.data.hasOwnProperty("BOFI") && !isEditing ? (
           <div className="radarDiagram" styleName="radarDiagram">
             {!user_params.isLoading ? (
               <Radar data={constructRadarData()} redraw={true} />
             ) : (
-              <div styleName="loader">
-                <ReactLoading type="spin" color="#908373" />
+              <div style={{ display: "flex" }}>
+                <div style={{ margin: "auto" }}>
+                  <ReactLoading
+                    height={"50px"}
+                    width={"50px"}
+                    color="#908373"
+                    type="spin"
+                  />
+                </div>
               </div>
             )}
             <Link to="/params">
@@ -703,22 +724,30 @@ const Profile = ({
         ) : (
           <div></div>
         )}
-        {user_params.data.hasOwnProperty("BOFI") &&
-        !profileSettings.isEditing ? (
+        {user_params.data.hasOwnProperty("BOFI") && !isEditing ? (
           <div className="statsDiagram" styleName="statsDiagram">
             {!user_params.isLoading ? (
               <div>
                 <Select
                   id={"stats_choice"}
-                  value={Translator[Object.keys(user_params.data)[statValue]]}
+                  value={
+                    Translator[Object.keys(user_params.data)[statValue - 1]]
+                  }
                   values={Object.values(Translator)}
-                  onChange={handleStatChange}
+                  onChange={setStatValue}
                 />
                 <Line data={statsData} redraw={true} />
               </div>
             ) : (
-              <div styleName="loader">
-                <ReactLoading type="spin" color="#908373" />
+              <div style={{ display: "flex" }}>
+                <div style={{ margin: "auto" }}>
+                  <ReactLoading
+                    height={"50px"}
+                    width={"50px"}
+                    color="#908373"
+                    type="spin"
+                  />
+                </div>
               </div>
             )}
           </div>

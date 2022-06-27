@@ -48,7 +48,9 @@ export function getTasksForTaskChoice(
   compressed,
   gaming,
   fast_to_complete,
-  isOnSite
+  isOnSite,
+  obj_arr=[],
+  count=0,
 ) {
   return async function (dispatch, getState, extraArgument) {
     dispatch(actionCreators.select_tasks_for_task_choice_started());
@@ -687,8 +689,6 @@ export function createTodayCompleteTasks() {
     dispatch(actionCreators.create_today_complete_tasks_started());
     return await axios.post(url, { user: user, amount_of_tasks: 0 }).then(
       (response) => {
-        console.log(response);
-        console.log(response.data);
         dispatch(
           actionCreators.select_today_complete_tasks_successed(response.data)
         );
@@ -740,7 +740,7 @@ export function updateTodayCompleteTasks(amount_of_tasks) {
 export function changeCurrentTask(task) {
   return async function (dispatch, getState, extraArgument) {
     // dispatch(actionCreators.task_frontend_update(task));
-    dispatch(onGetTask(task.id));
+    dispatch(onGetTask(task));
   };
 }
 
@@ -751,7 +751,7 @@ export function setCurrentCourse(course) {
 }
 export function deleteAnswer(answerId) {
   return async function (dispatch, getState, extraArgument) {
-    let url = `deletanswer/${answerId}`;
+    let url = `activities/deletanswer/${answerId}`;
 
     dispatch(actionCreators.delete_answer_request_started());
     return await axios.delete(url).then(
@@ -772,7 +772,7 @@ export function deleteAnswer(answerId) {
     );
   };
 }
-export function onCreateUserTask(taskId, time, usercourse, correctness) {
+export function onCreateUserTask(taskId, usercourse, time, correctness = 0) {
   return async function (dispatch, getState, extraArgument) {
     let url = "activities/usertask/new";
     dispatch(actionCreators.create_usertask_request_started());
@@ -785,6 +785,7 @@ export function onCreateUserTask(taskId, time, usercourse, correctness) {
       })
       .then(
         (response) => {
+          console.log(response.data);
           dispatch(
             actionCreators.create_usertask_request_successed(response.data)
           );
@@ -805,6 +806,7 @@ export function onCreateUserTask(taskId, time, usercourse, correctness) {
 export function onCreateAnswer(usertaskId, number, answer, item) {
   return async function (dispatch, getState, extraArgument) {
     let url = "activities/answer/new";
+    console.log(getState());
     dispatch(actionCreators.create_answer_request_started());
     return await axios
       .post(url, {
@@ -976,11 +978,36 @@ export function onGetTask(taskId) {
     );
   };
 }
+
+export function onGetParamTask(taskId) {
+  return async function (dispatch, getState, extraArgument) {
+    dispatch(actionCreators.select_task_request_started());
+    let url = `education/task/${taskId}`;
+    return await axios.get(url).then(
+      (response) => {
+        dispatch(
+          actionCreators.select_paramtask_request_successed(response.data)
+        );
+      },
+      (error) => {
+        dispatch(actionCreators.select_task_request_failed());
+        dispatch(
+          actions.add_error(
+            error.response.data.detail,
+            error.response.status,
+            dispatch
+          )
+        );
+      }
+    );
+  };
+}
+
 export function onChangeExerciseState(param) {
   return async function (dispatch, getState, extraArgument) {
     console.log(param);
-    if (param == "КЭЧ") dispatch(onGetTask(4));
-    if (param == "ЛП") dispatch(onGetTask(5));
+    if (param == "КЭЧ") dispatch(onGetParamTask(4));
+    if (param == "ЛП") dispatch(onGetParamTask(5));
     dispatch(actionCreators.changeExerciseState(true, param));
   };
 }

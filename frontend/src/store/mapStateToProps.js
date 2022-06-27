@@ -5,7 +5,7 @@ function mapStateToProps(component) {
     case "TaskChoice": {
       return function (state) {
         return {
-          taskChoicePage: state.taskChoicePage
+          taskChoicePage: state.taskChoicePage,
         };
       };
     }
@@ -117,7 +117,7 @@ function mapStateToProps(component) {
               : null,
           isLogged: state.user_for_profile.data.id ? true : false,
           taskId: state.current_task.data.id,
-          usercourseId: state.current_course.id,
+          usercourseId: state.current_course.data.id,
         };
       };
     }
@@ -129,9 +129,11 @@ function mapStateToProps(component) {
               ? state.current_task.data.items[0]
               : null,
           isLogged: state.user_for_profile.data.id ? true : false,
-          usertaskId: state.current_task.usertask,
+          usertaskId: state.current_task.usertask
+            ? state.current_task.usertask.id
+            : null,
           taskId: state.current_task.data.id,
-          usercourseId: state.current_course.id,
+          usercourseId: state.current_course.data.id,
         };
       };
     }
@@ -143,9 +145,11 @@ function mapStateToProps(component) {
               ? state.current_task.data.items[0]
               : null,
           isLogged: state.user_for_profile.data.id ? true : false,
-          usertaskId: state.current_task.usertask,
+          usertaskId: state.current_task.usertask
+            ? state.current_task.usertask.id
+            : null,
           taskId: state.current_task.data.id,
-          usercourseId: state.current_course.id,
+          usercourseId: state.current_course.data.id,
         };
       };
     }
@@ -159,7 +163,7 @@ function mapStateToProps(component) {
           isLogged: state.user_for_profile.data.id ? true : false,
           usertaskId: null,
           taskId: state.current_task.data.id,
-          usercourseId: state.current_course.id,
+          usercourseId: state.current_course.data.id,
         };
       };
     }
@@ -171,9 +175,11 @@ function mapStateToProps(component) {
               ? state.current_task.data.items[0]
               : null,
           isLogged: state.user_for_profile.data.id ? true : false,
-          usertaskId: state.current_task.usertask,
+          usertaskId: state.current_task.usertask
+            ? state.current_task.usertask.id
+            : null,
           taskId: state.current_task.data.id,
-          usercourseId: state.current_course.id,
+          usercourseId: state.current_course.data.id,
         };
       };
     }
@@ -185,9 +191,11 @@ function mapStateToProps(component) {
               ? state.current_task.data.items[0]
               : null,
           isLogged: state.user_for_profile.data.id ? true : false,
-          usertaskId: state.current_task.usertask,
+          usertaskId: state.current_task.usertask
+            ? state.current_task.usertask.id
+            : null,
           taskId: state.current_task.data.id,
-          usercourseId: state.current_course.id,
+          usercourseId: state.current_course.data.id,
         };
       };
     }

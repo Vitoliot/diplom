@@ -13,7 +13,7 @@ import CSSModules from "react-css-modules";
 import { connect } from "react-redux";
 import mapStateToProps from "../../../store/mapStateToProps.js";
 import mapDispatchToProps from "../../../store/mapDispatchToProps.js";
-
+import ReactLoading from "react-loading";
 const TaskChoice = ({
   taskChoicePage,
   onChangeCurrentTask,
@@ -23,6 +23,7 @@ const TaskChoice = ({
   const [studentOrTeacher, setStudentOrTeacher] = useState(false);
   const [isSeeTasks, setIsSeeTasks] = useState(false);
   const [isSeeFilters, setIsSeeFilters] = useState(false);
+  const [isSeeHelp, setIsSeeHelp] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   let maxPage = 1;
   let [taskParts, setTaskParts] = useState([]);
@@ -74,12 +75,13 @@ const TaskChoice = ({
 
   if (taskChoicePage.tasks.length > 0) {
     //  пагинация
+    console.log(taskChoicePage.tasks.length);
     divideTasksToPage(taskChoicePage.tasks);
   }
 
   function divideTasksToPage(tasks) {
     let divVal = 5;
-    taskParts=[];
+    taskParts = [];
     if (tasks.length > divVal) {
       let iMax =
         tasks.length % divVal === 0
@@ -170,12 +172,23 @@ const TaskChoice = ({
     let type_t = typeChoiceState.findIndex((val) => {
       return val;
     });
+
     let theme_t = themeChoiceState.findIndex((val) => {
       return val;
     });
+
+    if (theme_t == 1) {
+      theme_t = 8;
+    } else if (theme_t == 7) {
+      theme_t = 9;
+    }
+    else if (theme_t > 0) {
+      theme_t = theme_t + 1;
+    }
+
     return [
-      type_t != -1 ? type_t : "",
-      theme_t != -1 ? theme_t : "",
+      type_t != -1 ? type_t + 1 : "",
+      theme_t != -1 ? theme_t + 1 : "",
       method ? method : "",
       doHaveTest ? doHaveTest : "",
       testProp ? testProp : "",
@@ -250,15 +263,14 @@ const TaskChoice = ({
                 </div>
               ) : (
                 <div style={{ display: "flex" }}>
-                  <h1
-                    style={{
-                      margin: "auto",
-                      color: "#908373",
-                      "font-family": "UbuntuBold",
-                    }}
-                  >
-                    Загрузка...
-                  </h1>
+                  <div style={{ margin: "auto" }}>
+                    <ReactLoading
+                      height={"50px"}
+                      width={"50px"}
+                      color="#908373"
+                      type="spin"
+                    />
+                  </div>
                 </div>
               )
             ) : taskChoicePage.isFetched ? (
@@ -278,15 +290,16 @@ const TaskChoice = ({
                 })}
               </div>
             ) : (
-              <h1
-                style={{
-                  margin: "auto",
-                  color: "#908373",
-                  "font-family": "UbuntuBold",
-                }}
-              >
-                Загрузка...
-              </h1>
+              <div style={{ display: "flex" }}>
+                <div style={{ display: "flex" }}>
+                  <ReactLoading
+                    height={"50px"}
+                    width={"50px"}
+                    color="#908373"
+                    type="spin"
+                  />
+                </div>
+              </div>
             )}
           </div>
           <div styleName="dlcButtonsContainer">
@@ -535,6 +548,8 @@ const TaskChoice = ({
                 </div>
                 <div>
                   <ThreeStateButton
+                    onMouseEnter={() => setIsSeeHelp(!isSeeHelp)}
+                    onMouseLeave={() => setIsSeeHelp(!isSeeHelp)}
                     paramsPressState={[
                       { title: "КЭЧ", isPressed: toQER },
                       { title: "ШПЗ", isPressed: toBOFI },
@@ -553,6 +568,18 @@ const TaskChoice = ({
                     ]}
                   />
                 </div>
+                {isSeeHelp ? (
+                  <div styleName="helpContainer">
+                    <div>
+                      <h3>{"КЭЧ - коэффициент эффективности чтения"}</h3>
+                      <h3>{"ШПЗ - широта поля зрения"}</h3>
+                      <h3>{"ВПСП - визуальная память с учётом позиции"}</h3>
+                      <h3>{"ВП - визуальная память"}</h3>
+                      <h3>{"ЛП - логическая память"}</h3>
+                      <h3>{"КВ - коэффициент внимания"}</h3>
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </div>
@@ -632,7 +659,17 @@ const TaskChoice = ({
             ) : null
           ) : (
             <div styleName="tasksContainer">
-              <h1
+              <div style={{ display: "flex" }}>
+                <div style={{ margin: "auto" }}>
+                  <ReactLoading
+                    height={"50px"}
+                    width={"50px"}
+                    color="#908373"
+                    type="spin"
+                  />
+                </div>
+              </div>
+              {/* <h1
                 style={{
                   margin: "auto",
                   color: "#908373",
@@ -640,7 +677,7 @@ const TaskChoice = ({
                 }}
               >
                 Загрузка...
-              </h1>
+              </h1> */}
             </div>
           )}
         </div>

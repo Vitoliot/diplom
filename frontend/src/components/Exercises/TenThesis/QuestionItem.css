@@ -18,6 +18,11 @@
   color: #9ac563;
 }
 
+.questionsContainer form div {
+  display: flex;
+  gap: 1em;
+}
+
 .incorrect label {
   color: #db6d6d;
 }

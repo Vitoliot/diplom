@@ -20,7 +20,8 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('id', 'number', 'answer', 'date_init', 'is_correct', 'item')
+        fields = ('id', 'number', 'answer', 'date_init',
+                  'is_correct', 'item', 'usertask')
 
 
 class UserTasksSerializer(serializers.ModelSerializer):
@@ -36,7 +37,7 @@ class UserTasksCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserTasks
-        fields = ('task', 'time', 'usercourse')
+        fields = ('id', 'task', 'time', 'usercourse')
 
 
 class UserDailySerializer(serializers.ModelSerializer):

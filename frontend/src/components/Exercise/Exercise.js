@@ -19,7 +19,7 @@ const Exercise = ({ current_task, getTask, exerciseState, isLogged }) => {
   console.log(current_task, exerciseState, isLogged);
   useEffect(() => {
     if (!isStarted) startTimer();
-    if (current_task.isComplete) stopTimer();
+    if (current_task.isNotTimer) stopTimer();
   });
 
   return (
